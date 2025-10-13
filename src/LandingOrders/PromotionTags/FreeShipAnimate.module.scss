@@ -1,0 +1,53 @@
+.container-coupon {
+  display: flex;
+  align-items: center;
+  // justify-content: center;
+  gap: 15px;
+  padding: 5px 0px;
+  .part1 {
+    // height: 28px;
+    background-color: #bbfff9;
+    color: #03635b;
+    width: fit-content;
+    border-radius: 6px;
+    padding: 2px 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    // gap: 5px;
+    .icon-coupon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .text1 {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 550;
+      font-size: 14px;
+      
+    }
+  }
+  .part2 {
+    margin-left: 12px;
+    .text-animate {
+      display: inline-block;
+      font-size: 18px;
+      font-weight: 550;
+      color: #048d82;
+      animation: textBigger 2s ease-in-out infinite;
+    }
+  }
+}
+// @keyframes textBigger {
+//   0% {
+//     transform: scale(1);
+//   }
+//   50% {
+//     transform: scale(1.1);
+//   }
+//   100% {
+//     transform: scale(1);
+//   }
+// }

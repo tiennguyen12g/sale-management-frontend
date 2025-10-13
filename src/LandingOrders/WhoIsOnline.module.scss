@@ -1,0 +1,64 @@
+.manager-dashboard {
+  min-width: 800px;
+  margin: 20px 0px;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.manager-dashboard h2 {
+  margin-bottom: 16px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+}
+
+.staff-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.staff-table th,
+.staff-table td {
+  text-align: left;
+  padding: 12px 10px;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.staff-table th {
+  background: #f8f9fa;
+  font-weight: 600;
+  font-size: 14px;
+  color: #444;
+}
+
+.staff-table tr:hover {
+  background: #f1f3f5;
+}
+
+.staff-status {
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 13px;
+  display: inline-block;
+  min-width: 70px;
+  text-align: center;
+}
+
+.staff-status.online {
+  background: #d4f5dd;
+  color: #2b8a3e;
+}
+
+.staff-status.offline {
+  background: #f5dada;
+  color: #b02a37;
+}
+
+.staff-lastseen {
+  font-size: 13px;
+  color: #666;
+}

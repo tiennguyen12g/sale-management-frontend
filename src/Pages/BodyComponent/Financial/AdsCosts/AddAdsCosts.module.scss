@@ -1,0 +1,96 @@
+.add-ads-costs-container {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+}
+
+.add-ads-form {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  width: 500px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  .form-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    h4 {
+      font-size: 18px;
+      font-weight: 600;
+    }
+    button {
+      background: none;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  }
+
+  .mode-switch {
+    display: flex;
+    gap: 12px;
+    button {
+      flex: 1;
+      padding: 8px;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      background: #f3f4f6;
+      cursor: pointer;
+      &.active {
+        background: #2563eb;
+        color: white;
+        font-weight: 600;
+      }
+    }
+  }
+
+  .form-body {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    label {
+      font-size: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+        flex: 0.5;
+    }
+
+    input, select {
+      padding: 6px 8px;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+
+    .submit-btn {
+      margin-top: 12px;
+      padding: 8px;
+      background: #2563eb;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+
+      &:hover {
+        background: #1e40af;
+      }
+    }
+
+    div{
+        display: flex;
+        gap: 10px;
+    }
+  }
+}

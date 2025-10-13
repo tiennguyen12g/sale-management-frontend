@@ -1,0 +1,1045 @@
+[
+  {
+    "action": "withdraw",
+    "date": "2024-09-27",
+    "value": 2419,
+    "usedFor": "Emergency fund",
+    "note": "Monthly withdraw"
+  },
+  {
+    "action": "payment",
+    "date": "2024-09-29",
+    "value": 1904,
+    "usedFor": "Supplier",
+    "note": "Paid for packaging"
+  },
+  {
+    "action": "withdraw",
+    "date": "2024-09-28",
+    "value": 1985,
+    "usedFor": "Owner withdraw",
+    "note": "Unexpected expense"
+  },
+  {
+    "action": "deposit",
+    "date": "2024-06-25",
+    "value": 1198,
+    "usedFor": "Shopee income",
+    "note": "Initial deposit"
+  },
+  {
+    "action": "deposit",
+    "date": "2024-09-08",
+    "value": 2091,
+    "usedFor": "Shopee income",
+    "note": "Weekend campaign"
+  },
+  {
+    "action": "withdraw",
+    "date": "2024-09-20",
+    "value": 744,
+    "usedFor": "Cash reserve",
+    "note": "Personal usage"
+  },
+  {
+    "action": "deposit",
+    "date": "2024-08-28",
+    "value": 2963,
+    "usedFor": "Sales revenue",
+    "note": "Shopee weekly transfer"
+  },
+  {
+    "action": "payment",
+    "date": "2024-07-18",
+    "value": 2427,
+    "usedFor": "Advertising",
+    "note": "Monthly supplier bill"
+  },
+  {
+    "action": "payment",
+    "date": "2024-07-05",
+    "value": 1192,
+    "usedFor": "Advertising",
+    "note": "Utility bill paid"
+  },
+  {
+    "action": "deposit",
+    "date": "2024-08-31",
+    "value": 2884,
+    "usedFor": "TikTok ads ROI",
+    "note": "Cash from TikTok sales"
+  },
+  {
+    "action": "withdraw",
+    "date": "2024-08-12",
+    "value": 2423,
+    "usedFor": "Cash reserve",
+    "note": "Unexpected expense"
+  },
+  {
+    "action": "payment",
+    "date": "2024-06-29",
+    "value": 1986,
+    "usedFor": "Logistics",
+    "note": "TikTok shipping fee"
+  },
+  {
+    "action": "payment",
+    "date": "2024-08-15",
+    "value": 2717,
+    "usedFor": "Logistics",
+    "note": "Paid for packaging"
+  },
+  {
+    "action": "payment",
+    "date": "2024-08-19",
+    "value": 1773,
+    "usedFor": "Utilities",
+    "note": "Utility bill paid"
+  },
+  {
+    "action": "deposit",
+    "date": "2024-06-09",
+    "value": 1652,
+    "usedFor": "Capital injection",
+    "note": "Shopee weekly transfer"
+  },
+  {
+    "action": "payment",
+    "date": "2024-06-15",
+    "value": 1201,
+    "usedFor": "Advertising",
+    "note": "Utility bill paid"
+  },
+  {
+    "action": "deposit",
+    "date": "2024-07-14",
+    "value": 1653,
+    "usedFor": "Sales revenue",
+    "note": "Cash from TikTok sales"
+  },
+  {
+    "action": "deposit",
+    "date": "2024-07-20",
+    "value": 762,
+    "usedFor": "Capital injection",
+    "note": "Shopee weekly transfer"
+  },
+  {
+    "action": "payment",
+    "date": "2024-08-13",
+    "value": 2985,
+    "usedFor": "Utilities",
+    "note": "Utility bill paid"
+  },
+  {
+    "action": "withdraw",
+    "date": "2024-06-11",
+    "value": 1553,
+    "usedFor": "Owner withdraw",
+    "note": "Cash withdrawal"
+  },
+  {
+    "action": "withdraw",
+    "date": "2024-07-30",
+    "value": 2745,
+    "usedFor": "Emergency fund",
+    "note": "Monthly withdraw"
+  },
+  {
+    "action": "payment",
+    "date": "2024-06-24",
+    "value": 2514,
+    "usedFor": "Logistics",
+    "note": "Paid for packaging"
+  },
+  {
+    "action": "withdraw",
+    "date": "2024-08-18",
+    "value": 1127,
+    "usedFor": "Owner withdraw",
+    "note": "Unexpected expense"
+  },
+  {
+    "action": "deposit",
+    "date": "2024-08-18",
+    "value": 2784,
+    "usedFor": "Capital injection",
+    "note": "Cash from TikTok sales"
+  },
+  {
+    "action": "withdraw",
+    "date": "2024-09-22",
+    "value": 2878,
+    "usedFor": "Emergency fund",
+    "note": "Monthly withdraw"
+  },
+  {
+    "action": "deposit",
+    "date": "2024-08-17",
+    "value": 557,
+    "usedFor": "COD deposit",
+    "note": "Initial deposit"
+  },
+  {
+    "action": "withdraw",
+    "date": "2024-09-15",
+    "value": 2455,
+    "usedFor": "Emergency fund",
+    "note": "Cash withdrawal"
+  },
+  {
+    "action": "payment",
+    "date": "2024-08-23",
+    "value": 834,
+    "usedFor": "Utilities",
+    "note": "Monthly supplier bill"
+  },
+  {
+    "action": "deposit",
+    "date": "2024-09-04",
+    "value": 1488,
+    "usedFor": "TikTok ads ROI",
+    "note": "Shopee weekly transfer"
+  },
+  {
+    "action": "payment",
+    "date": "2024-07-27",
+    "value": 2372,
+    "usedFor": "Logistics",
+    "note": "TikTok shipping fee"
+  },
+  {
+    "action": "payment",
+    "date": "2024-07-31",
+    "value": 2392,
+    "usedFor": "Supplier",
+    "note": "TikTok shipping fee"
+  },
+  {
+    "action": "payment",
+    "date": "2024-07-28",
+    "value": 791,
+    "usedFor": "Advertising",
+    "note": "Paid for packaging"
+  },
+  {
+    "action": "payment",
+    "date": "2024-09-14",
+    "value": 2111,
+    "usedFor": "Utilities",
+    "note": "Monthly supplier bill"
+  },
+  {
+    "action": "withdraw",
+    "date": "2024-08-15",
+    "value": 2732,
+    "usedFor": "Cash reserve",
+    "note": "Monthly withdraw"
+  },
+  {
+    "action": "withdraw",
+    "date": "2024-09-04",
+    "value": 2303,
+    "usedFor": "Owner withdraw",
+    "note": "Unexpected expense"
+  },
+  {
+    "action": "withdraw",
+    "date": "2024-08-16",
+    "value": 1518,
+    "usedFor": "Cash reserve",
+    "note": "Cash withdrawal"
+  },
+  {
+    "action": "withdraw",
+    "date": "2024-07-06",
+    "value": 1532,
+    "usedFor": "Cash reserve",
+    "note": "Personal usage"
+  },
+  {
+    "action": "deposit",
+    "date": "2024-08-18",
+    "value": 533,
+    "usedFor": "TikTok ads ROI",
+    "note": "Shopee weekly transfer"
+  },
+  {
+    "action": "withdraw",
+    "date": "2024-09-28",
+    "value": 1372,
+    "usedFor": "Emergency fund",
+    "note": "Personal usage"
+  },
+  {
+    "action": "payment",
+    "date": "2024-07-26",
+    "value": 797,
+    "usedFor": "Advertising",
+    "note": "Paid for packaging"
+  },
+  {
+    "action": "deposit",
+    "date": "2024-09-07",
+    "value": 944,
+    "usedFor": "Sales revenue",
+    "note": "Cash from TikTok sales"
+  },
+  {
+    "action": "payment",
+    "date": "2024-07-06",
+    "value": 2938,
+    "usedFor": "Advertising",
+    "note": "Monthly supplier bill"
+  },
+  {
+    "action": "payment",
+    "date": "2024-06-14",
+    "value": 1895,
+    "usedFor": "Supplier",
+    "note": "TikTok shipping fee"
+  },
+  {
+    "action": "deposit",
+    "date": "2024-07-11",
+    "value": 1784,
+    "usedFor": "Sales revenue",
+    "note": "Cash from TikTok sales"
+  },
+  {
+    "action": "withdraw",
+    "date": "2024-08-19",
+    "value": 2647,
+    "usedFor": "Cash reserve",
+    "note": "Personal usage"
+  },
+  {
+    "action": "deposit",
+    "date": "2024-07-23",
+    "value": 1808,
+    "usedFor": "Shopee income",
+    "note": "Weekend campaign"
+  },
+  {
+    "action": "withdraw",
+    "date": "2024-06-01",
+    "value": 1768,
+    "usedFor": "Emergency fund",
+    "note": "Monthly withdraw"
+  },
+  {
+    "action": "deposit",
+    "date": "2024-06-18",
+    "value": 1383,
+    "usedFor": "COD deposit",
+    "note": "Cash from TikTok sales"
+  },
+  {
+    "action": "payment",
+    "date": "2024-06-03",
+    "value": 789,
+    "usedFor": "Utilities",
+    "note": "Monthly supplier bill"
+  },
+  {
+    "action": "payment",
+    "date": "2024-07-02",
+    "value": 2862,
+    "usedFor": "Advertising",
+    "note": "Monthly supplier bill"
+  },
+  {
+    "action": "withdraw",
+    "date": "2024-07-17",
+    "value": 1160,
+    "usedFor": "Emergency fund",
+    "note": "Unexpected expense"
+  },
+  {
+    "action": "deposit",
+    "date": "2024-08-07",
+    "value": 2353,
+    "usedFor": "Sales revenue",
+    "note": "Monthly sales deposit"
+  },
+  {
+    "action": "deposit",
+    "date": "2024-06-11",
+    "value": 1876,
+    "usedFor": "Capital injection",
+    "note": "Weekend campaign"
+  },
+  {
+    "action": "payment",
+    "date": "2024-07-23",
+    "value": 892,
+    "usedFor": "Logistics",
+    "note": "Monthly supplier bill"
+  },
+  {
+    "action": "payment",
+    "date": "2025-08-13",
+    "value": 1326,
+    "usedFor": "Logistics",
+    "note": "Paid for packaging"
+  },
+  {
+    "action": "withdraw",
+    "date": "2025-08-04",
+    "value": 1463,
+    "usedFor": "Cash reserve",
+    "note": "Cash withdrawal"
+  },
+  {
+    "action": "payment",
+    "date": "2025-07-16",
+    "value": 1209,
+    "usedFor": "Logistics",
+    "note": "TikTok shipping fee"
+  },
+  {
+    "action": "deposit",
+    "date": "2025-09-13",
+    "value": 781,
+    "usedFor": "Capital injection",
+    "note": "Monthly sales deposit"
+  },
+  {
+    "action": "deposit",
+    "date": "2025-07-11",
+    "value": 2546,
+    "usedFor": "Capital injection",
+    "note": "Shopee weekly transfer"
+  },
+  {
+    "action": "withdraw",
+    "date": "2025-07-15",
+    "value": 588,
+    "usedFor": "Owner withdraw",
+    "note": "Monthly withdraw"
+  },
+  {
+    "action": "deposit",
+    "date": "2025-08-16",
+    "value": 2939,
+    "usedFor": "Sales revenue",
+    "note": "Initial deposit"
+  },
+  {
+    "action": "deposit",
+    "date": "2025-06-04",
+    "value": 1805,
+    "usedFor": "TikTok ads ROI",
+    "note": "Cash from TikTok sales"
+  },
+  {
+    "action": "withdraw",
+    "date": "2025-06-21",
+    "value": 2357,
+    "usedFor": "Owner withdraw",
+    "note": "Cash withdrawal"
+  },
+  {
+    "action": "withdraw",
+    "date": "2025-06-24",
+    "value": 2855,
+    "usedFor": "Emergency fund",
+    "note": "Personal usage"
+  },
+  {
+    "action": "payment",
+    "date": "2025-07-31",
+    "value": 1141,
+    "usedFor": "Advertising",
+    "note": "Utility bill paid"
+  },
+  {
+    "action": "payment",
+    "date": "2025-07-03",
+    "value": 1573,
+    "usedFor": "Advertising",
+    "note": "Monthly supplier bill"
+  },
+  {
+    "action": "payment",
+    "date": "2025-08-01",
+    "value": 1092,
+    "usedFor": "Logistics",
+    "note": "Paid for packaging"
+  },
+  {
+    "action": "deposit",
+    "date": "2025-06-29",
+    "value": 2348,
+    "usedFor": "Sales revenue",
+    "note": "Cash from TikTok sales"
+  },
+  {
+    "action": "payment",
+    "date": "2025-08-08",
+    "value": 1846,
+    "usedFor": "Utilities",
+    "note": "Shopee logistics"
+  },
+  {
+    "action": "withdraw",
+    "date": "2025-07-18",
+    "value": 1198,
+    "usedFor": "Cash reserve",
+    "note": "Personal usage"
+  },
+  {
+    "action": "payment",
+    "date": "2025-06-07",
+    "value": 2220,
+    "usedFor": "Supplier",
+    "note": "Utility bill paid"
+  },
+  {
+    "action": "withdraw",
+    "date": "2025-06-06",
+    "value": 2938,
+    "usedFor": "Cash reserve",
+    "note": "Unexpected expense"
+  },
+  {
+    "action": "payment",
+    "date": "2025-09-29",
+    "value": 2641,
+    "usedFor": "Advertising",
+    "note": "TikTok shipping fee"
+  },
+  {
+    "action": "withdraw",
+    "date": "2025-06-27",
+    "value": 2125,
+    "usedFor": "Emergency fund",
+    "note": "Unexpected expense"
+  },
+  {
+    "action": "withdraw",
+    "date": "2025-06-26",
+    "value": 1880,
+    "usedFor": "Owner withdraw",
+    "note": "Personal usage"
+  },
+  {
+    "action": "withdraw",
+    "date": "2025-07-24",
+    "value": 1977,
+    "usedFor": "Emergency fund",
+    "note": "Unexpected expense"
+  },
+  {
+    "action": "payment",
+    "date": "2025-07-16",
+    "value": 2273,
+    "usedFor": "Advertising",
+    "note": "Shopee logistics"
+  },
+  {
+    "action": "deposit",
+    "date": "2025-09-23",
+    "value": 1837,
+    "usedFor": "COD deposit",
+    "note": "Cash from TikTok sales"
+  },
+  {
+    "action": "deposit",
+    "date": "2025-07-28",
+    "value": 2876,
+    "usedFor": "Shopee income",
+    "note": "Cash from TikTok sales"
+  },
+  {
+    "action": "payment",
+    "date": "2025-07-27",
+    "value": 1104,
+    "usedFor": "Supplier",
+    "note": "Paid for packaging"
+  },
+  {
+    "action": "payment",
+    "date": "2025-06-13",
+    "value": 2734,
+    "usedFor": "Supplier",
+    "note": "Utility bill paid"
+  },
+  {
+    "action": "deposit",
+    "date": "2025-06-08",
+    "value": 1805,
+    "usedFor": "COD deposit",
+    "note": "Shopee weekly transfer"
+  },
+  {
+    "action": "payment",
+    "date": "2025-07-01",
+    "value": 2176,
+    "usedFor": "Advertising",
+    "note": "Shopee logistics"
+  },
+  {
+    "action": "payment",
+    "date": "2025-08-28",
+    "value": 2626,
+    "usedFor": "Supplier",
+    "note": "Shopee logistics"
+  },
+  {
+    "action": "withdraw",
+    "date": "2025-07-27",
+    "value": 2097,
+    "usedFor": "Owner withdraw",
+    "note": "Monthly withdraw"
+  },
+  {
+    "action": "deposit",
+    "date": "2025-09-04",
+    "value": 2800,
+    "usedFor": "TikTok ads ROI",
+    "note": "Monthly sales deposit"
+  },
+  {
+    "action": "withdraw",
+    "date": "2025-07-29",
+    "value": 2427,
+    "usedFor": "Emergency fund",
+    "note": "Personal usage"
+  },
+  {
+    "action": "deposit",
+    "date": "2025-07-27",
+    "value": 2308,
+    "usedFor": "Capital injection",
+    "note": "Monthly sales deposit"
+  },
+  {
+    "action": "deposit",
+    "date": "2025-06-23",
+    "value": 1390,
+    "usedFor": "Sales revenue",
+    "note": "Monthly sales deposit"
+  },
+  {
+    "action": "deposit",
+    "date": "2025-06-04",
+    "value": 2897,
+    "usedFor": "Sales revenue",
+    "note": "Monthly sales deposit"
+  },
+  {
+    "action": "deposit",
+    "date": "2025-07-20",
+    "value": 2477,
+    "usedFor": "COD deposit",
+    "note": "Cash from TikTok sales"
+  },
+  {
+    "action": "withdraw",
+    "date": "2025-07-17",
+    "value": 2573,
+    "usedFor": "Cash reserve",
+    "note": "Cash withdrawal"
+  },
+  {
+    "action": "withdraw",
+    "date": "2025-08-24",
+    "value": 2870,
+    "usedFor": "Cash reserve",
+    "note": "Unexpected expense"
+  },
+  {
+    "action": "deposit",
+    "date": "2025-09-25",
+    "value": 1258,
+    "usedFor": "Sales revenue",
+    "note": "Weekend campaign"
+  },
+  {
+    "action": "withdraw",
+    "date": "2025-09-07",
+    "value": 1374,
+    "usedFor": "Emergency fund",
+    "note": "Cash withdrawal"
+  },
+  {
+    "action": "withdraw",
+    "date": "2025-07-26",
+    "value": 2534,
+    "usedFor": "Emergency fund",
+    "note": "Unexpected expense"
+  },
+  {
+    "action": "deposit",
+    "date": "2025-06-22",
+    "value": 1298,
+    "usedFor": "TikTok ads ROI",
+    "note": "Initial deposit"
+  },
+  {
+    "action": "withdraw",
+    "date": "2025-07-05",
+    "value": 1240,
+    "usedFor": "Cash reserve",
+    "note": "Monthly withdraw"
+  },
+  {
+    "action": "deposit",
+    "date": "2025-09-19",
+    "value": 1652,
+    "usedFor": "COD deposit",
+    "note": "Monthly sales deposit"
+  },
+  {
+    "action": "withdraw",
+    "date": "2025-06-12",
+    "value": 1888,
+    "usedFor": "Owner withdraw",
+    "note": "Unexpected expense"
+  },
+  {
+    "action": "payment",
+    "date": "2025-06-11",
+    "value": 2406,
+    "usedFor": "Utilities",
+    "note": "Monthly supplier bill"
+  },
+  {
+    "action": "payment",
+    "date": "2025-06-07",
+    "value": 1440,
+    "usedFor": "Advertising",
+    "note": "TikTok shipping fee"
+  },
+  {
+    "action": "deposit",
+    "date": "2025-09-30",
+    "value": 2831,
+    "usedFor": "TikTok ads ROI",
+    "note": "Cash from TikTok sales"
+  },
+  {
+    "action": "payment",
+    "date": "2025-06-19",
+    "value": 2791,
+    "usedFor": "Logistics",
+    "note": "Paid for packaging"
+  },
+  {
+    "action": "deposit",
+    "date": "2025-09-17",
+    "value": 1895,
+    "usedFor": "Sales revenue",
+    "note": "Shopee weekly transfer"
+  },
+  {
+    "action": "payment",
+    "date": "2025-09-25",
+    "value": 1917,
+    "usedFor": "Logistics",
+    "note": "Shopee logistics"
+  },
+  {
+    "action": "withdraw",
+    "date": "2025-06-08",
+    "value": 984,
+    "usedFor": "Cash reserve",
+    "note": "Unexpected expense"
+  },
+  {
+    "action": "deposit",
+    "date": "2025-09-08",
+    "value": 2276,
+    "usedFor": "Shopee income",
+    "note": "Weekend campaign"
+  },
+  {
+    "action": "withdraw",
+    "date": "2025-09-28",
+    "value": 604,
+    "usedFor": "Emergency fund",
+    "note": "Monthly withdraw"
+  },
+  {
+    "action": "deposit",
+    "date": "2025-06-26",
+    "value": 1275,
+    "usedFor": "TikTok ads ROI",
+    "note": "Initial deposit"
+  },
+  {
+    "action": "withdraw",
+    "date": "2025-07-19",
+    "value": 2988,
+    "usedFor": "Owner withdraw",
+    "note": "Personal usage"
+  },
+  {
+    "action": "withdraw",
+    "date": "2025-06-05",
+    "value": 2652,
+    "usedFor": "Owner withdraw",
+    "note": "Personal usage"
+  },
+  {
+    "action": "payment",
+    "date": "2025-08-28",
+    "value": 1027,
+    "usedFor": "Supplier",
+    "note": "Monthly supplier bill"
+  },
+  {
+    "action": "withdraw",
+    "date": "2025-06-13",
+    "value": 2326,
+    "usedFor": "Emergency fund",
+    "note": "Monthly withdraw"
+  },
+  {
+    "action": "deposit",
+    "date": "2025-08-30",
+    "value": 1876,
+    "usedFor": "Capital injection",
+    "note": "Weekend campaign"
+  },
+  {
+    "action": "deposit",
+    "date": "2025-08-26",
+    "value": 2525,
+    "usedFor": "Sales revenue",
+    "note": "Cash from TikTok sales"
+  },
+  {
+    "action": "payment",
+    "date": "2025-09-01",
+    "value": 2128,
+    "usedFor": "Logistics",
+    "note": "TikTok shipping fee"
+  },
+  {
+    "action": "payment",
+    "date": "2025-07-09",
+    "value": 2404,
+    "usedFor": "Utilities",
+    "note": "TikTok shipping fee"
+  },
+  {
+    "action": "withdraw",
+    "date": "2025-08-18",
+    "value": 2772,
+    "usedFor": "Emergency fund",
+    "note": "Unexpected expense"
+  },
+  {
+    "action": "deposit",
+    "date": "2025-08-27",
+    "value": 2905,
+    "usedFor": "Capital injection",
+    "note": "Shopee weekly transfer"
+  },
+    {
+    "action": "withdraw",
+    "date": "2025-09-27",
+    "value": 2419,
+    "usedFor": "Emergency fund",
+    "note": "Monthly withdraw"
+  },
+  {
+    "action": "payment",
+    "date": "2025-09-29",
+    "value": 1904,
+    "usedFor": "Supplier",
+    "note": "Paid for packaging"
+  },
+  {
+    "action": "withdraw",
+    "date": "2025-09-28",
+    "value": 1985,
+    "usedFor": "Owner withdraw",
+    "note": "Unexpected expense"
+  },
+  {
+    "action": "deposit",
+    "date": "2025-06-25",
+    "value": 1198,
+    "usedFor": "Shopee income",
+    "note": "Initial deposit"
+  },
+  {
+    "action": "deposit",
+    "date": "2025-09-08",
+    "value": 2091,
+    "usedFor": "Shopee income",
+    "note": "Weekend campaign"
+  },
+  {
+    "action": "withdraw",
+    "date": "2025-09-20",
+    "value": 744,
+    "usedFor": "Cash reserve",
+    "note": "Personal usage"
+  },
+  {
+    "action": "deposit",
+    "date": "2025-08-28",
+    "value": 2963,
+    "usedFor": "Sales revenue",
+    "note": "Shopee weekly transfer"
+  },
+  {
+    "action": "payment",
+    "date": "2025-07-18",
+    "value": 2427,
+    "usedFor": "Advertising",
+    "note": "Monthly supplier bill"
+  },
+  {
+    "action": "payment",
+    "date": "2025-07-05",
+    "value": 1192,
+    "usedFor": "Advertising",
+    "note": "Utility bill paid"
+  },
+  {
+    "action": "deposit",
+    "date": "2025-08-31",
+    "value": 2884,
+    "usedFor": "TikTok ads ROI",
+    "note": "Cash from TikTok sales"
+  },
+  {
+    "action": "withdraw",
+    "date": "2025-08-12",
+    "value": 2423,
+    "usedFor": "Cash reserve",
+    "note": "Unexpected expense"
+  },
+  {
+    "action": "payment",
+    "date": "2025-06-29",
+    "value": 1986,
+    "usedFor": "Logistics",
+    "note": "TikTok shipping fee"
+  },
+  {
+    "action": "payment",
+    "date": "2025-08-15",
+    "value": 2717,
+    "usedFor": "Logistics",
+    "note": "Paid for packaging"
+  },
+  {
+    "action": "payment",
+    "date": "2025-08-19",
+    "value": 1773,
+    "usedFor": "Utilities",
+    "note": "Utility bill paid"
+  },
+  {
+    "action": "deposit",
+    "date": "2025-06-09",
+    "value": 1652,
+    "usedFor": "Capital injection",
+    "note": "Shopee weekly transfer"
+  },
+  {
+    "action": "payment",
+    "date": "2025-06-15",
+    "value": 1201,
+    "usedFor": "Advertising",
+    "note": "Utility bill paid"
+  },
+  {
+    "action": "deposit",
+    "date": "2025-07-14",
+    "value": 1653,
+    "usedFor": "Sales revenue",
+    "note": "Cash from TikTok sales"
+  },
+  {
+    "action": "deposit",
+    "date": "2025-07-20",
+    "value": 762,
+    "usedFor": "Capital injection",
+    "note": "Shopee weekly transfer"
+  },
+  {
+    "action": "payment",
+    "date": "2025-08-13",
+    "value": 2985,
+    "usedFor": "Utilities",
+    "note": "Utility bill paid"
+  },
+  {
+    "action": "withdraw",
+    "date": "2025-06-11",
+    "value": 1553,
+    "usedFor": "Owner withdraw",
+    "note": "Cash withdrawal"
+  },
+  {
+    "action": "withdraw",
+    "date": "2025-07-30",
+    "value": 2745,
+    "usedFor": "Emergency fund",
+    "note": "Monthly withdraw"
+  },
+  {
+    "action": "payment",
+    "date": "2025-06-24",
+    "value": 2514,
+    "usedFor": "Logistics",
+    "note": "Paid for packaging"
+  },
+  {
+    "action": "withdraw",
+    "date": "2025-08-18",
+    "value": 1127,
+    "usedFor": "Owner withdraw",
+    "note": "Unexpected expense"
+  },
+  {
+    "action": "deposit",
+    "date": "2025-08-18",
+    "value": 2784,
+    "usedFor": "Capital injection",
+    "note": "Cash from TikTok sales"
+  },
+  {
+    "action": "withdraw",
+    "date": "2025-09-22",
+    "value": 2878,
+    "usedFor": "Emergency fund",
+    "note": "Monthly withdraw"
+  },
+  {
+    "action": "deposit",
+    "date": "2025-08-17",
+    "value": 557,
+    "usedFor": "COD deposit",
+    "note": "Initial deposit"
+  },
+  {
+    "action": "withdraw",
+    "date": "2025-09-15",
+    "value": 2455,
+    "usedFor": "Emergency fund",
+    "note": "Cash withdrawal"
+  },
+  {
+    "action": "payment",
+    "date": "2025-08-23",
+    "value": 834,
+    "usedFor": "Utilities",
+    "note": "Monthly supplier bill"
+  },
+  {
+    "action": "deposit",
+    "date": "2024-09-04",
+    "value": 1488,
+    "usedFor": "TikTok ads ROI",
+    "note": "Shopee weekly transfer"
+  }
+]

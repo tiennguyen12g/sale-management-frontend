@@ -1,0 +1,35 @@
+.box-main {
+  background: #fff;
+  border-radius: 12px;
+  padding: 10px 12px;
+  min-width: 160px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s;
+  margin: 10px 0px;
+//   display: flex;
+//   flex-direction: column;
+
+  &:hover {
+    transform: translateY(-4px);
+  }
+  
+}
+
+.details{
+    display: flex;
+    justify-content: space-evenly;
+    gap: 0px;
+    .segment-data{
+        display: flex;
+        .vertical-line{
+            border-left: 1px solid gainsboro;
+            height: 90%;
+            margin: 0px 12px;
+        }
+    }
+}
+.horizontal-line{
+    border-bottom: 1px solid gainsboro;
+    margin: 8px 0px;
+}

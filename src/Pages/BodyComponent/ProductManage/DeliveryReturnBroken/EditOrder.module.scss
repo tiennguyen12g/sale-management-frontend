@@ -1,0 +1,79 @@
+.modal {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+
+  fieldset {
+    margin-bottom: 16px;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    .double-label{
+        display: flex;
+        gap: 10px;
+        label{
+            flex: 0.5;
+        }
+    }
+
+    legend {
+      font-weight: bold;
+      color: #007bff;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 14px;
+
+      select {
+        width: 100%;
+        padding: 6px;
+        margin-top: 4px;
+        border-radius: 6px;
+      }
+      input {
+        width: calc(100% - 12px);
+        padding: 6px;
+        margin-top: 4px;
+        border-radius: 6px;
+        outline: none;
+        border: 1px solid gainsboro;
+      }
+    }
+
+    .product-row {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 8px;
+      input {
+        // padding: 6px;
+        width: calc( 100% - 12px);
+        padding: 4px 6px;
+        margin-top: 4px;
+        border-radius: 6px;
+        border: 1px solid gainsboro;
+      }
+    }
+  }
+
+  .actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+  }
+}

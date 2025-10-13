@@ -1,0 +1,41 @@
+.main {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+
+  background: rgba(255, 255, 255, 0.699);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2002;
+  .container {
+    position: relative;
+    background-color: white;
+    border: 1px solid gainsboro;
+    padding: 20px 50px;
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    .input-decor{
+        margin-top: 10px;
+        padding: 6px 8px;
+        border-radius: 5px;
+        border: 1px solid gainsboro;
+        outline: none;
+    }
+  }
+  .btn-decor {
+    margin: 10px 10px;
+  }
+  .close {
+    background-color: gainsboro;
+  }
+  .run {
+    background-color: #acd6fd;
+  }
+}

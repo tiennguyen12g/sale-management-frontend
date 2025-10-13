@@ -1,0 +1,33 @@
+.wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 80px;
+//   padding: 40px;
+  background: #f9fafb;
+//   border-radius: 12px;
+  // width: 109px;
+  height: 80px;
+  // padding: 10px;
+}
+/* SVG Arrows */
+.arrows {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+
+  line {
+    // stroke: #80f831;
+    // stroke-width: 2;
+  }
+
+  text {
+    font-size: 12px;
+    fill: #333;
+    background: white;
+  }
+}

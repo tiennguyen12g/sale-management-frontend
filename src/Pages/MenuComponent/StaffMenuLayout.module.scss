@@ -1,0 +1,26 @@
+.staff-layout {
+  display: flex;
+  height: 100vh; // full page height
+}
+
+.menu-wrapper {
+  width: 130px;
+  transition: width 0.3s ease;
+
+  &.collapsed {
+    width: 45px;
+  }
+}
+
+.content {
+  flex: 1; // take the rest of the space
+  transition: margin-left 0.3s ease;
+//   padding: 16px;
+
+  // shift based on menu state
+  margin-left: 30px;
+
+  &.collapsed {
+    margin-left: 35px;
+  }
+}

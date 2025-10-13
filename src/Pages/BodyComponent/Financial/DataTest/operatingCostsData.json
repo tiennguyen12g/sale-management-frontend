@@ -1,0 +1,604 @@
+[
+  {
+    "action": "software",
+    "date": "2024-10-13",
+    "value": 1560,
+    "usedFor": "Operating Company",
+    "note": "Subscription"
+  },
+  {
+    "action": "phone",
+    "date": "2024-09-08",
+    "value": 2566,
+    "usedFor": "Operating Company",
+    "note": "SMS"
+  },
+  {
+    "action": "software",
+    "date": "2024-11-26",
+    "value": 1907,
+    "usedFor": "Operating Company",
+    "note": "License renewal"
+  },
+  {
+    "action": "software",
+    "date": "2024-06-01",
+    "value": 920,
+    "usedFor": "Operating Company",
+    "note": "Subscription"
+  },
+  {
+    "action": "internet",
+    "date": "2024-10-25",
+    "value": 4004,
+    "usedFor": "Operating Company",
+    "note": "Fixed cost"
+  },
+  {
+    "action": "electric",
+    "date": "2024-06-03",
+    "value": 533,
+    "usedFor": "Operating Company",
+    "note": "Fixed cost"
+  },
+  {
+    "action": "software",
+    "date": "2024-06-14",
+    "value": 119,
+    "usedFor": "Operating Company",
+    "note": "License renewal"
+  },
+  {
+    "action": "othercost",
+    "date": "2024-09-27",
+    "value": 4194,
+    "usedFor": "Printing paper",
+    "note": "Printing paper"
+  },
+  {
+    "action": "othercost",
+    "date": "2024-10-23",
+    "value": 4878,
+    "usedFor": "Camera",
+    "note": "Camera"
+  },
+  {
+    "action": "electric",
+    "date": "2024-09-03",
+    "value": 2112,
+    "usedFor": "Operating Company",
+    "note": "Fixed cost"
+  },
+  {
+    "action": "water",
+    "date": "2024-10-02",
+    "value": 909,
+    "usedFor": "Operating Company",
+    "note": "Fixed cost"
+  },
+  {
+    "action": "internet",
+    "date": "2024-08-07",
+    "value": 571,
+    "usedFor": "Operating Company",
+    "note": "Fixed cost"
+  },
+  {
+    "action": "electric",
+    "date": "2024-08-10",
+    "value": 4242,
+    "usedFor": "Operating Company",
+    "note": "Fixed cost"
+  },
+  {
+    "action": "phone",
+    "date": "2024-07-08",
+    "value": 1757,
+    "usedFor": "Operating Company",
+    "note": "SMS"
+  },
+  {
+    "action": "software",
+    "date": "2024-11-21",
+    "value": 514,
+    "usedFor": "Operating Company",
+    "note": "License renewal"
+  },
+  {
+    "action": "water",
+    "date": "2024-11-07",
+    "value": 2905,
+    "usedFor": "Operating Company",
+    "note": "Fixed cost"
+  },
+  {
+    "action": "software",
+    "date": "2024-06-07",
+    "value": 3992,
+    "usedFor": "Operating Company",
+    "note": "License renewal"
+  },
+  {
+    "action": "phone",
+    "date": "2024-09-07",
+    "value": 1094,
+    "usedFor": "Operating Company",
+    "note": "Calling"
+  },
+  {
+    "action": "electric",
+    "date": "2024-11-22",
+    "value": 2795,
+    "usedFor": "Operating Company",
+    "note": "Fixed cost"
+  },
+  {
+    "action": "electric",
+    "date": "2024-08-07",
+    "value": 354,
+    "usedFor": "Operating Company",
+    "note": "Fixed cost"
+  },
+  {
+    "action": "software",
+    "date": "2024-07-16",
+    "value": 4479,
+    "usedFor": "Operating Company",
+    "note": "License renewal"
+  },
+  {
+    "action": "water",
+    "date": "2024-09-11",
+    "value": 1324,
+    "usedFor": "Operating Company",
+    "note": "Fixed cost"
+  },
+  {
+    "action": "electric",
+    "date": "2024-08-28",
+    "value": 2160,
+    "usedFor": "Operating Company",
+    "note": "Fixed cost"
+  },
+  {
+    "action": "othercost",
+    "date": "2024-06-12",
+    "value": 3261,
+    "usedFor": "Plastic Bag",
+    "note": "Plastic Bag"
+  },
+  {
+    "action": "software",
+    "date": "2024-08-01",
+    "value": 2797,
+    "usedFor": "Operating Company",
+    "note": "Subscription"
+  },
+  {
+    "action": "software",
+    "date": "2024-11-17",
+    "value": 582,
+    "usedFor": "Operating Company",
+    "note": "License renewal"
+  },
+  {
+    "action": "othercost",
+    "date": "2024-08-13",
+    "value": 4030,
+    "usedFor": "Paper box",
+    "note": "Paper box"
+  },
+  {
+    "action": "electric",
+    "date": "2024-10-06",
+    "value": 3749,
+    "usedFor": "Operating Company",
+    "note": "Fixed cost"
+  },
+  {
+    "action": "water",
+    "date": "2024-11-14",
+    "value": 1823,
+    "usedFor": "Operating Company",
+    "note": "Fixed cost"
+  },
+  {
+    "action": "water",
+    "date": "2024-11-03",
+    "value": 4717,
+    "usedFor": "Operating Company",
+    "note": "Fixed cost"
+  },
+  {
+    "action": "electric",
+    "date": "2024-11-13",
+    "value": 1327,
+    "usedFor": "Operating Company",
+    "note": "Fixed cost"
+  },
+  {
+    "action": "electric",
+    "date": "2024-07-13",
+    "value": 2558,
+    "usedFor": "Operating Company",
+    "note": "Fixed cost"
+  },
+  {
+    "action": "water",
+    "date": "2024-08-15",
+    "value": 2078,
+    "usedFor": "Operating Company",
+    "note": "Fixed cost"
+  },
+  {
+    "action": "water",
+    "date": "2024-06-21",
+    "value": 2046,
+    "usedFor": "Operating Company",
+    "note": "Fixed cost"
+  },
+  {
+    "action": "software",
+    "date": "2024-07-16",
+    "value": 1492,
+    "usedFor": "Operating Company",
+    "note": "License renewal"
+  },
+  {
+    "action": "phone",
+    "date": "2024-09-21",
+    "value": 3916,
+    "usedFor": "Operating Company",
+    "note": "Calling"
+  },
+  {
+    "action": "othercost",
+    "date": "2024-11-03",
+    "value": 276,
+    "usedFor": "Tape",
+    "note": "Tape"
+  },
+  {
+    "action": "phone",
+    "date": "2024-06-28",
+    "value": 1238,
+    "usedFor": "Operating Company",
+    "note": "Calling"
+  },
+  {
+    "action": "othercost",
+    "date": "2024-10-05",
+    "value": 351,
+    "usedFor": "Printing paper",
+    "note": "Printing paper"
+  },
+  {
+    "action": "phone",
+    "date": "2024-08-29",
+    "value": 3538,
+    "usedFor": "Operating Company",
+    "note": "SMS"
+  },
+  {
+    "action": "internet",
+    "date": "2024-07-13",
+    "value": 864,
+    "usedFor": "Operating Company",
+    "note": "Fixed cost"
+  },
+  {
+    "action": "water",
+    "date": "2024-07-06",
+    "value": 2704,
+    "usedFor": "Operating Company",
+    "note": "Fixed cost"
+  },
+  {
+    "action": "software",
+    "date": "2024-08-18",
+    "value": 1328,
+    "usedFor": "Operating Company",
+    "note": "License renewal"
+  },
+  {
+    "action": "phone",
+    "date": "2024-07-23",
+    "value": 3598,
+    "usedFor": "Operating Company",
+    "note": "Calling"
+  },
+  {
+    "action": "phone",
+    "date": "2024-07-05",
+    "value": 4120,
+    "usedFor": "Operating Company",
+    "note": "Calling"
+  },
+  {
+    "action": "phone",
+    "date": "2024-06-02",
+    "value": 316,
+    "usedFor": "Operating Company",
+    "note": "Calling"
+  },
+  {
+    "action": "phone",
+    "date": "2024-07-30",
+    "value": 4405,
+    "usedFor": "Operating Company",
+    "note": "Calling"
+  },
+  {
+    "action": "electric",
+    "date": "2024-10-02",
+    "value": 4737,
+    "usedFor": "Operating Company",
+    "note": "Fixed cost"
+  },
+  {
+    "action": "software",
+    "date": "2024-07-31",
+    "value": 4386,
+    "usedFor": "Operating Company",
+    "note": "Subscription"
+  },
+  {
+    "action": "software",
+    "date": "2024-09-15",
+    "value": 4479,
+    "usedFor": "Operating Company",
+    "note": "Subscription"
+  },
+    {
+    "action": "software",
+    "date": "2024-10-13",
+    "value": 1560,
+    "usedFor": "Operating Company",
+    "note": "Subscription"
+  },
+  {
+    "action": "phone",
+    "date": "2024-09-08",
+    "value": 2566,
+    "usedFor": "Operating Company",
+    "note": "SMS"
+  },
+  {
+    "action": "software",
+    "date": "2024-11-26",
+    "value": 1907,
+    "usedFor": "Operating Company",
+    "note": "License renewal"
+  },
+  {
+    "action": "software",
+    "date": "2025-06-01",
+    "value": 920,
+    "usedFor": "Operating Company",
+    "note": "Subscription"
+  },
+  {
+    "action": "internet",
+    "date": "2025-10-25",
+    "value": 4004,
+    "usedFor": "Operating Company",
+    "note": "Fixed cost"
+  },
+  {
+    "action": "electric",
+    "date": "2025-06-03",
+    "value": 533,
+    "usedFor": "Operating Company",
+    "note": "Fixed cost"
+  },
+  {
+    "action": "software",
+    "date": "2025-06-14",
+    "value": 119,
+    "usedFor": "Operating Company",
+    "note": "License renewal"
+  },
+  {
+    "action": "othercost",
+    "date": "2025-09-27",
+    "value": 4194,
+    "usedFor": "Printing paper",
+    "note": "Printing paper"
+  },
+  {
+    "action": "othercost",
+    "date": "2025-10-23",
+    "value": 4878,
+    "usedFor": "Camera",
+    "note": "Camera"
+  },
+  {
+    "action": "electric",
+    "date": "2025-09-03",
+    "value": 2112,
+    "usedFor": "Operating Company",
+    "note": "Fixed cost"
+  },
+  {
+    "action": "water",
+    "date": "2025-10-02",
+    "value": 909,
+    "usedFor": "Operating Company",
+    "note": "Fixed cost"
+  },
+  {
+    "action": "internet",
+    "date": "2025-08-07",
+    "value": 571,
+    "usedFor": "Operating Company",
+    "note": "Fixed cost"
+  },
+  {
+    "action": "electric",
+    "date": "2025-08-10",
+    "value": 4242,
+    "usedFor": "Operating Company",
+    "note": "Fixed cost"
+  },
+  {
+    "action": "phone",
+    "date": "2025-07-08",
+    "value": 1757,
+    "usedFor": "Operating Company",
+    "note": "SMS"
+  },
+  {
+    "action": "software",
+    "date": "2025-11-21",
+    "value": 514,
+    "usedFor": "Operating Company",
+    "note": "License renewal"
+  },
+  {
+    "action": "water",
+    "date": "2025-11-07",
+    "value": 2905,
+    "usedFor": "Operating Company",
+    "note": "Fixed cost"
+  },
+  {
+    "action": "software",
+    "date": "2025-06-07",
+    "value": 3992,
+    "usedFor": "Operating Company",
+    "note": "License renewal"
+  },
+  {
+    "action": "phone",
+    "date": "2025-09-07",
+    "value": 1094,
+    "usedFor": "Operating Company",
+    "note": "Calling"
+  },
+  {
+    "action": "electric",
+    "date": "2025-11-22",
+    "value": 2795,
+    "usedFor": "Operating Company",
+    "note": "Fixed cost"
+  },
+  {
+    "action": "electric",
+    "date": "2025-08-07",
+    "value": 354,
+    "usedFor": "Operating Company",
+    "note": "Fixed cost"
+  },
+  {
+    "action": "software",
+    "date": "2025-07-16",
+    "value": 4479,
+    "usedFor": "Operating Company",
+    "note": "License renewal"
+  },
+  {
+    "action": "water",
+    "date": "2025-09-11",
+    "value": 1324,
+    "usedFor": "Operating Company",
+    "note": "Fixed cost"
+  },
+  {
+    "action": "electric",
+    "date": "2025-08-28",
+    "value": 2160,
+    "usedFor": "Operating Company",
+    "note": "Fixed cost"
+  },
+  {
+    "action": "othercost",
+    "date": "2025-06-12",
+    "value": 3261,
+    "usedFor": "Plastic Bag",
+    "note": "Plastic Bag"
+  },
+  {
+    "action": "software",
+    "date": "2025-08-01",
+    "value": 2797,
+    "usedFor": "Operating Company",
+    "note": "Subscription"
+  },
+  {
+    "action": "software",
+    "date": "2025-11-17",
+    "value": 582,
+    "usedFor": "Operating Company",
+    "note": "License renewal"
+  },
+  {
+    "action": "othercost",
+    "date": "2025-08-13",
+    "value": 4030,
+    "usedFor": "Paper box",
+    "note": "Paper box"
+  },
+  {
+    "action": "electric",
+    "date": "2025-10-06",
+    "value": 3749,
+    "usedFor": "Operating Company",
+    "note": "Fixed cost"
+  },
+  {
+    "action": "water",
+    "date": "2025-11-14",
+    "value": 1823,
+    "usedFor": "Operating Company",
+    "note": "Fixed cost"
+  },
+  {
+    "action": "water",
+    "date": "2025-11-03",
+    "value": 4717,
+    "usedFor": "Operating Company",
+    "note": "Fixed cost"
+  },
+  {
+    "action": "electric",
+    "date": "2025-11-13",
+    "value": 1327,
+    "usedFor": "Operating Company",
+    "note": "Fixed cost"
+  },
+  {
+    "action": "electric",
+    "date": "2025-07-13",
+    "value": 2558,
+    "usedFor": "Operating Company",
+    "note": "Fixed cost"
+  },
+  {
+    "action": "water",
+    "date": "2025-08-15",
+    "value": 2078,
+    "usedFor": "Operating Company",
+    "note": "Fixed cost"
+  },
+  {
+    "action": "water",
+    "date": "2025-06-21",
+    "value": 2046,
+    "usedFor": "Operating Company",
+    "note": "Fixed cost"
+  },
+  {
+    "action": "software",
+    "date": "2025-07-16",
+    "value": 1492,
+    "usedFor": "Operating Company",
+    "note": "License renewal"
+  },
+  {
+    "action": "phone",
+    "date": "2025-09-21",
+    "value": 3916,
+    "usedFor": "Operating Company",
+    "note": "Calling"
+  }
+]

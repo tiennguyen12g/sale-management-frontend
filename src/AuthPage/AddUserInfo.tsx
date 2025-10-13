@@ -1,0 +1,213 @@
+import React, { useState, useEffect, type Dispatch } from "react";
+import classNames from "classnames/bind";
+import styles from "./AddUserInfo.module.scss";
+const cx = classNames.bind(styles);
+
+import { AddStaff_API, EditStaffInfo_API } from "../configs/api";
+import { useStaffStore } from "../zustand/staffStore";
+import { useAuthStore } from "../zustand/authStore";
+import type { StaffInfoType, StaffDataType, StaffRole } from "../zustand/staffStore";
+import { SalaryByPosition } from "../zustand/staffStore";
+
+interface AddUserInfoProps {
+  fullUserData: StaffDataType; // optional (empty when creating)
+  setIsOpenAddForm: Dispatch<React.SetStateAction<boolean>>;
+  setFullUserData: Dispatch<React.SetStateAction<StaffDataType>>;
+}
+
+export default function AddUserInfo({ setIsOpenAddForm, fullUserData, setFullUserData }: AddUserInfoProps) {
+  const { addStaff, updateStaff } = useStaffStore();
+  const { getAuthHeader } = useAuthStore();
+
+  // ✅ initialize from fullUserData if exists (edit), else defaults (create)
+  const [staffForm, setStaffForm] = useState<StaffDataType | Omit<StaffDataType, "_id">>(fullUserData);
+
+  // auto-update salary if role changes
+  useEffect(() => {
+    setStaffForm((prev) => ({
+      ...prev,
+      salary: SalaryByPosition[prev.role] || 0,
+    }));
+  }, [staffForm.role]);
+
+  const handleChange = (field: string, value: string | number) => {
+    setStaffForm((prev) => ({ ...prev, [field]: value }));
+  };
+
+  const handleInfoChange = (field: keyof StaffInfoType, value: string) => {
+    setStaffForm((prev) => ({
+      ...prev,
+      staffInfo: { ...prev.staffInfo, [field]: value },
+    }));
+  };
+
+  const handleBankChange = (field: "bankAccountNumber" | "bankOwnerName", value: string) => {
+    setStaffForm((prev) => ({
+      ...prev,
+      bankInfos: { ...prev.bankInfos, [field]: value },
+    }));
+  };
+
+  useEffect(() => {
+    if (staffForm.staffInfo.name !== "" && staffForm.staffInfo.phone !== "") {
+      const staffID = `${toSlug(staffForm.staffInfo.name)}-${staffForm.staffInfo.phone}`;
+      // console.log('staffID', staffID);
+      setStaffForm((prev) => ({
+        ...prev,
+        staffID: staffID,
+      }));
+    }
+  }, [staffForm.staffInfo.name, staffForm.staffInfo.phone]);
+
+  // ✅ submit handler (create vs update)
+  const handleSubmit = async () => {
+    try {
+      if (fullUserData?.userId) {
+        // --- update existing staff ---
+        console.log("update");
+        const res = await fetch(`${EditStaffInfo_API}/${fullUserData.staffID}`, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json", ...getAuthHeader() },
+          body: JSON.stringify(staffForm),
+        });
+
+        const data = await res.json();
+        if (res.ok) {
+          updateStaff(data); // Zustand update
+          setFullUserData(data); // update parent state
+          alert("Cập nhật hồ sơ thành công!");
+          setIsOpenAddForm(false);
+        } else {
+          alert("Error: " + data.message);
+        }
+      } else {
+        // --- create new staff ---
+        const res = await fetch(AddStaff_API, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", ...getAuthHeader() },
+          body: JSON.stringify(staffForm),
+        });
+
+        const data = await res.json();
+        if (res.ok) {
+          addStaff(data);
+          setFullUserData(data);
+          alert("Tạo hồ sơ thành công!");
+          setIsOpenAddForm(false);
+        } else {
+          alert("Error: " + data.message);
+        }
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Lỗi khi lưu hồ sơ");
+    }
+  };
+
+  return (
+    <div className={cx("add-staff-form")}>
+      <h4>{fullUserData ? "Sửa hồ sơ" : "Tạo hồ sơ mới"}</h4>
+
+      <div className={cx("form-row")}>
+        <div className={cx("field")}>
+          <label>Họ và tên:</label>
+          <input type="text" value={staffForm.staffInfo.name} onChange={(e) => handleInfoChange("name", e.target.value)} />
+        </div>
+        <div className={cx("field")}>
+          <label>Ngày sinh:</label>
+          <input type="date" value={staffForm.staffInfo.birthday} onChange={(e) => handleInfoChange("birthday", e.target.value)} />
+        </div>
+      </div>
+
+      <div className={cx("form-row")}>
+        <div className={cx("field")}>
+          <label>Số CCCD:</label>
+          <input type="text" value={staffForm.staffInfo.identityId} onChange={(e) => handleInfoChange("identityId", e.target.value)} />
+        </div>
+        <div className={cx("field")}>
+          <label>Số điện thoại:</label>
+          <input type="text" value={staffForm.staffInfo.phone} onChange={(e) => handleInfoChange("phone", e.target.value)} />
+        </div>
+      </div>
+
+      <div className={cx("form-row2")}>
+        <label>Địa chỉ:</label>
+        <input type="text" value={staffForm.staffInfo.address} onChange={(e) => handleInfoChange("address", e.target.value)} />
+      </div>
+
+      <div className={cx("form-row")}>
+        <div className={cx("field")}>
+          <label>Số tài khoản ngân hàng:</label>
+          <input type="text" value={staffForm.bankInfos.bankAccountNumber} onChange={(e) => handleBankChange("bankAccountNumber", e.target.value)} />
+        </div>
+        <div className={cx("field")}>
+          <label>Tên chủ tài khoản:</label>
+          <input type="text" value={staffForm.bankInfos.bankOwnerName} onChange={(e) => handleBankChange("bankOwnerName", e.target.value)} />
+        </div>
+      </div>
+
+      <div className={cx("form-row")}>
+        <div className={cx("field")}>
+          <label>Vai trò:</label>
+          <select value={staffForm.role} onChange={(e) => handleChange("role", e.target.value)}>
+            <option value="Director">Director</option>
+            <option value="Manager">Manager</option>
+            <option value="Sale-Staff">Sale-Staff</option>
+            <option value="Security">Security</option>
+            <option value="Packer">Packer</option>
+          </select>
+        </div>
+        <div className={cx("field")}>
+          <label>Lương:</label>
+          <input type="number" value={staffForm.salary} disabled />
+        </div>
+      </div>
+
+      <div className={cx("form-row")}>
+        <div className={cx("field")}>
+          <label>Tôn giáo:</label>
+          <select value={staffForm.staffInfo.religion} onChange={(e) => handleInfoChange("religion", e.target.value)}>
+            <option value="No Religion">Không</option>
+            <option value="Catholic">Thiên chúa</option>
+            <option value="Buddhist">Phật giáo</option>
+            <option value="Muslim">Hồi giáo</option>
+          </select>
+        </div>
+        <div className={cx("field")}>
+          <label>Hôn nhân:</label>
+          <select value={staffForm.staffInfo.relationshipStatus} onChange={(e) => handleInfoChange("relationshipStatus", e.target.value)}>
+            <option value="single">Độc thân</option>
+            <option value="married">Đã cưới</option>
+            <option value="divorced">Ly hôn</option>
+            <option value="complicated">Phức tạp</option>
+          </select>
+        </div>
+      </div>
+
+      <div className={cx("form-row2")}>
+        <label>Giới thiệu bản thân:</label>
+        <textarea value={staffForm.staffInfo.description} onChange={(e) => handleInfoChange("description", e.target.value)} />
+      </div>
+
+      <div className={cx("form-actions")}>
+        <button className={cx("btn", "primary")} onClick={handleSubmit}>
+          {fullUserData ? "Lưu thay đổi" : "Tạo mới"}
+        </button>
+        <button className={cx("btn", "secondary")} onClick={() => setIsOpenAddForm(false)}>
+          Đóng
+        </button>
+      </div>
+    </div>
+  );
+}
+
+// convert name to lowercase and remove vietnamese character
+function toSlug(str: string) {
+  return str
+    .normalize("NFD") // Tách dấu khỏi ký tự
+    .replace(/[\u0300-\u036f]/g, "") // Xóa các dấu
+    .replace(/đ/g, "d") // Thay đ -> d
+    .replace(/Đ/g, "d") // Thay Đ -> d
+    .replace(/\s+/g, "") // Xóa khoảng trắng
+    .toLowerCase(); // Viết thường
+}

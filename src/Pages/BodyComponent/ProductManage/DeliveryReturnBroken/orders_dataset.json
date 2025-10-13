@@ -1,0 +1,3044 @@
+{
+  "orders": [
+    {
+      "buyerInfos": {
+        "name": "Customer 1",
+        "phone": "097378129",
+        "address": "41 Main St, HN",
+        "note": "Call before delivery"
+      },
+      "productInfos": [
+        {
+          "productName": "Wireless Mouse",
+          "quantity": 4,
+          "pricePerUnit": 339378,
+          "vouchers": []
+        }
+      ],
+      "platform": "Facebook",
+      "whoClosedOrder": "Staff B",
+      "numberOfGoods": 4,
+      "totalOrderValue": 1357512,
+      "vouchers": [],
+      "codValue": 1375512,
+      "refundValue": 303715,
+      "weight": 0.73,
+      "size": "15x38x12",
+      "sendTime": "2025-06-13 07:08:28",
+      "completeTime": null,
+      "carrierName": "SPX",
+      "shippingFee": 18000,
+      "myOwnShippingID": "MY1000",
+      "carrierShippingID": "CARR2000",
+      "statusOrder": "onDelivery",
+      "reasonReturn": "Wrong address",
+      "createdAt": "2025-06-13 07:08:28",
+      "updatedAt": "2025-06-13 07:08:28"
+    },
+    {
+      "buyerInfos": {
+        "name": "Customer 2",
+        "phone": "095202813",
+        "address": "51 Main St, HN",
+        "note": ""
+      },
+      "productInfos": [
+        {
+          "productName": "Mechanical Keyboard",
+          "quantity": 5,
+          "pricePerUnit": 227157,
+          "vouchers": []
+        }
+      ],
+      "platform": "Shopee",
+      "whoClosedOrder": "Staff A",
+      "numberOfGoods": 5,
+      "totalOrderValue": 1135785,
+      "vouchers": [],
+      "codValue": 1153785,
+      "refundValue": 1065742,
+      "weight": 1.46,
+      "size": "17x11x20",
+      "sendTime": "2025-09-01 00:37:10",
+      "completeTime": null,
+      "carrierName": "SPX",
+      "shippingFee": 18000,
+      "myOwnShippingID": "MY1001",
+      "carrierShippingID": "CARR2001",
+      "statusOrder": "onDelivery",
+      "reasonReturn": "Lost in transit",
+      "createdAt": "2025-09-01 00:37:10",
+      "updatedAt": "2025-09-01 00:37:10"
+    },
+    {
+      "buyerInfos": {
+        "name": "Customer 3",
+        "phone": "094520727",
+        "address": "91 Main St, HN",
+        "note": "Call before delivery"
+      },
+      "productInfos": [
+        {
+          "productName": "Bluetooth Speaker",
+          "quantity": 3,
+          "pricePerUnit": 459067,
+          "vouchers": []
+        }
+      ],
+      "platform": "Facebook",
+      "whoClosedOrder": "Staff A",
+      "numberOfGoods": 3,
+      "totalOrderValue": 1377201,
+      "vouchers": [],
+      "codValue": 1395201,
+      "refundValue": 1070270,
+      "weight": 1.8,
+      "size": "19x33x19",
+      "sendTime": "2025-06-17 03:08:28",
+      "completeTime": "2025-06-26 03:08:28",
+      "carrierName": "SPX",
+      "shippingFee": 18000,
+      "myOwnShippingID": "MY1002",
+      "carrierShippingID": "CARR2002",
+      "statusOrder": "return",
+      "reasonReturn": "Damaged",
+      "createdAt": "2025-06-17 03:08:28",
+      "updatedAt": "2025-06-26 03:08:28"
+    },
+    {
+      "buyerInfos": {
+        "name": "Customer 4",
+        "phone": "093278830",
+        "address": "76 Main St, HN",
+        "note": "Leave at door"
+      },
+      "productInfos": [
+        {
+          "productName": "Mechanical Keyboard",
+          "quantity": 5,
+          "pricePerUnit": 215898,
+          "vouchers": []
+        }
+      ],
+      "platform": "Tiktok",
+      "whoClosedOrder": "Staff A",
+      "numberOfGoods": 5,
+      "totalOrderValue": 1079490,
+      "vouchers": [],
+      "codValue": 1097490,
+      "refundValue": 0,
+      "weight": 0.7,
+      "size": "20x29x7",
+      "sendTime": "2025-07-20 08:19:13",
+      "completeTime": "2025-07-22 08:19:13",
+      "carrierName": "SPX",
+      "shippingFee": 18000,
+      "myOwnShippingID": "MY1003",
+      "carrierShippingID": "CARR2003",
+      "statusOrder": "success",
+      "reasonReturn": null,
+      "createdAt": "2025-07-20 08:19:13",
+      "updatedAt": "2025-07-22 08:19:13"
+    },
+    {
+      "buyerInfos": {
+        "name": "Customer 5",
+        "phone": "096451027",
+        "address": "21 Main St, HN",
+        "note": "Leave at door"
+      },
+      "productInfos": [
+        {
+          "productName": "Bluetooth Speaker",
+          "quantity": 4,
+          "pricePerUnit": 154637,
+          "vouchers": []
+        }
+      ],
+      "platform": "Facebook",
+      "whoClosedOrder": "Staff A",
+      "numberOfGoods": 4,
+      "totalOrderValue": 618548,
+      "vouchers": [],
+      "codValue": 638548,
+      "refundValue": 0,
+      "weight": 1.39,
+      "size": "33x10x12",
+      "sendTime": "2025-08-09 20:28:32",
+      "completeTime": "2025-08-11 20:28:32",
+      "carrierName": "J&T",
+      "shippingFee": 20000,
+      "myOwnShippingID": "MY1004",
+      "carrierShippingID": "CARR2004",
+      "statusOrder": "success",
+      "reasonReturn": null,
+      "createdAt": "2025-08-09 20:28:32",
+      "updatedAt": "2025-08-11 20:28:32"
+    },
+    {
+      "buyerInfos": {
+        "name": "Customer 6",
+        "phone": "093546145",
+        "address": "48 Main St, HN",
+        "note": ""
+      },
+      "productInfos": [
+        {
+          "productName": "Laptop Stand",
+          "quantity": 3,
+          "pricePerUnit": 448933,
+          "vouchers": [
+            {
+              "name": "Freeship",
+              "value": 30000
+            }
+          ]
+        }
+      ],
+      "platform": "Facebook",
+      "whoClosedOrder": "System",
+      "numberOfGoods": 3,
+      "totalOrderValue": 1346799,
+      "vouchers": [
+        {
+          "name": "Freeship",
+          "value": 30000
+        }
+      ],
+      "codValue": 1336799,
+      "refundValue": 867731,
+      "weight": 1.2,
+      "size": "28x24x16",
+      "sendTime": "2025-08-06 13:57:02",
+      "completeTime": "2025-08-15 13:57:02",
+      "carrierName": "J&T",
+      "shippingFee": 20000,
+      "myOwnShippingID": "MY1005",
+      "carrierShippingID": "CARR2005",
+      "statusOrder": "return",
+      "reasonReturn": "Wrong address",
+      "createdAt": "2025-08-06 13:57:02",
+      "updatedAt": "2025-08-15 13:57:02"
+    },
+    {
+      "buyerInfos": {
+        "name": "Customer 7",
+        "phone": "099015318",
+        "address": "56 Main St, HN",
+        "note": "Leave at door"
+      },
+      "productInfos": [
+        {
+          "productName": "Laptop Stand",
+          "quantity": 5,
+          "pricePerUnit": 308291,
+          "vouchers": []
+        }
+      ],
+      "platform": "Tiktok",
+      "whoClosedOrder": "Staff B",
+      "numberOfGoods": 5,
+      "totalOrderValue": 1541455,
+      "vouchers": [],
+      "codValue": 1561455,
+      "refundValue": 0,
+      "weight": 0.99,
+      "size": "25x40x17",
+      "sendTime": "2025-07-03 14:47:04",
+      "completeTime": "2025-07-10 14:47:04",
+      "carrierName": "J&T",
+      "shippingFee": 20000,
+      "myOwnShippingID": "MY1006",
+      "carrierShippingID": "CARR2006",
+      "statusOrder": "success",
+      "reasonReturn": null,
+      "createdAt": "2025-07-03 14:47:04",
+      "updatedAt": "2025-07-10 14:47:04"
+    },
+    {
+      "buyerInfos": {
+        "name": "Customer 8",
+        "phone": "097245451",
+        "address": "10 Main St, HN",
+        "note": "Call before delivery"
+      },
+      "productInfos": [
+        {
+          "productName": "USB-C Cable",
+          "quantity": 3,
+          "pricePerUnit": 356024,
+          "vouchers": []
+        }
+      ],
+      "platform": "Tiktok",
+      "whoClosedOrder": "Staff B",
+      "numberOfGoods": 3,
+      "totalOrderValue": 1068072,
+      "vouchers": [],
+      "codValue": 1086072,
+      "refundValue": 108918,
+      "weight": 0.71,
+      "size": "30x31x19",
+      "sendTime": "2025-08-05 20:28:08",
+      "completeTime": "2025-08-10 20:28:08",
+      "carrierName": "SPX",
+      "shippingFee": 18000,
+      "myOwnShippingID": "MY1007",
+      "carrierShippingID": "CARR2007",
+      "statusOrder": "lost",
+      "reasonReturn": "Lost in transit",
+      "createdAt": "2025-08-05 20:28:08",
+      "updatedAt": "2025-08-10 20:28:08"
+    },
+    {
+      "buyerInfos": {
+        "name": "Customer 9",
+        "phone": "096628622",
+        "address": "98 Main St, HN",
+        "note": ""
+      },
+      "productInfos": [
+        {
+          "productName": "Mechanical Keyboard",
+          "quantity": 3,
+          "pricePerUnit": 169914,
+          "vouchers": []
+        }
+      ],
+      "platform": "Facebook",
+      "whoClosedOrder": "Staff B",
+      "numberOfGoods": 3,
+      "totalOrderValue": 509742,
+      "vouchers": [],
+      "codValue": 529742,
+      "refundValue": 7747,
+      "weight": 0.49,
+      "size": "34x14x16",
+      "sendTime": "2025-08-19 16:19:14",
+      "completeTime": "2025-08-26 16:19:14",
+      "carrierName": "J&T",
+      "shippingFee": 20000,
+      "myOwnShippingID": "MY1008",
+      "carrierShippingID": "CARR2008",
+      "statusOrder": "lost",
+      "reasonReturn": "Lost in transit",
+      "createdAt": "2025-08-19 16:19:14",
+      "updatedAt": "2025-08-26 16:19:14"
+    },
+    {
+      "buyerInfos": {
+        "name": "Customer 10",
+        "phone": "091053011",
+        "address": "44 Main St, HN",
+        "note": ""
+      },
+      "productInfos": [
+        {
+          "productName": "Bluetooth Speaker",
+          "quantity": 2,
+          "pricePerUnit": 252764,
+          "vouchers": []
+        }
+      ],
+      "platform": "Facebook",
+      "whoClosedOrder": "System",
+      "numberOfGoods": 2,
+      "totalOrderValue": 505528,
+      "vouchers": [],
+      "codValue": 523528,
+      "refundValue": 175571,
+      "weight": 1.18,
+      "size": "35x40x5",
+      "sendTime": "2025-07-28 13:07:34",
+      "completeTime": "2025-07-31 13:07:34",
+      "carrierName": "SPX",
+      "shippingFee": 18000,
+      "myOwnShippingID": "MY1009",
+      "carrierShippingID": "CARR2009",
+      "statusOrder": "return",
+      "reasonReturn": "Damaged",
+      "createdAt": "2025-07-28 13:07:34",
+      "updatedAt": "2025-07-31 13:07:34"
+    },
+    {
+      "buyerInfos": {
+        "name": "Customer 11",
+        "phone": "095509258",
+        "address": "82 Main St, HN",
+        "note": "Call before delivery"
+      },
+      "productInfos": [
+        {
+          "productName": "Laptop Stand",
+          "quantity": 3,
+          "pricePerUnit": 254511,
+          "vouchers": []
+        }
+      ],
+      "platform": "Shopee",
+      "whoClosedOrder": "System",
+      "numberOfGoods": 3,
+      "totalOrderValue": 763533,
+      "vouchers": [],
+      "codValue": 783533,
+      "refundValue": 306068,
+      "weight": 1.82,
+      "size": "10x10x20",
+      "sendTime": "2025-08-16 12:54:41",
+      "completeTime": "2025-08-19 12:54:41",
+      "carrierName": "J&T",
+      "shippingFee": 20000,
+      "myOwnShippingID": "MY1010",
+      "carrierShippingID": "CARR2010",
+      "statusOrder": "return",
+      "reasonReturn": "Lost in transit",
+      "createdAt": "2025-08-16 12:54:41",
+      "updatedAt": "2025-08-19 12:54:41"
+    },
+    {
+      "buyerInfos": {
+        "name": "Customer 12",
+        "phone": "093132384",
+        "address": "33 Main St, HN",
+        "note": "Call before delivery"
+      },
+      "productInfos": [
+        {
+          "productName": "Wireless Mouse",
+          "quantity": 2,
+          "pricePerUnit": 475370,
+          "vouchers": [
+            {
+              "name": "Discount",
+              "value": 20000
+            }
+          ]
+        }
+      ],
+      "platform": "Shopee",
+      "whoClosedOrder": "Staff A",
+      "numberOfGoods": 2,
+      "totalOrderValue": 950740,
+      "vouchers": [
+        {
+          "name": "Discount",
+          "value": 20000
+        }
+      ],
+      "codValue": 948740,
+      "refundValue": 94956,
+      "weight": 0.43,
+      "size": "33x38x18",
+      "sendTime": "2025-07-12 20:47:25",
+      "completeTime": null,
+      "carrierName": "SPX",
+      "shippingFee": 18000,
+      "myOwnShippingID": "MY1011",
+      "carrierShippingID": "CARR2011",
+      "statusOrder": "onDelivery",
+      "reasonReturn": "Lost in transit",
+      "createdAt": "2025-07-12 20:47:25",
+      "updatedAt": "2025-07-12 20:47:25"
+    },
+    {
+      "buyerInfos": {
+        "name": "Customer 13",
+        "phone": "098644237",
+        "address": "39 Main St, HN",
+        "note": "Call before delivery"
+      },
+      "productInfos": [
+        {
+          "productName": "Laptop Stand",
+          "quantity": 1,
+          "pricePerUnit": 456796,
+          "vouchers": []
+        }
+      ],
+      "platform": "Shopee",
+      "whoClosedOrder": "System",
+      "numberOfGoods": 1,
+      "totalOrderValue": 456796,
+      "vouchers": [],
+      "codValue": 474796,
+      "refundValue": 290361,
+      "weight": 1.18,
+      "size": "39x12x10",
+      "sendTime": "2025-07-01 06:20:45",
+      "completeTime": "2025-07-04 06:20:45",
+      "carrierName": "SPX",
+      "shippingFee": 18000,
+      "myOwnShippingID": "MY1012",
+      "carrierShippingID": "CARR2012",
+      "statusOrder": "return",
+      "reasonReturn": "Damaged",
+      "createdAt": "2025-07-01 06:20:45",
+      "updatedAt": "2025-07-04 06:20:45"
+    },
+    {
+      "buyerInfos": {
+        "name": "Customer 14",
+        "phone": "095423823",
+        "address": "90 Main St, HN",
+        "note": "Call before delivery"
+      },
+      "productInfos": [
+        {
+          "productName": "Bluetooth Speaker",
+          "quantity": 2,
+          "pricePerUnit": 345716,
+          "vouchers": [
+            {
+              "name": "Freeship",
+              "value": 30000
+            }
+          ]
+        }
+      ],
+      "platform": "Tiktok",
+      "whoClosedOrder": "Staff A",
+      "numberOfGoods": 2,
+      "totalOrderValue": 691432,
+      "vouchers": [
+        {
+          "name": "Freeship",
+          "value": 30000
+        }
+      ],
+      "codValue": 679432,
+      "refundValue": 75026,
+      "weight": 0.28,
+      "size": "15x19x18",
+      "sendTime": "2025-08-04 19:47:50",
+      "completeTime": null,
+      "carrierName": "SPX",
+      "shippingFee": 18000,
+      "myOwnShippingID": "MY1013",
+      "carrierShippingID": "CARR2013",
+      "statusOrder": "onDelivery",
+      "reasonReturn": "Lost in transit",
+      "createdAt": "2025-08-04 19:47:50",
+      "updatedAt": "2025-08-04 19:47:50"
+    },
+    {
+      "buyerInfos": {
+        "name": "Customer 15",
+        "phone": "097348883",
+        "address": "69 Main St, HN",
+        "note": "Leave at door"
+      },
+      "productInfos": [
+        {
+          "productName": "Mechanical Keyboard",
+          "quantity": 5,
+          "pricePerUnit": 148883,
+          "vouchers": []
+        }
+      ],
+      "platform": "Facebook",
+      "whoClosedOrder": "Staff A",
+      "numberOfGoods": 5,
+      "totalOrderValue": 744415,
+      "vouchers": [],
+      "codValue": 762415,
+      "refundValue": 110897,
+      "weight": 1.29,
+      "size": "21x32x12",
+      "sendTime": "2025-08-22 17:38:00",
+      "completeTime": "2025-08-31 17:38:00",
+      "carrierName": "SPX",
+      "shippingFee": 18000,
+      "myOwnShippingID": "MY1014",
+      "carrierShippingID": "CARR2014",
+      "statusOrder": "lost",
+      "reasonReturn": "Wrong address",
+      "createdAt": "2025-08-22 17:38:00",
+      "updatedAt": "2025-08-31 17:38:00"
+    },
+    {
+      "buyerInfos": {
+        "name": "Customer 16",
+        "phone": "095141197",
+        "address": "39 Main St, HN",
+        "note": "Call before delivery"
+      },
+      "productInfos": [
+        {
+          "productName": "Wireless Mouse",
+          "quantity": 3,
+          "pricePerUnit": 181074,
+          "vouchers": [
+            {
+              "name": "Discount",
+              "value": 20000
+            }
+          ]
+        }
+      ],
+      "platform": "Tiktok",
+      "whoClosedOrder": "Staff B",
+      "numberOfGoods": 3,
+      "totalOrderValue": 543222,
+      "vouchers": [
+        {
+          "name": "Discount",
+          "value": 20000
+        }
+      ],
+      "codValue": 543222,
+      "refundValue": 36151,
+      "weight": 0.37,
+      "size": "16x40x5",
+      "sendTime": "2025-09-01 18:15:50",
+      "completeTime": null,
+      "carrierName": "J&T",
+      "shippingFee": 20000,
+      "myOwnShippingID": "MY1015",
+      "carrierShippingID": "CARR2015",
+      "statusOrder": "onDelivery",
+      "reasonReturn": "Lost in transit",
+      "createdAt": "2025-09-01 18:15:50",
+      "updatedAt": "2025-09-01 18:15:50"
+    },
+    {
+      "buyerInfos": {
+        "name": "Customer 17",
+        "phone": "094868395",
+        "address": "33 Main St, HN",
+        "note": ""
+      },
+      "productInfos": [
+        {
+          "productName": "Wireless Mouse",
+          "quantity": 1,
+          "pricePerUnit": 329017,
+          "vouchers": []
+        }
+      ],
+      "platform": "Shopee",
+      "whoClosedOrder": "System",
+      "numberOfGoods": 1,
+      "totalOrderValue": 329017,
+      "vouchers": [],
+      "codValue": 349017,
+      "refundValue": 0,
+      "weight": 0.85,
+      "size": "17x20x9",
+      "sendTime": "2025-08-25 08:35:32",
+      "completeTime": "2025-08-29 08:35:32",
+      "carrierName": "J&T",
+      "shippingFee": 20000,
+      "myOwnShippingID": "MY1016",
+      "carrierShippingID": "CARR2016",
+      "statusOrder": "success",
+      "reasonReturn": null,
+      "createdAt": "2025-08-25 08:35:32",
+      "updatedAt": "2025-08-29 08:35:32"
+    },
+    {
+      "buyerInfos": {
+        "name": "Customer 18",
+        "phone": "091141229",
+        "address": "57 Main St, HN",
+        "note": "Call before delivery"
+      },
+      "productInfos": [
+        {
+          "productName": "Mechanical Keyboard",
+          "quantity": 3,
+          "pricePerUnit": 201922,
+          "vouchers": []
+        }
+      ],
+      "platform": "Facebook",
+      "whoClosedOrder": "Staff A",
+      "numberOfGoods": 3,
+      "totalOrderValue": 605766,
+      "vouchers": [],
+      "codValue": 625766,
+      "refundValue": 62168,
+      "weight": 1.26,
+      "size": "17x13x7",
+      "sendTime": "2025-06-17 19:12:30",
+      "completeTime": null,
+      "carrierName": "J&T",
+      "shippingFee": 20000,
+      "myOwnShippingID": "MY1017",
+      "carrierShippingID": "CARR2017",
+      "statusOrder": "onDelivery",
+      "reasonReturn": "Customer refused",
+      "createdAt": "2025-06-17 19:12:30",
+      "updatedAt": "2025-06-17 19:12:30"
+    },
+    {
+      "buyerInfos": {
+        "name": "Customer 19",
+        "phone": "091374639",
+        "address": "64 Main St, HN",
+        "note": "Call before delivery"
+      },
+      "productInfos": [
+        {
+          "productName": "Mechanical Keyboard",
+          "quantity": 3,
+          "pricePerUnit": 184871,
+          "vouchers": [
+            {
+              "name": "Discount",
+              "value": 20000
+            }
+          ]
+        }
+      ],
+      "platform": "Tiktok",
+      "whoClosedOrder": "Staff A",
+      "numberOfGoods": 3,
+      "totalOrderValue": 554613,
+      "vouchers": [
+        {
+          "name": "Discount",
+          "value": 20000
+        }
+      ],
+      "codValue": 554613,
+      "refundValue": 0,
+      "weight": 0.52,
+      "size": "16x39x5",
+      "sendTime": "2025-06-12 09:59:13",
+      "completeTime": "2025-06-16 09:59:13",
+      "carrierName": "J&T",
+      "shippingFee": 20000,
+      "myOwnShippingID": "MY1018",
+      "carrierShippingID": "CARR2018",
+      "statusOrder": "success",
+      "reasonReturn": null,
+      "createdAt": "2025-06-12 09:59:13",
+      "updatedAt": "2025-06-16 09:59:13"
+    },
+    {
+      "buyerInfos": {
+        "name": "Customer 20",
+        "phone": "093361766",
+        "address": "48 Main St, HN",
+        "note": "Leave at door"
+      },
+      "productInfos": [
+        {
+          "productName": "Mechanical Keyboard",
+          "quantity": 1,
+          "pricePerUnit": 337934,
+          "vouchers": []
+        }
+      ],
+      "platform": "Facebook",
+      "whoClosedOrder": "System",
+      "numberOfGoods": 1,
+      "totalOrderValue": 337934,
+      "vouchers": [],
+      "codValue": 357934,
+      "refundValue": 44744,
+      "weight": 1.23,
+      "size": "39x39x15",
+      "sendTime": "2025-07-05 03:25:31",
+      "completeTime": null,
+      "carrierName": "J&T",
+      "shippingFee": 20000,
+      "myOwnShippingID": "MY1019",
+      "carrierShippingID": "CARR2019",
+      "statusOrder": "onDelivery",
+      "reasonReturn": "Customer refused",
+      "createdAt": "2025-07-05 03:25:31",
+      "updatedAt": "2025-07-05 03:25:31"
+    },
+    {
+      "buyerInfos": {
+        "name": "Customer 21",
+        "phone": "094582596",
+        "address": "51 Main St, HN",
+        "note": "Call before delivery"
+      },
+      "productInfos": [
+        {
+          "productName": "Laptop Stand",
+          "quantity": 2,
+          "pricePerUnit": 102446,
+          "vouchers": []
+        }
+      ],
+      "platform": "Facebook",
+      "whoClosedOrder": "Staff A",
+      "numberOfGoods": 2,
+      "totalOrderValue": 204892,
+      "vouchers": [],
+      "codValue": 224892,
+      "refundValue": 157979,
+      "weight": 1.24,
+      "size": "25x18x5",
+      "sendTime": "2025-07-23 16:12:24",
+      "completeTime": "2025-08-02 16:12:24",
+      "carrierName": "J&T",
+      "shippingFee": 20000,
+      "myOwnShippingID": "MY1020",
+      "carrierShippingID": "CARR2020",
+      "statusOrder": "return",
+      "reasonReturn": "Customer refused",
+      "createdAt": "2025-07-23 16:12:24",
+      "updatedAt": "2025-08-02 16:12:24"
+    },
+    {
+      "buyerInfos": {
+        "name": "Customer 22",
+        "phone": "096061555",
+        "address": "18 Main St, HN",
+        "note": ""
+      },
+      "productInfos": [
+        {
+          "productName": "Laptop Stand",
+          "quantity": 5,
+          "pricePerUnit": 402655,
+          "vouchers": [
+            {
+              "name": "Sale",
+              "value": 50000
+            }
+          ]
+        }
+      ],
+      "platform": "Tiktok",
+      "whoClosedOrder": "System",
+      "numberOfGoods": 5,
+      "totalOrderValue": 2013275,
+      "vouchers": [
+        {
+          "name": "Sale",
+          "value": 50000
+        }
+      ],
+      "codValue": 1983275,
+      "refundValue": 1408073,
+      "weight": 1.09,
+      "size": "28x15x9",
+      "sendTime": "2025-06-10 23:08:58",
+      "completeTime": "2025-06-19 23:08:58",
+      "carrierName": "J&T",
+      "shippingFee": 20000,
+      "myOwnShippingID": "MY1021",
+      "carrierShippingID": "CARR2021",
+      "statusOrder": "return",
+      "reasonReturn": "Lost in transit",
+      "createdAt": "2025-06-10 23:08:58",
+      "updatedAt": "2025-06-19 23:08:58"
+    },
+    {
+      "buyerInfos": {
+        "name": "Customer 23",
+        "phone": "092864685",
+        "address": "91 Main St, HN",
+        "note": "Leave at door"
+      },
+      "productInfos": [
+        {
+          "productName": "Wireless Mouse",
+          "quantity": 2,
+          "pricePerUnit": 284671,
+          "vouchers": [
+            {
+              "name": "Discount",
+              "value": 20000
+            }
+          ]
+        }
+      ],
+      "platform": "Facebook",
+      "whoClosedOrder": "Staff A",
+      "numberOfGoods": 2,
+      "totalOrderValue": 569342,
+      "vouchers": [
+        {
+          "name": "Discount",
+          "value": 20000
+        }
+      ],
+      "codValue": 569342,
+      "refundValue": 482733,
+      "weight": 0.82,
+      "size": "17x39x6",
+      "sendTime": "2025-07-31 04:49:50",
+      "completeTime": "2025-08-08 04:49:50",
+      "carrierName": "J&T",
+      "shippingFee": 20000,
+      "myOwnShippingID": "MY1022",
+      "carrierShippingID": "CARR2022",
+      "statusOrder": "lost",
+      "reasonReturn": "Customer refused",
+      "createdAt": "2025-07-31 04:49:50",
+      "updatedAt": "2025-08-08 04:49:50"
+    },
+    {
+      "buyerInfos": {
+        "name": "Customer 24",
+        "phone": "099204400",
+        "address": "36 Main St, HN",
+        "note": "Leave at door"
+      },
+      "productInfos": [
+        {
+          "productName": "Laptop Stand",
+          "quantity": 4,
+          "pricePerUnit": 169978,
+          "vouchers": []
+        }
+      ],
+      "platform": "Facebook",
+      "whoClosedOrder": "Staff B",
+      "numberOfGoods": 4,
+      "totalOrderValue": 679912,
+      "vouchers": [],
+      "codValue": 697912,
+      "refundValue": 295656,
+      "weight": 0.41,
+      "size": "34x16x5",
+      "sendTime": "2025-06-27 04:50:37",
+      "completeTime": null,
+      "carrierName": "SPX",
+      "shippingFee": 18000,
+      "myOwnShippingID": "MY1023",
+      "carrierShippingID": "CARR2023",
+      "statusOrder": "onDelivery",
+      "reasonReturn": "Damaged",
+      "createdAt": "2025-06-27 04:50:37",
+      "updatedAt": "2025-06-27 04:50:37"
+    },
+    {
+      "buyerInfos": {
+        "name": "Customer 25",
+        "phone": "095402246",
+        "address": "71 Main St, HN",
+        "note": "Call before delivery"
+      },
+      "productInfos": [
+        {
+          "productName": "Bluetooth Speaker",
+          "quantity": 1,
+          "pricePerUnit": 499422,
+          "vouchers": [
+            {
+              "name": "Discount",
+              "value": 20000
+            }
+          ]
+        }
+      ],
+      "platform": "Facebook",
+      "whoClosedOrder": "Staff B",
+      "numberOfGoods": 1,
+      "totalOrderValue": 499422,
+      "vouchers": [
+        {
+          "name": "Discount",
+          "value": 20000
+        }
+      ],
+      "codValue": 497422,
+      "refundValue": 344481,
+      "weight": 1.95,
+      "size": "24x36x8",
+      "sendTime": "2025-06-15 18:21:27",
+      "completeTime": null,
+      "carrierName": "SPX",
+      "shippingFee": 18000,
+      "myOwnShippingID": "MY1024",
+      "carrierShippingID": "CARR2024",
+      "statusOrder": "onDelivery",
+      "reasonReturn": "Customer refused",
+      "createdAt": "2025-06-15 18:21:27",
+      "updatedAt": "2025-06-15 18:21:27"
+    },
+    {
+      "buyerInfos": {
+        "name": "Customer 26",
+        "phone": "097982522",
+        "address": "52 Main St, HN",
+        "note": "Leave at door"
+      },
+      "productInfos": [
+        {
+          "productName": "Laptop Stand",
+          "quantity": 4,
+          "pricePerUnit": 440954,
+          "vouchers": []
+        }
+      ],
+      "platform": "Facebook",
+      "whoClosedOrder": "System",
+      "numberOfGoods": 4,
+      "totalOrderValue": 1763816,
+      "vouchers": [],
+      "codValue": 1781816,
+      "refundValue": 1006747,
+      "weight": 0.57,
+      "size": "30x29x10",
+      "sendTime": "2025-06-14 16:24:01",
+      "completeTime": null,
+      "carrierName": "SPX",
+      "shippingFee": 18000,
+      "myOwnShippingID": "MY1025",
+      "carrierShippingID": "CARR2025",
+      "statusOrder": "onDelivery",
+      "reasonReturn": "Wrong address",
+      "createdAt": "2025-06-14 16:24:01",
+      "updatedAt": "2025-06-14 16:24:01"
+    },
+    {
+      "buyerInfos": {
+        "name": "Customer 27",
+        "phone": "091561331",
+        "address": "64 Main St, HN",
+        "note": "Call before delivery"
+      },
+      "productInfos": [
+        {
+          "productName": "Laptop Stand",
+          "quantity": 5,
+          "pricePerUnit": 313068,
+          "vouchers": []
+        }
+      ],
+      "platform": "Shopee",
+      "whoClosedOrder": "Staff B",
+      "numberOfGoods": 5,
+      "totalOrderValue": 1565340,
+      "vouchers": [],
+      "codValue": 1585340,
+      "refundValue": 356247,
+      "weight": 0.23,
+      "size": "36x40x9",
+      "sendTime": "2025-06-07 01:41:55",
+      "completeTime": "2025-06-11 01:41:55",
+      "carrierName": "J&T",
+      "shippingFee": 20000,
+      "myOwnShippingID": "MY1026",
+      "carrierShippingID": "CARR2026",
+      "statusOrder": "lost",
+      "reasonReturn": "Lost in transit",
+      "createdAt": "2025-06-07 01:41:55",
+      "updatedAt": "2025-06-11 01:41:55"
+    },
+    {
+      "buyerInfos": {
+        "name": "Customer 28",
+        "phone": "095403021",
+        "address": "83 Main St, HN",
+        "note": "Call before delivery"
+      },
+      "productInfos": [
+        {
+          "productName": "USB-C Cable",
+          "quantity": 2,
+          "pricePerUnit": 269699,
+          "vouchers": []
+        }
+      ],
+      "platform": "Facebook",
+      "whoClosedOrder": "System",
+      "numberOfGoods": 2,
+      "totalOrderValue": 539398,
+      "vouchers": [],
+      "codValue": 559398,
+      "refundValue": 349199,
+      "weight": 0.56,
+      "size": "11x32x10",
+      "sendTime": "2025-07-08 11:27:39",
+      "completeTime": "2025-07-16 11:27:39",
+      "carrierName": "J&T",
+      "shippingFee": 20000,
+      "myOwnShippingID": "MY1027",
+      "carrierShippingID": "CARR2027",
+      "statusOrder": "return",
+      "reasonReturn": "Customer refused",
+      "createdAt": "2025-07-08 11:27:39",
+      "updatedAt": "2025-07-16 11:27:39"
+    },
+    {
+      "buyerInfos": {
+        "name": "Customer 29",
+        "phone": "095879701",
+        "address": "17 Main St, HN",
+        "note": "Leave at door"
+      },
+      "productInfos": [
+        {
+          "productName": "Wireless Mouse",
+          "quantity": 4,
+          "pricePerUnit": 159101,
+          "vouchers": []
+        }
+      ],
+      "platform": "Facebook",
+      "whoClosedOrder": "Staff A",
+      "numberOfGoods": 4,
+      "totalOrderValue": 636404,
+      "vouchers": [],
+      "codValue": 654404,
+      "refundValue": 0,
+      "weight": 0.99,
+      "size": "35x24x5",
+      "sendTime": "2025-07-30 03:45:08",
+      "completeTime": "2025-08-09 03:45:08",
+      "carrierName": "SPX",
+      "shippingFee": 18000,
+      "myOwnShippingID": "MY1028",
+      "carrierShippingID": "CARR2028",
+      "statusOrder": "success",
+      "reasonReturn": null,
+      "createdAt": "2025-07-30 03:45:08",
+      "updatedAt": "2025-08-09 03:45:08"
+    },
+    {
+      "buyerInfos": {
+        "name": "Customer 30",
+        "phone": "094338141",
+        "address": "85 Main St, HN",
+        "note": ""
+      },
+      "productInfos": [
+        {
+          "productName": "Laptop Stand",
+          "quantity": 4,
+          "pricePerUnit": 319043,
+          "vouchers": []
+        }
+      ],
+      "platform": "Shopee",
+      "whoClosedOrder": "Staff A",
+      "numberOfGoods": 4,
+      "totalOrderValue": 1276172,
+      "vouchers": [],
+      "codValue": 1296172,
+      "refundValue": 588248,
+      "weight": 1.27,
+      "size": "23x39x6",
+      "sendTime": "2025-09-01 12:37:12",
+      "completeTime": null,
+      "carrierName": "J&T",
+      "shippingFee": 20000,
+      "myOwnShippingID": "MY1029",
+      "carrierShippingID": "CARR2029",
+      "statusOrder": "onDelivery",
+      "reasonReturn": "Damaged",
+      "createdAt": "2025-09-01 12:37:12",
+      "updatedAt": "2025-09-01 12:37:12"
+    },
+    {
+      "buyerInfos": {
+        "name": "Customer 31",
+        "phone": "091941137",
+        "address": "66 Main St, HN",
+        "note": ""
+      },
+      "productInfos": [
+        {
+          "productName": "Laptop Stand",
+          "quantity": 5,
+          "pricePerUnit": 469287,
+          "vouchers": []
+        }
+      ],
+      "platform": "Facebook",
+      "whoClosedOrder": "System",
+      "numberOfGoods": 5,
+      "totalOrderValue": 2346435,
+      "vouchers": [],
+      "codValue": 2364435,
+      "refundValue": 0,
+      "weight": 1.14,
+      "size": "40x35x14",
+      "sendTime": "2025-08-27 05:08:42",
+      "completeTime": "2025-08-31 05:08:42",
+      "carrierName": "SPX",
+      "shippingFee": 18000,
+      "myOwnShippingID": "MY1030",
+      "carrierShippingID": "CARR2030",
+      "statusOrder": "success",
+      "reasonReturn": null,
+      "createdAt": "2025-08-27 05:08:42",
+      "updatedAt": "2025-08-31 05:08:42"
+    },
+    {
+      "buyerInfos": {
+        "name": "Customer 32",
+        "phone": "092651306",
+        "address": "41 Main St, HN",
+        "note": ""
+      },
+      "productInfos": [
+        {
+          "productName": "USB-C Cable",
+          "quantity": 2,
+          "pricePerUnit": 316609,
+          "vouchers": []
+        }
+      ],
+      "platform": "Facebook",
+      "whoClosedOrder": "System",
+      "numberOfGoods": 2,
+      "totalOrderValue": 633218,
+      "vouchers": [],
+      "codValue": 651218,
+      "refundValue": 411495,
+      "weight": 0.82,
+      "size": "37x11x7",
+      "sendTime": "2025-07-01 22:23:46",
+      "completeTime": "2025-07-03 22:23:46",
+      "carrierName": "SPX",
+      "shippingFee": 18000,
+      "myOwnShippingID": "MY1031",
+      "carrierShippingID": "CARR2031",
+      "statusOrder": "return",
+      "reasonReturn": "Customer refused",
+      "createdAt": "2025-07-01 22:23:46",
+      "updatedAt": "2025-07-03 22:23:46"
+    },
+    {
+      "buyerInfos": {
+        "name": "Customer 33",
+        "phone": "097812253",
+        "address": "56 Main St, HN",
+        "note": ""
+      },
+      "productInfos": [
+        {
+          "productName": "Bluetooth Speaker",
+          "quantity": 2,
+          "pricePerUnit": 432545,
+          "vouchers": [
+            {
+              "name": "Sale",
+              "value": 50000
+            }
+          ]
+        }
+      ],
+      "platform": "Shopee",
+      "whoClosedOrder": "Staff B",
+      "numberOfGoods": 2,
+      "totalOrderValue": 865090,
+      "vouchers": [
+        {
+          "name": "Sale",
+          "value": 50000
+        }
+      ],
+      "codValue": 835090,
+      "refundValue": 0,
+      "weight": 0.22,
+      "size": "22x28x19",
+      "sendTime": "2025-06-12 03:19:37",
+      "completeTime": "2025-06-15 03:19:37",
+      "carrierName": "J&T",
+      "shippingFee": 20000,
+      "myOwnShippingID": "MY1032",
+      "carrierShippingID": "CARR2032",
+      "statusOrder": "success",
+      "reasonReturn": null,
+      "createdAt": "2025-06-12 03:19:37",
+      "updatedAt": "2025-06-15 03:19:37"
+    },
+    {
+      "buyerInfos": {
+        "name": "Customer 34",
+        "phone": "092866099",
+        "address": "54 Main St, HN",
+        "note": ""
+      },
+      "productInfos": [
+        {
+          "productName": "Wireless Mouse",
+          "quantity": 4,
+          "pricePerUnit": 245953,
+          "vouchers": []
+        }
+      ],
+      "platform": "Shopee",
+      "whoClosedOrder": "Staff B",
+      "numberOfGoods": 4,
+      "totalOrderValue": 983812,
+      "vouchers": [],
+      "codValue": 1003812,
+      "refundValue": 394836,
+      "weight": 0.54,
+      "size": "39x28x10",
+      "sendTime": "2025-08-03 06:24:39",
+      "completeTime": "2025-08-06 06:24:39",
+      "carrierName": "J&T",
+      "shippingFee": 20000,
+      "myOwnShippingID": "MY1033",
+      "carrierShippingID": "CARR2033",
+      "statusOrder": "lost",
+      "reasonReturn": "Damaged",
+      "createdAt": "2025-08-03 06:24:39",
+      "updatedAt": "2025-08-06 06:24:39"
+    },
+    {
+      "buyerInfos": {
+        "name": "Customer 35",
+        "phone": "099572328",
+        "address": "71 Main St, HN",
+        "note": ""
+      },
+      "productInfos": [
+        {
+          "productName": "USB-C Cable",
+          "quantity": 5,
+          "pricePerUnit": 145296,
+          "vouchers": [
+            {
+              "name": "Discount",
+              "value": 20000
+            }
+          ]
+        }
+      ],
+      "platform": "Shopee",
+      "whoClosedOrder": "Staff B",
+      "numberOfGoods": 5,
+      "totalOrderValue": 726480,
+      "vouchers": [
+        {
+          "name": "Discount",
+          "value": 20000
+        }
+      ],
+      "codValue": 726480,
+      "refundValue": 273819,
+      "weight": 1.22,
+      "size": "25x15x7",
+      "sendTime": "2025-06-21 22:29:21",
+      "completeTime": "2025-07-01 22:29:21",
+      "carrierName": "J&T",
+      "shippingFee": 20000,
+      "myOwnShippingID": "MY1034",
+      "carrierShippingID": "CARR2034",
+      "statusOrder": "lost",
+      "reasonReturn": "Customer refused",
+      "createdAt": "2025-06-21 22:29:21",
+      "updatedAt": "2025-07-01 22:29:21"
+    },
+    {
+      "buyerInfos": {
+        "name": "Customer 36",
+        "phone": "095995947",
+        "address": "88 Main St, HN",
+        "note": "Leave at door"
+      },
+      "productInfos": [
+        {
+          "productName": "Laptop Stand",
+          "quantity": 5,
+          "pricePerUnit": 376337,
+          "vouchers": []
+        }
+      ],
+      "platform": "Facebook",
+      "whoClosedOrder": "Staff A",
+      "numberOfGoods": 5,
+      "totalOrderValue": 1881685,
+      "vouchers": [],
+      "codValue": 1901685,
+      "refundValue": 0,
+      "weight": 1.8,
+      "size": "17x34x10",
+      "sendTime": "2025-07-25 18:52:07",
+      "completeTime": "2025-07-28 18:52:07",
+      "carrierName": "J&T",
+      "shippingFee": 20000,
+      "myOwnShippingID": "MY1035",
+      "carrierShippingID": "CARR2035",
+      "statusOrder": "success",
+      "reasonReturn": null,
+      "createdAt": "2025-07-25 18:52:07",
+      "updatedAt": "2025-07-28 18:52:07"
+    },
+    {
+      "buyerInfos": {
+        "name": "Customer 37",
+        "phone": "093069082",
+        "address": "97 Main St, HN",
+        "note": "Leave at door"
+      },
+      "productInfos": [
+        {
+          "productName": "Wireless Mouse",
+          "quantity": 3,
+          "pricePerUnit": 445014,
+          "vouchers": []
+        }
+      ],
+      "platform": "Facebook",
+      "whoClosedOrder": "Staff B",
+      "numberOfGoods": 3,
+      "totalOrderValue": 1335042,
+      "vouchers": [],
+      "codValue": 1353042,
+      "refundValue": 663376,
+      "weight": 0.82,
+      "size": "29x20x15",
+      "sendTime": "2025-06-21 20:42:07",
+      "completeTime": "2025-06-29 20:42:07",
+      "carrierName": "SPX",
+      "shippingFee": 18000,
+      "myOwnShippingID": "MY1036",
+      "carrierShippingID": "CARR2036",
+      "statusOrder": "return",
+      "reasonReturn": "Wrong address",
+      "createdAt": "2025-06-21 20:42:07",
+      "updatedAt": "2025-06-29 20:42:07"
+    },
+    {
+      "buyerInfos": {
+        "name": "Customer 38",
+        "phone": "096185791",
+        "address": "53 Main St, HN",
+        "note": ""
+      },
+      "productInfos": [
+        {
+          "productName": "Mechanical Keyboard",
+          "quantity": 3,
+          "pricePerUnit": 182279,
+          "vouchers": [
+            {
+              "name": "Freeship",
+              "value": 30000
+            }
+          ]
+        }
+      ],
+      "platform": "Facebook",
+      "whoClosedOrder": "Staff B",
+      "numberOfGoods": 3,
+      "totalOrderValue": 546837,
+      "vouchers": [
+        {
+          "name": "Freeship",
+          "value": 30000
+        }
+      ],
+      "codValue": 536837,
+      "refundValue": 188526,
+      "weight": 0.78,
+      "size": "40x15x18",
+      "sendTime": "2025-08-15 12:47:56",
+      "completeTime": "2025-08-20 12:47:56",
+      "carrierName": "J&T",
+      "shippingFee": 20000,
+      "myOwnShippingID": "MY1037",
+      "carrierShippingID": "CARR2037",
+      "statusOrder": "return",
+      "reasonReturn": "Lost in transit",
+      "createdAt": "2025-08-15 12:47:56",
+      "updatedAt": "2025-08-20 12:47:56"
+    },
+    {
+      "buyerInfos": {
+        "name": "Customer 39",
+        "phone": "093418155",
+        "address": "44 Main St, HN",
+        "note": ""
+      },
+      "productInfos": [
+        {
+          "productName": "Mechanical Keyboard",
+          "quantity": 3,
+          "pricePerUnit": 219779,
+          "vouchers": []
+        }
+      ],
+      "platform": "Facebook",
+      "whoClosedOrder": "System",
+      "numberOfGoods": 3,
+      "totalOrderValue": 659337,
+      "vouchers": [],
+      "codValue": 677337,
+      "refundValue": 0,
+      "weight": 1.84,
+      "size": "11x10x17",
+      "sendTime": "2025-07-12 16:25:18",
+      "completeTime": "2025-07-19 16:25:18",
+      "carrierName": "SPX",
+      "shippingFee": 18000,
+      "myOwnShippingID": "MY1038",
+      "carrierShippingID": "CARR2038",
+      "statusOrder": "success",
+      "reasonReturn": null,
+      "createdAt": "2025-07-12 16:25:18",
+      "updatedAt": "2025-07-19 16:25:18"
+    },
+    {
+      "buyerInfos": {
+        "name": "Customer 40",
+        "phone": "098971995",
+        "address": "57 Main St, HN",
+        "note": ""
+      },
+      "productInfos": [
+        {
+          "productName": "Bluetooth Speaker",
+          "quantity": 2,
+          "pricePerUnit": 288074,
+          "vouchers": []
+        }
+      ],
+      "platform": "Facebook",
+      "whoClosedOrder": "Staff A",
+      "numberOfGoods": 2,
+      "totalOrderValue": 576148,
+      "vouchers": [],
+      "codValue": 594148,
+      "refundValue": 143541,
+      "weight": 0.5,
+      "size": "33x30x11",
+      "sendTime": "2025-07-30 08:43:24",
+      "completeTime": "2025-08-08 08:43:24",
+      "carrierName": "SPX",
+      "shippingFee": 18000,
+      "myOwnShippingID": "MY1039",
+      "carrierShippingID": "CARR2039",
+      "statusOrder": "return",
+      "reasonReturn": "Customer refused",
+      "createdAt": "2025-07-30 08:43:24",
+      "updatedAt": "2025-08-08 08:43:24"
+    },
+    {
+      "buyerInfos": {
+        "name": "Customer 41",
+        "phone": "096143498",
+        "address": "69 Main St, HN",
+        "note": "Leave at door"
+      },
+      "productInfos": [
+        {
+          "productName": "Bluetooth Speaker",
+          "quantity": 5,
+          "pricePerUnit": 206836,
+          "vouchers": [
+            {
+              "name": "Sale",
+              "value": 50000
+            }
+          ]
+        }
+      ],
+      "platform": "Shopee",
+      "whoClosedOrder": "System",
+      "numberOfGoods": 5,
+      "totalOrderValue": 1034180,
+      "vouchers": [
+        {
+          "name": "Sale",
+          "value": 50000
+        }
+      ],
+      "codValue": 1002180,
+      "refundValue": 253285,
+      "weight": 0.85,
+      "size": "23x29x17",
+      "sendTime": "2025-06-23 05:05:47",
+      "completeTime": null,
+      "carrierName": "SPX",
+      "shippingFee": 18000,
+      "myOwnShippingID": "MY1040",
+      "carrierShippingID": "CARR2040",
+      "statusOrder": "onDelivery",
+      "reasonReturn": "Damaged",
+      "createdAt": "2025-06-23 05:05:47",
+      "updatedAt": "2025-06-23 05:05:47"
+    },
+    {
+      "buyerInfos": {
+        "name": "Customer 42",
+        "phone": "093563064",
+        "address": "41 Main St, HN",
+        "note": "Call before delivery"
+      },
+      "productInfos": [
+        {
+          "productName": "Laptop Stand",
+          "quantity": 1,
+          "pricePerUnit": 111053,
+          "vouchers": []
+        }
+      ],
+      "platform": "Facebook",
+      "whoClosedOrder": "Staff A",
+      "numberOfGoods": 1,
+      "totalOrderValue": 111053,
+      "vouchers": [],
+      "codValue": 131053,
+      "refundValue": 3199,
+      "weight": 0.64,
+      "size": "32x39x15",
+      "sendTime": "2025-07-17 15:41:13",
+      "completeTime": "2025-07-26 15:41:13",
+      "carrierName": "J&T",
+      "shippingFee": 20000,
+      "myOwnShippingID": "MY1041",
+      "carrierShippingID": "CARR2041",
+      "statusOrder": "lost",
+      "reasonReturn": "Lost in transit",
+      "createdAt": "2025-07-17 15:41:13",
+      "updatedAt": "2025-07-26 15:41:13"
+    },
+    {
+      "buyerInfos": {
+        "name": "Customer 43",
+        "phone": "097596569",
+        "address": "57 Main St, HN",
+        "note": ""
+      },
+      "productInfos": [
+        {
+          "productName": "Mechanical Keyboard",
+          "quantity": 2,
+          "pricePerUnit": 417936,
+          "vouchers": [
+            {
+              "name": "Sale",
+              "value": 50000
+            }
+          ]
+        }
+      ],
+      "platform": "Facebook",
+      "whoClosedOrder": "Staff A",
+      "numberOfGoods": 2,
+      "totalOrderValue": 835872,
+      "vouchers": [
+        {
+          "name": "Sale",
+          "value": 50000
+        }
+      ],
+      "codValue": 805872,
+      "refundValue": 129084,
+      "weight": 0.86,
+      "size": "35x13x12",
+      "sendTime": "2025-06-07 20:24:55",
+      "completeTime": "2025-06-13 20:24:55",
+      "carrierName": "J&T",
+      "shippingFee": 20000,
+      "myOwnShippingID": "MY1042",
+      "carrierShippingID": "CARR2042",
+      "statusOrder": "return",
+      "reasonReturn": "Damaged",
+      "createdAt": "2025-06-07 20:24:55",
+      "updatedAt": "2025-06-13 20:24:55"
+    },
+    {
+      "buyerInfos": {
+        "name": "Customer 44",
+        "phone": "098387092",
+        "address": "87 Main St, HN",
+        "note": "Leave at door"
+      },
+      "productInfos": [
+        {
+          "productName": "USB-C Cable",
+          "quantity": 5,
+          "pricePerUnit": 202892,
+          "vouchers": [
+            {
+              "name": "Discount",
+              "value": 20000
+            }
+          ]
+        }
+      ],
+      "platform": "Tiktok",
+      "whoClosedOrder": "System",
+      "numberOfGoods": 5,
+      "totalOrderValue": 1014460,
+      "vouchers": [
+        {
+          "name": "Discount",
+          "value": 20000
+        }
+      ],
+      "codValue": 1012460,
+      "refundValue": 701528,
+      "weight": 0.76,
+      "size": "39x31x17",
+      "sendTime": "2025-07-29 07:06:30",
+      "completeTime": null,
+      "carrierName": "SPX",
+      "shippingFee": 18000,
+      "myOwnShippingID": "MY1043",
+      "carrierShippingID": "CARR2043",
+      "statusOrder": "onDelivery",
+      "reasonReturn": "Damaged",
+      "createdAt": "2025-07-29 07:06:30",
+      "updatedAt": "2025-07-29 07:06:30"
+    },
+    {
+      "buyerInfos": {
+        "name": "Customer 45",
+        "phone": "094236225",
+        "address": "81 Main St, HN",
+        "note": "Call before delivery"
+      },
+      "productInfos": [
+        {
+          "productName": "Laptop Stand",
+          "quantity": 1,
+          "pricePerUnit": 238527,
+          "vouchers": []
+        }
+      ],
+      "platform": "Facebook",
+      "whoClosedOrder": "Staff B",
+      "numberOfGoods": 1,
+      "totalOrderValue": 238527,
+      "vouchers": [],
+      "codValue": 256527,
+      "refundValue": 17803,
+      "weight": 1.4,
+      "size": "25x15x5",
+      "sendTime": "2025-06-09 22:56:45",
+      "completeTime": null,
+      "carrierName": "SPX",
+      "shippingFee": 18000,
+      "myOwnShippingID": "MY1044",
+      "carrierShippingID": "CARR2044",
+      "statusOrder": "onDelivery",
+      "reasonReturn": "Lost in transit",
+      "createdAt": "2025-06-09 22:56:45",
+      "updatedAt": "2025-06-09 22:56:45"
+    },
+    {
+      "buyerInfos": {
+        "name": "Customer 46",
+        "phone": "096634777",
+        "address": "42 Main St, HN",
+        "note": ""
+      },
+      "productInfos": [
+        {
+          "productName": "Laptop Stand",
+          "quantity": 4,
+          "pricePerUnit": 400798,
+          "vouchers": []
+        }
+      ],
+      "platform": "Shopee",
+      "whoClosedOrder": "System",
+      "numberOfGoods": 4,
+      "totalOrderValue": 1603192,
+      "vouchers": [],
+      "codValue": 1621192,
+      "refundValue": 969304,
+      "weight": 1.87,
+      "size": "30x32x19",
+      "sendTime": "2025-08-28 01:22:23",
+      "completeTime": "2025-08-31 01:22:23",
+      "carrierName": "SPX",
+      "shippingFee": 18000,
+      "myOwnShippingID": "MY1045",
+      "carrierShippingID": "CARR2045",
+      "statusOrder": "return",
+      "reasonReturn": "Lost in transit",
+      "createdAt": "2025-08-28 01:22:23",
+      "updatedAt": "2025-08-31 01:22:23"
+    },
+    {
+      "buyerInfos": {
+        "name": "Customer 47",
+        "phone": "098045495",
+        "address": "33 Main St, HN",
+        "note": ""
+      },
+      "productInfos": [
+        {
+          "productName": "Mechanical Keyboard",
+          "quantity": 3,
+          "pricePerUnit": 393491,
+          "vouchers": [
+            {
+              "name": "Discount",
+              "value": 20000
+            }
+          ]
+        }
+      ],
+      "platform": "Tiktok",
+      "whoClosedOrder": "System",
+      "numberOfGoods": 3,
+      "totalOrderValue": 1180473,
+      "vouchers": [
+        {
+          "name": "Discount",
+          "value": 20000
+        }
+      ],
+      "codValue": 1178473,
+      "refundValue": 56494,
+      "weight": 0.65,
+      "size": "29x19x11",
+      "sendTime": "2025-06-09 06:11:40",
+      "completeTime": "2025-06-18 06:11:40",
+      "carrierName": "SPX",
+      "shippingFee": 18000,
+      "myOwnShippingID": "MY1046",
+      "carrierShippingID": "CARR2046",
+      "statusOrder": "lost",
+      "reasonReturn": "Wrong address",
+      "createdAt": "2025-06-09 06:11:40",
+      "updatedAt": "2025-06-18 06:11:40"
+    },
+    {
+      "buyerInfos": {
+        "name": "Customer 48",
+        "phone": "099791276",
+        "address": "61 Main St, HN",
+        "note": "Call before delivery"
+      },
+      "productInfos": [
+        {
+          "productName": "Wireless Mouse",
+          "quantity": 3,
+          "pricePerUnit": 123506,
+          "vouchers": []
+        }
+      ],
+      "platform": "Shopee",
+      "whoClosedOrder": "Staff A",
+      "numberOfGoods": 3,
+      "totalOrderValue": 370518,
+      "vouchers": [],
+      "codValue": 388518,
+      "refundValue": 244325,
+      "weight": 1.31,
+      "size": "10x31x16",
+      "sendTime": "2025-06-15 12:33:49",
+      "completeTime": null,
+      "carrierName": "SPX",
+      "shippingFee": 18000,
+      "myOwnShippingID": "MY1047",
+      "carrierShippingID": "CARR2047",
+      "statusOrder": "onDelivery",
+      "reasonReturn": "Wrong address",
+      "createdAt": "2025-06-15 12:33:49",
+      "updatedAt": "2025-06-15 12:33:49"
+    },
+    {
+      "buyerInfos": {
+        "name": "Customer 49",
+        "phone": "096271629",
+        "address": "12 Main St, HN",
+        "note": "Call before delivery"
+      },
+      "productInfos": [
+        {
+          "productName": "Laptop Stand",
+          "quantity": 1,
+          "pricePerUnit": 486600,
+          "vouchers": []
+        }
+      ],
+      "platform": "Shopee",
+      "whoClosedOrder": "Staff B",
+      "numberOfGoods": 1,
+      "totalOrderValue": 486600,
+      "vouchers": [],
+      "codValue": 506600,
+      "refundValue": 440064,
+      "weight": 1.59,
+      "size": "39x15x11",
+      "sendTime": "2025-06-23 23:15:22",
+      "completeTime": "2025-06-25 23:15:22",
+      "carrierName": "J&T",
+      "shippingFee": 20000,
+      "myOwnShippingID": "MY1048",
+      "carrierShippingID": "CARR2048",
+      "statusOrder": "lost",
+      "reasonReturn": "Customer refused",
+      "createdAt": "2025-06-23 23:15:22",
+      "updatedAt": "2025-06-25 23:15:22"
+    },
+    {
+      "buyerInfos": {
+        "name": "Customer 50",
+        "phone": "099378293",
+        "address": "40 Main St, HN",
+        "note": "Call before delivery"
+      },
+      "productInfos": [
+        {
+          "productName": "Wireless Mouse",
+          "quantity": 1,
+          "pricePerUnit": 205624,
+          "vouchers": []
+        }
+      ],
+      "platform": "Facebook",
+      "whoClosedOrder": "System",
+      "numberOfGoods": 1,
+      "totalOrderValue": 205624,
+      "vouchers": [],
+      "codValue": 223624,
+      "refundValue": 0,
+      "weight": 0.46,
+      "size": "33x19x14",
+      "sendTime": "2025-07-02 20:52:43",
+      "completeTime": "2025-07-04 20:52:43",
+      "carrierName": "SPX",
+      "shippingFee": 18000,
+      "myOwnShippingID": "MY1049",
+      "carrierShippingID": "CARR2049",
+      "statusOrder": "success",
+      "reasonReturn": null,
+      "createdAt": "2025-07-02 20:52:43",
+      "updatedAt": "2025-07-04 20:52:43"
+    },
+    {
+      "buyerInfos": {
+        "name": "Customer 51",
+        "phone": "099492823",
+        "address": "49 Main St, HN",
+        "note": ""
+      },
+      "productInfos": [
+        {
+          "productName": "Laptop Stand",
+          "quantity": 1,
+          "pricePerUnit": 186816,
+          "vouchers": []
+        }
+      ],
+      "platform": "Tiktok",
+      "whoClosedOrder": "Staff B",
+      "numberOfGoods": 1,
+      "totalOrderValue": 186816,
+      "vouchers": [],
+      "codValue": 206816,
+      "refundValue": 147463,
+      "weight": 1.45,
+      "size": "30x33x13",
+      "sendTime": "2025-08-28 04:53:07",
+      "completeTime": "2025-09-07 04:53:07",
+      "carrierName": "J&T",
+      "shippingFee": 20000,
+      "myOwnShippingID": "MY1050",
+      "carrierShippingID": "CARR2050",
+      "statusOrder": "lost",
+      "reasonReturn": "Customer refused",
+      "createdAt": "2025-08-28 04:53:07",
+      "updatedAt": "2025-09-07 04:53:07"
+    },
+    {
+      "buyerInfos": {
+        "name": "Customer 52",
+        "phone": "096575300",
+        "address": "85 Main St, HN",
+        "note": ""
+      },
+      "productInfos": [
+        {
+          "productName": "Laptop Stand",
+          "quantity": 1,
+          "pricePerUnit": 488262,
+          "vouchers": [
+            {
+              "name": "Sale",
+              "value": 50000
+            }
+          ]
+        }
+      ],
+      "platform": "Shopee",
+      "whoClosedOrder": "Staff A",
+      "numberOfGoods": 1,
+      "totalOrderValue": 488262,
+      "vouchers": [
+        {
+          "name": "Sale",
+          "value": 50000
+        }
+      ],
+      "codValue": 456262,
+      "refundValue": 405772,
+      "weight": 1.5,
+      "size": "19x28x15",
+      "sendTime": "2025-08-10 14:16:28",
+      "completeTime": "2025-08-18 14:16:28",
+      "carrierName": "SPX",
+      "shippingFee": 18000,
+      "myOwnShippingID": "MY1051",
+      "carrierShippingID": "CARR2051",
+      "statusOrder": "lost",
+      "reasonReturn": "Wrong address",
+      "createdAt": "2025-08-10 14:16:28",
+      "updatedAt": "2025-08-18 14:16:28"
+    },
+    {
+      "buyerInfos": {
+        "name": "Customer 53",
+        "phone": "099902680",
+        "address": "41 Main St, HN",
+        "note": "Leave at door"
+      },
+      "productInfos": [
+        {
+          "productName": "Laptop Stand",
+          "quantity": 4,
+          "pricePerUnit": 263319,
+          "vouchers": []
+        }
+      ],
+      "platform": "Tiktok",
+      "whoClosedOrder": "System",
+      "numberOfGoods": 4,
+      "totalOrderValue": 1053276,
+      "vouchers": [],
+      "codValue": 1071276,
+      "refundValue": 0,
+      "weight": 1.31,
+      "size": "18x31x9",
+      "sendTime": "2025-07-27 08:57:24",
+      "completeTime": "2025-08-01 08:57:24",
+      "carrierName": "SPX",
+      "shippingFee": 18000,
+      "myOwnShippingID": "MY1052",
+      "carrierShippingID": "CARR2052",
+      "statusOrder": "success",
+      "reasonReturn": null,
+      "createdAt": "2025-07-27 08:57:24",
+      "updatedAt": "2025-08-01 08:57:24"
+    },
+    {
+      "buyerInfos": {
+        "name": "Customer 54",
+        "phone": "094660858",
+        "address": "37 Main St, HN",
+        "note": "Leave at door"
+      },
+      "productInfos": [
+        {
+          "productName": "Mechanical Keyboard",
+          "quantity": 4,
+          "pricePerUnit": 357385,
+          "vouchers": []
+        }
+      ],
+      "platform": "Facebook",
+      "whoClosedOrder": "System",
+      "numberOfGoods": 4,
+      "totalOrderValue": 1429540,
+      "vouchers": [],
+      "codValue": 1447540,
+      "refundValue": 654970,
+      "weight": 0.41,
+      "size": "21x33x7",
+      "sendTime": "2025-08-11 06:56:06",
+      "completeTime": "2025-08-15 06:56:06",
+      "carrierName": "SPX",
+      "shippingFee": 18000,
+      "myOwnShippingID": "MY1053",
+      "carrierShippingID": "CARR2053",
+      "statusOrder": "lost",
+      "reasonReturn": "Customer refused",
+      "createdAt": "2025-08-11 06:56:06",
+      "updatedAt": "2025-08-15 06:56:06"
+    },
+    {
+      "buyerInfos": {
+        "name": "Customer 55",
+        "phone": "091721258",
+        "address": "93 Main St, HN",
+        "note": ""
+      },
+      "productInfos": [
+        {
+          "productName": "Mechanical Keyboard",
+          "quantity": 4,
+          "pricePerUnit": 125447,
+          "vouchers": []
+        }
+      ],
+      "platform": "Facebook",
+      "whoClosedOrder": "Staff A",
+      "numberOfGoods": 4,
+      "totalOrderValue": 501788,
+      "vouchers": [],
+      "codValue": 521788,
+      "refundValue": 102035,
+      "weight": 0.59,
+      "size": "27x34x13",
+      "sendTime": "2025-08-21 17:42:17",
+      "completeTime": "2025-08-26 17:42:17",
+      "carrierName": "J&T",
+      "shippingFee": 20000,
+      "myOwnShippingID": "MY1054",
+      "carrierShippingID": "CARR2054",
+      "statusOrder": "lost",
+      "reasonReturn": "Customer refused",
+      "createdAt": "2025-08-21 17:42:17",
+      "updatedAt": "2025-08-26 17:42:17"
+    },
+    {
+      "buyerInfos": {
+        "name": "Customer 56",
+        "phone": "099886355",
+        "address": "34 Main St, HN",
+        "note": "Call before delivery"
+      },
+      "productInfos": [
+        {
+          "productName": "USB-C Cable",
+          "quantity": 5,
+          "pricePerUnit": 440840,
+          "vouchers": []
+        }
+      ],
+      "platform": "Shopee",
+      "whoClosedOrder": "Staff A",
+      "numberOfGoods": 5,
+      "totalOrderValue": 2204200,
+      "vouchers": [],
+      "codValue": 2222200,
+      "refundValue": 401503,
+      "weight": 1.72,
+      "size": "18x13x12",
+      "sendTime": "2025-09-01 18:01:44",
+      "completeTime": "2025-09-08 18:01:44",
+      "carrierName": "SPX",
+      "shippingFee": 18000,
+      "myOwnShippingID": "MY1055",
+      "carrierShippingID": "CARR2055",
+      "statusOrder": "lost",
+      "reasonReturn": "Wrong address",
+      "createdAt": "2025-09-01 18:01:44",
+      "updatedAt": "2025-09-08 18:01:44"
+    },
+    {
+      "buyerInfos": {
+        "name": "Customer 57",
+        "phone": "095961604",
+        "address": "60 Main St, HN",
+        "note": "Call before delivery"
+      },
+      "productInfos": [
+        {
+          "productName": "Mechanical Keyboard",
+          "quantity": 3,
+          "pricePerUnit": 249890,
+          "vouchers": [
+            {
+              "name": "Sale",
+              "value": 50000
+            }
+          ]
+        }
+      ],
+      "platform": "Facebook",
+      "whoClosedOrder": "System",
+      "numberOfGoods": 3,
+      "totalOrderValue": 749670,
+      "vouchers": [
+        {
+          "name": "Sale",
+          "value": 50000
+        }
+      ],
+      "codValue": 717670,
+      "refundValue": 118843,
+      "weight": 0.46,
+      "size": "11x12x19",
+      "sendTime": "2025-07-19 22:20:48",
+      "completeTime": "2025-07-23 22:20:48",
+      "carrierName": "SPX",
+      "shippingFee": 18000,
+      "myOwnShippingID": "MY1056",
+      "carrierShippingID": "CARR2056",
+      "statusOrder": "return",
+      "reasonReturn": "Customer refused",
+      "createdAt": "2025-07-19 22:20:48",
+      "updatedAt": "2025-07-23 22:20:48"
+    },
+    {
+      "buyerInfos": {
+        "name": "Customer 58",
+        "phone": "099730382",
+        "address": "84 Main St, HN",
+        "note": "Call before delivery"
+      },
+      "productInfos": [
+        {
+          "productName": "Laptop Stand",
+          "quantity": 1,
+          "pricePerUnit": 157207,
+          "vouchers": [
+            {
+              "name": "Freeship",
+              "value": 30000
+            }
+          ]
+        }
+      ],
+      "platform": "Facebook",
+      "whoClosedOrder": "Staff A",
+      "numberOfGoods": 1,
+      "totalOrderValue": 157207,
+      "vouchers": [
+        {
+          "name": "Freeship",
+          "value": 30000
+        }
+      ],
+      "codValue": 145207,
+      "refundValue": 0,
+      "weight": 0.76,
+      "size": "11x34x19",
+      "sendTime": "2025-08-03 09:33:33",
+      "completeTime": "2025-08-10 09:33:33",
+      "carrierName": "SPX",
+      "shippingFee": 18000,
+      "myOwnShippingID": "MY1057",
+      "carrierShippingID": "CARR2057",
+      "statusOrder": "success",
+      "reasonReturn": null,
+      "createdAt": "2025-08-03 09:33:33",
+      "updatedAt": "2025-08-10 09:33:33"
+    },
+    {
+      "buyerInfos": {
+        "name": "Customer 59",
+        "phone": "094580662",
+        "address": "86 Main St, HN",
+        "note": ""
+      },
+      "productInfos": [
+        {
+          "productName": "Bluetooth Speaker",
+          "quantity": 5,
+          "pricePerUnit": 324613,
+          "vouchers": [
+            {
+              "name": "Sale",
+              "value": 50000
+            }
+          ]
+        }
+      ],
+      "platform": "Facebook",
+      "whoClosedOrder": "System",
+      "numberOfGoods": 5,
+      "totalOrderValue": 1623065,
+      "vouchers": [
+        {
+          "name": "Sale",
+          "value": 50000
+        }
+      ],
+      "codValue": 1593065,
+      "refundValue": 562227,
+      "weight": 1.71,
+      "size": "12x31x19",
+      "sendTime": "2025-07-05 06:00:16",
+      "completeTime": "2025-07-09 06:00:16",
+      "carrierName": "J&T",
+      "shippingFee": 20000,
+      "myOwnShippingID": "MY1058",
+      "carrierShippingID": "CARR2058",
+      "statusOrder": "lost",
+      "reasonReturn": "Wrong address",
+      "createdAt": "2025-07-05 06:00:16",
+      "updatedAt": "2025-07-09 06:00:16"
+    },
+    {
+      "buyerInfos": {
+        "name": "Customer 60",
+        "phone": "099296535",
+        "address": "72 Main St, HN",
+        "note": "Leave at door"
+      },
+      "productInfos": [
+        {
+          "productName": "Mechanical Keyboard",
+          "quantity": 5,
+          "pricePerUnit": 258638,
+          "vouchers": []
+        }
+      ],
+      "platform": "Facebook",
+      "whoClosedOrder": "System",
+      "numberOfGoods": 5,
+      "totalOrderValue": 1293190,
+      "vouchers": [],
+      "codValue": 1313190,
+      "refundValue": 503567,
+      "weight": 0.87,
+      "size": "25x23x20",
+      "sendTime": "2025-09-03 16:22:58",
+      "completeTime": "2025-09-09 16:22:58",
+      "carrierName": "J&T",
+      "shippingFee": 20000,
+      "myOwnShippingID": "MY1059",
+      "carrierShippingID": "CARR2059",
+      "statusOrder": "lost",
+      "reasonReturn": "Wrong address",
+      "createdAt": "2025-09-03 16:22:58",
+      "updatedAt": "2025-09-09 16:22:58"
+    },
+    {
+      "buyerInfos": {
+        "name": "Customer 61",
+        "phone": "098145963",
+        "address": "60 Main St, HN",
+        "note": ""
+      },
+      "productInfos": [
+        {
+          "productName": "Wireless Mouse",
+          "quantity": 2,
+          "pricePerUnit": 242929,
+          "vouchers": []
+        }
+      ],
+      "platform": "Facebook",
+      "whoClosedOrder": "Staff A",
+      "numberOfGoods": 2,
+      "totalOrderValue": 485858,
+      "vouchers": [],
+      "codValue": 503858,
+      "refundValue": 78440,
+      "weight": 1.3,
+      "size": "10x23x17",
+      "sendTime": "2025-06-16 16:59:13",
+      "completeTime": "2025-06-26 16:59:13",
+      "carrierName": "SPX",
+      "shippingFee": 18000,
+      "myOwnShippingID": "MY1060",
+      "carrierShippingID": "CARR2060",
+      "statusOrder": "lost",
+      "reasonReturn": "Customer refused",
+      "createdAt": "2025-06-16 16:59:13",
+      "updatedAt": "2025-06-26 16:59:13"
+    },
+    {
+      "buyerInfos": {
+        "name": "Customer 62",
+        "phone": "098133380",
+        "address": "87 Main St, HN",
+        "note": "Call before delivery"
+      },
+      "productInfos": [
+        {
+          "productName": "Laptop Stand",
+          "quantity": 1,
+          "pricePerUnit": 309008,
+          "vouchers": [
+            {
+              "name": "Sale",
+              "value": 50000
+            }
+          ]
+        }
+      ],
+      "platform": "Facebook",
+      "whoClosedOrder": "Staff B",
+      "numberOfGoods": 1,
+      "totalOrderValue": 309008,
+      "vouchers": [
+        {
+          "name": "Sale",
+          "value": 50000
+        }
+      ],
+      "codValue": 277008,
+      "refundValue": 131969,
+      "weight": 1.22,
+      "size": "18x23x14",
+      "sendTime": "2025-08-22 20:02:51",
+      "completeTime": "2025-08-26 20:02:51",
+      "carrierName": "SPX",
+      "shippingFee": 18000,
+      "myOwnShippingID": "MY1061",
+      "carrierShippingID": "CARR2061",
+      "statusOrder": "return",
+      "reasonReturn": "Lost in transit",
+      "createdAt": "2025-08-22 20:02:51",
+      "updatedAt": "2025-08-26 20:02:51"
+    },
+    {
+      "buyerInfos": {
+        "name": "Customer 63",
+        "phone": "097647926",
+        "address": "89 Main St, HN",
+        "note": "Call before delivery"
+      },
+      "productInfos": [
+        {
+          "productName": "USB-C Cable",
+          "quantity": 5,
+          "pricePerUnit": 372968,
+          "vouchers": []
+        }
+      ],
+      "platform": "Shopee",
+      "whoClosedOrder": "System",
+      "numberOfGoods": 5,
+      "totalOrderValue": 1864840,
+      "vouchers": [],
+      "codValue": 1882840,
+      "refundValue": 637825,
+      "weight": 0.52,
+      "size": "29x24x13",
+      "sendTime": "2025-08-13 14:14:38",
+      "completeTime": "2025-08-17 14:14:38",
+      "carrierName": "SPX",
+      "shippingFee": 18000,
+      "myOwnShippingID": "MY1062",
+      "carrierShippingID": "CARR2062",
+      "statusOrder": "return",
+      "reasonReturn": "Lost in transit",
+      "createdAt": "2025-08-13 14:14:38",
+      "updatedAt": "2025-08-17 14:14:38"
+    },
+    {
+      "buyerInfos": {
+        "name": "Customer 64",
+        "phone": "099913491",
+        "address": "44 Main St, HN",
+        "note": "Leave at door"
+      },
+      "productInfos": [
+        {
+          "productName": "Bluetooth Speaker",
+          "quantity": 5,
+          "pricePerUnit": 371828,
+          "vouchers": [
+            {
+              "name": "Sale",
+              "value": 50000
+            }
+          ]
+        }
+      ],
+      "platform": "Tiktok",
+      "whoClosedOrder": "Staff B",
+      "numberOfGoods": 5,
+      "totalOrderValue": 1859140,
+      "vouchers": [
+        {
+          "name": "Sale",
+          "value": 50000
+        }
+      ],
+      "codValue": 1829140,
+      "refundValue": 1199163,
+      "weight": 1.03,
+      "size": "24x28x17",
+      "sendTime": "2025-08-18 05:22:52",
+      "completeTime": null,
+      "carrierName": "J&T",
+      "shippingFee": 20000,
+      "myOwnShippingID": "MY1063",
+      "carrierShippingID": "CARR2063",
+      "statusOrder": "onDelivery",
+      "reasonReturn": "Damaged",
+      "createdAt": "2025-08-18 05:22:52",
+      "updatedAt": "2025-08-18 05:22:52"
+    },
+    {
+      "buyerInfos": {
+        "name": "Customer 65",
+        "phone": "098937688",
+        "address": "69 Main St, HN",
+        "note": "Call before delivery"
+      },
+      "productInfos": [
+        {
+          "productName": "USB-C Cable",
+          "quantity": 3,
+          "pricePerUnit": 269378,
+          "vouchers": []
+        }
+      ],
+      "platform": "Facebook",
+      "whoClosedOrder": "Staff B",
+      "numberOfGoods": 3,
+      "totalOrderValue": 808134,
+      "vouchers": [],
+      "codValue": 826134,
+      "refundValue": 681729,
+      "weight": 1.15,
+      "size": "24x20x5",
+      "sendTime": "2025-09-03 07:26:18",
+      "completeTime": "2025-09-11 07:26:18",
+      "carrierName": "SPX",
+      "shippingFee": 18000,
+      "myOwnShippingID": "MY1064",
+      "carrierShippingID": "CARR2064",
+      "statusOrder": "lost",
+      "reasonReturn": "Damaged",
+      "createdAt": "2025-09-03 07:26:18",
+      "updatedAt": "2025-09-11 07:26:18"
+    },
+    {
+      "buyerInfos": {
+        "name": "Customer 66",
+        "phone": "091027069",
+        "address": "83 Main St, HN",
+        "note": ""
+      },
+      "productInfos": [
+        {
+          "productName": "Mechanical Keyboard",
+          "quantity": 5,
+          "pricePerUnit": 440384,
+          "vouchers": []
+        }
+      ],
+      "platform": "Facebook",
+      "whoClosedOrder": "Staff A",
+      "numberOfGoods": 5,
+      "totalOrderValue": 2201920,
+      "vouchers": [],
+      "codValue": 2221920,
+      "refundValue": 0,
+      "weight": 1.43,
+      "size": "15x18x12",
+      "sendTime": "2025-08-22 14:27:54",
+      "completeTime": "2025-08-27 14:27:54",
+      "carrierName": "J&T",
+      "shippingFee": 20000,
+      "myOwnShippingID": "MY1065",
+      "carrierShippingID": "CARR2065",
+      "statusOrder": "success",
+      "reasonReturn": null,
+      "createdAt": "2025-08-22 14:27:54",
+      "updatedAt": "2025-08-27 14:27:54"
+    },
+    {
+      "buyerInfos": {
+        "name": "Customer 67",
+        "phone": "098321650",
+        "address": "16 Main St, HN",
+        "note": "Leave at door"
+      },
+      "productInfos": [
+        {
+          "productName": "USB-C Cable",
+          "quantity": 1,
+          "pricePerUnit": 355574,
+          "vouchers": []
+        }
+      ],
+      "platform": "Tiktok",
+      "whoClosedOrder": "System",
+      "numberOfGoods": 1,
+      "totalOrderValue": 355574,
+      "vouchers": [],
+      "codValue": 375574,
+      "refundValue": 33259,
+      "weight": 1.06,
+      "size": "26x13x18",
+      "sendTime": "2025-06-12 19:55:04",
+      "completeTime": "2025-06-22 19:55:04",
+      "carrierName": "J&T",
+      "shippingFee": 20000,
+      "myOwnShippingID": "MY1066",
+      "carrierShippingID": "CARR2066",
+      "statusOrder": "return",
+      "reasonReturn": "Damaged",
+      "createdAt": "2025-06-12 19:55:04",
+      "updatedAt": "2025-06-22 19:55:04"
+    },
+    {
+      "buyerInfos": {
+        "name": "Customer 68",
+        "phone": "098377059",
+        "address": "92 Main St, HN",
+        "note": ""
+      },
+      "productInfos": [
+        {
+          "productName": "Bluetooth Speaker",
+          "quantity": 4,
+          "pricePerUnit": 465708,
+          "vouchers": []
+        }
+      ],
+      "platform": "Tiktok",
+      "whoClosedOrder": "Staff A",
+      "numberOfGoods": 4,
+      "totalOrderValue": 1862832,
+      "vouchers": [],
+      "codValue": 1880832,
+      "refundValue": 0,
+      "weight": 1.44,
+      "size": "35x34x8",
+      "sendTime": "2025-06-28 07:49:31",
+      "completeTime": "2025-07-05 07:49:31",
+      "carrierName": "SPX",
+      "shippingFee": 18000,
+      "myOwnShippingID": "MY1067",
+      "carrierShippingID": "CARR2067",
+      "statusOrder": "success",
+      "reasonReturn": null,
+      "createdAt": "2025-06-28 07:49:31",
+      "updatedAt": "2025-07-05 07:49:31"
+    },
+    {
+      "buyerInfos": {
+        "name": "Customer 69",
+        "phone": "095797581",
+        "address": "86 Main St, HN",
+        "note": "Call before delivery"
+      },
+      "productInfos": [
+        {
+          "productName": "Wireless Mouse",
+          "quantity": 5,
+          "pricePerUnit": 366620,
+          "vouchers": []
+        }
+      ],
+      "platform": "Tiktok",
+      "whoClosedOrder": "System",
+      "numberOfGoods": 5,
+      "totalOrderValue": 1833100,
+      "vouchers": [],
+      "codValue": 1853100,
+      "refundValue": 0,
+      "weight": 1.21,
+      "size": "27x27x20",
+      "sendTime": "2025-08-10 10:28:57",
+      "completeTime": "2025-08-19 10:28:57",
+      "carrierName": "J&T",
+      "shippingFee": 20000,
+      "myOwnShippingID": "MY1068",
+      "carrierShippingID": "CARR2068",
+      "statusOrder": "success",
+      "reasonReturn": null,
+      "createdAt": "2025-08-10 10:28:57",
+      "updatedAt": "2025-08-19 10:28:57"
+    },
+    {
+      "buyerInfos": {
+        "name": "Customer 70",
+        "phone": "094510472",
+        "address": "31 Main St, HN",
+        "note": ""
+      },
+      "productInfos": [
+        {
+          "productName": "Wireless Mouse",
+          "quantity": 5,
+          "pricePerUnit": 452345,
+          "vouchers": []
+        }
+      ],
+      "platform": "Tiktok",
+      "whoClosedOrder": "Staff A",
+      "numberOfGoods": 5,
+      "totalOrderValue": 2261725,
+      "vouchers": [],
+      "codValue": 2279725,
+      "refundValue": 1816420,
+      "weight": 0.42,
+      "size": "35x10x11",
+      "sendTime": "2025-07-13 15:18:41",
+      "completeTime": null,
+      "carrierName": "SPX",
+      "shippingFee": 18000,
+      "myOwnShippingID": "MY1069",
+      "carrierShippingID": "CARR2069",
+      "statusOrder": "onDelivery",
+      "reasonReturn": "Wrong address",
+      "createdAt": "2025-07-13 15:18:41",
+      "updatedAt": "2025-07-13 15:18:41"
+    },
+    {
+      "buyerInfos": {
+        "name": "Customer 71",
+        "phone": "094287591",
+        "address": "31 Main St, HN",
+        "note": "Call before delivery"
+      },
+      "productInfos": [
+        {
+          "productName": "Wireless Mouse",
+          "quantity": 5,
+          "pricePerUnit": 372412,
+          "vouchers": []
+        }
+      ],
+      "platform": "Shopee",
+      "whoClosedOrder": "System",
+      "numberOfGoods": 5,
+      "totalOrderValue": 1862060,
+      "vouchers": [],
+      "codValue": 1880060,
+      "refundValue": 538200,
+      "weight": 0.46,
+      "size": "29x11x18",
+      "sendTime": "2025-08-04 05:42:01",
+      "completeTime": null,
+      "carrierName": "SPX",
+      "shippingFee": 18000,
+      "myOwnShippingID": "MY1070",
+      "carrierShippingID": "CARR2070",
+      "statusOrder": "onDelivery",
+      "reasonReturn": "Lost in transit",
+      "createdAt": "2025-08-04 05:42:01",
+      "updatedAt": "2025-08-04 05:42:01"
+    },
+    {
+      "buyerInfos": {
+        "name": "Customer 72",
+        "phone": "099168602",
+        "address": "67 Main St, HN",
+        "note": "Leave at door"
+      },
+      "productInfos": [
+        {
+          "productName": "Bluetooth Speaker",
+          "quantity": 4,
+          "pricePerUnit": 309643,
+          "vouchers": [
+            {
+              "name": "Discount",
+              "value": 20000
+            }
+          ]
+        }
+      ],
+      "platform": "Shopee",
+      "whoClosedOrder": "Staff B",
+      "numberOfGoods": 4,
+      "totalOrderValue": 1238572,
+      "vouchers": [
+        {
+          "name": "Discount",
+          "value": 20000
+        }
+      ],
+      "codValue": 1238572,
+      "refundValue": 989562,
+      "weight": 1.36,
+      "size": "11x32x11",
+      "sendTime": "2025-08-01 04:52:49",
+      "completeTime": "2025-08-06 04:52:49",
+      "carrierName": "J&T",
+      "shippingFee": 20000,
+      "myOwnShippingID": "MY1071",
+      "carrierShippingID": "CARR2071",
+      "statusOrder": "lost",
+      "reasonReturn": "Damaged",
+      "createdAt": "2025-08-01 04:52:49",
+      "updatedAt": "2025-08-06 04:52:49"
+    },
+    {
+      "buyerInfos": {
+        "name": "Customer 73",
+        "phone": "094862472",
+        "address": "15 Main St, HN",
+        "note": "Call before delivery"
+      },
+      "productInfos": [
+        {
+          "productName": "Wireless Mouse",
+          "quantity": 2,
+          "pricePerUnit": 422274,
+          "vouchers": [
+            {
+              "name": "Freeship",
+              "value": 30000
+            }
+          ]
+        }
+      ],
+      "platform": "Facebook",
+      "whoClosedOrder": "Staff B",
+      "numberOfGoods": 2,
+      "totalOrderValue": 844548,
+      "vouchers": [
+        {
+          "name": "Freeship",
+          "value": 30000
+        }
+      ],
+      "codValue": 834548,
+      "refundValue": 43935,
+      "weight": 0.7,
+      "size": "24x24x8",
+      "sendTime": "2025-06-13 23:39:54",
+      "completeTime": null,
+      "carrierName": "J&T",
+      "shippingFee": 20000,
+      "myOwnShippingID": "MY1072",
+      "carrierShippingID": "CARR2072",
+      "statusOrder": "onDelivery",
+      "reasonReturn": "Lost in transit",
+      "createdAt": "2025-06-13 23:39:54",
+      "updatedAt": "2025-06-13 23:39:54"
+    },
+    {
+      "buyerInfos": {
+        "name": "Customer 74",
+        "phone": "097333357",
+        "address": "34 Main St, HN",
+        "note": "Call before delivery"
+      },
+      "productInfos": [
+        {
+          "productName": "USB-C Cable",
+          "quantity": 3,
+          "pricePerUnit": 478371,
+          "vouchers": [
+            {
+              "name": "Freeship",
+              "value": 30000
+            }
+          ]
+        }
+      ],
+      "platform": "Tiktok",
+      "whoClosedOrder": "System",
+      "numberOfGoods": 3,
+      "totalOrderValue": 1435113,
+      "vouchers": [
+        {
+          "name": "Freeship",
+          "value": 30000
+        }
+      ],
+      "codValue": 1425113,
+      "refundValue": 59083,
+      "weight": 0.42,
+      "size": "32x10x9",
+      "sendTime": "2025-08-27 12:36:22",
+      "completeTime": "2025-08-29 12:36:22",
+      "carrierName": "J&T",
+      "shippingFee": 20000,
+      "myOwnShippingID": "MY1073",
+      "carrierShippingID": "CARR2073",
+      "statusOrder": "return",
+      "reasonReturn": "Wrong address",
+      "createdAt": "2025-08-27 12:36:22",
+      "updatedAt": "2025-08-29 12:36:22"
+    },
+    {
+      "buyerInfos": {
+        "name": "Customer 75",
+        "phone": "094658150",
+        "address": "76 Main St, HN",
+        "note": "Call before delivery"
+      },
+      "productInfos": [
+        {
+          "productName": "Wireless Mouse",
+          "quantity": 1,
+          "pricePerUnit": 418430,
+          "vouchers": []
+        }
+      ],
+      "platform": "Shopee",
+      "whoClosedOrder": "Staff A",
+      "numberOfGoods": 1,
+      "totalOrderValue": 418430,
+      "vouchers": [],
+      "codValue": 438430,
+      "refundValue": 226796,
+      "weight": 0.67,
+      "size": "18x27x16",
+      "sendTime": "2025-06-29 08:29:51",
+      "completeTime": "2025-07-04 08:29:51",
+      "carrierName": "J&T",
+      "shippingFee": 20000,
+      "myOwnShippingID": "MY1074",
+      "carrierShippingID": "CARR2074",
+      "statusOrder": "lost",
+      "reasonReturn": "Wrong address",
+      "createdAt": "2025-06-29 08:29:51",
+      "updatedAt": "2025-07-04 08:29:51"
+    },
+    {
+      "buyerInfos": {
+        "name": "Customer 76",
+        "phone": "095061224",
+        "address": "44 Main St, HN",
+        "note": "Leave at door"
+      },
+      "productInfos": [
+        {
+          "productName": "Bluetooth Speaker",
+          "quantity": 2,
+          "pricePerUnit": 120486,
+          "vouchers": []
+        }
+      ],
+      "platform": "Tiktok",
+      "whoClosedOrder": "Staff B",
+      "numberOfGoods": 2,
+      "totalOrderValue": 240972,
+      "vouchers": [],
+      "codValue": 258972,
+      "refundValue": 118100,
+      "weight": 1.7,
+      "size": "30x38x17",
+      "sendTime": "2025-08-23 12:11:31",
+      "completeTime": "2025-08-30 12:11:31",
+      "carrierName": "SPX",
+      "shippingFee": 18000,
+      "myOwnShippingID": "MY1075",
+      "carrierShippingID": "CARR2075",
+      "statusOrder": "lost",
+      "reasonReturn": "Customer refused",
+      "createdAt": "2025-08-23 12:11:31",
+      "updatedAt": "2025-08-30 12:11:31"
+    },
+    {
+      "buyerInfos": {
+        "name": "Customer 77",
+        "phone": "098165840",
+        "address": "28 Main St, HN",
+        "note": ""
+      },
+      "productInfos": [
+        {
+          "productName": "Wireless Mouse",
+          "quantity": 1,
+          "pricePerUnit": 267279,
+          "vouchers": []
+        }
+      ],
+      "platform": "Shopee",
+      "whoClosedOrder": "Staff A",
+      "numberOfGoods": 1,
+      "totalOrderValue": 267279,
+      "vouchers": [],
+      "codValue": 287279,
+      "refundValue": 258363,
+      "weight": 0.54,
+      "size": "11x39x19",
+      "sendTime": "2025-07-28 21:23:15",
+      "completeTime": null,
+      "carrierName": "J&T",
+      "shippingFee": 20000,
+      "myOwnShippingID": "MY1076",
+      "carrierShippingID": "CARR2076",
+      "statusOrder": "onDelivery",
+      "reasonReturn": "Wrong address",
+      "createdAt": "2025-07-28 21:23:15",
+      "updatedAt": "2025-07-28 21:23:15"
+    },
+    {
+      "buyerInfos": {
+        "name": "Customer 78",
+        "phone": "092121058",
+        "address": "53 Main St, HN",
+        "note": "Call before delivery"
+      },
+      "productInfos": [
+        {
+          "productName": "Mechanical Keyboard",
+          "quantity": 4,
+          "pricePerUnit": 294044,
+          "vouchers": []
+        }
+      ],
+      "platform": "Facebook",
+      "whoClosedOrder": "Staff B",
+      "numberOfGoods": 4,
+      "totalOrderValue": 1176176,
+      "vouchers": [],
+      "codValue": 1196176,
+      "refundValue": 393102,
+      "weight": 0.37,
+      "size": "38x17x9",
+      "sendTime": "2025-08-30 23:06:16",
+      "completeTime": "2025-09-01 23:06:16",
+      "carrierName": "J&T",
+      "shippingFee": 20000,
+      "myOwnShippingID": "MY1077",
+      "carrierShippingID": "CARR2077",
+      "statusOrder": "lost",
+      "reasonReturn": "Wrong address",
+      "createdAt": "2025-08-30 23:06:16",
+      "updatedAt": "2025-09-01 23:06:16"
+    },
+    {
+      "buyerInfos": {
+        "name": "Customer 79",
+        "phone": "095083389",
+        "address": "60 Main St, HN",
+        "note": "Call before delivery"
+      },
+      "productInfos": [
+        {
+          "productName": "Bluetooth Speaker",
+          "quantity": 4,
+          "pricePerUnit": 446996,
+          "vouchers": []
+        }
+      ],
+      "platform": "Shopee",
+      "whoClosedOrder": "Staff B",
+      "numberOfGoods": 4,
+      "totalOrderValue": 1787984,
+      "vouchers": [],
+      "codValue": 1805984,
+      "refundValue": 593365,
+      "weight": 0.86,
+      "size": "14x14x14",
+      "sendTime": "2025-09-01 21:47:36",
+      "completeTime": "2025-09-03 21:47:36",
+      "carrierName": "SPX",
+      "shippingFee": 18000,
+      "myOwnShippingID": "MY1078",
+      "carrierShippingID": "CARR2078",
+      "statusOrder": "lost",
+      "reasonReturn": "Damaged",
+      "createdAt": "2025-09-01 21:47:36",
+      "updatedAt": "2025-09-03 21:47:36"
+    },
+    {
+      "buyerInfos": {
+        "name": "Customer 80",
+        "phone": "093378344",
+        "address": "64 Main St, HN",
+        "note": ""
+      },
+      "productInfos": [
+        {
+          "productName": "USB-C Cable",
+          "quantity": 3,
+          "pricePerUnit": 359262,
+          "vouchers": []
+        }
+      ],
+      "platform": "Facebook",
+      "whoClosedOrder": "Staff B",
+      "numberOfGoods": 3,
+      "totalOrderValue": 1077786,
+      "vouchers": [],
+      "codValue": 1097786,
+      "refundValue": 0,
+      "weight": 0.87,
+      "size": "26x36x18",
+      "sendTime": "2025-07-31 13:19:27",
+      "completeTime": "2025-08-06 13:19:27",
+      "carrierName": "J&T",
+      "shippingFee": 20000,
+      "myOwnShippingID": "MY1079",
+      "carrierShippingID": "CARR2079",
+      "statusOrder": "success",
+      "reasonReturn": null,
+      "createdAt": "2025-07-31 13:19:27",
+      "updatedAt": "2025-08-06 13:19:27"
+    }
+  ]
+}

@@ -1,0 +1,1083 @@
+[
+  {
+    "id": "vay001-5861",
+    "time": "2025-09-18 10:07:00",
+    "customerName": "Đỗ Thị J",
+    "phone": "0995551686",
+    "address": "Số 11 Duy Tân, phường Dịch Vọng Hậu, quận Cầu Giấy, thành phố Hà Nội",
+    "orderInfo": [
+      {
+        "product": "Váy",
+        "color": "Nâu",
+        "size": "L",
+        "quantity": 1
+      }
+    ],
+    "total": 2306507,
+    "note": "",
+    "status": "Không liên lạc được lần 1",
+    "confirmed": false,
+    "staff": "Hoàng Dũng",
+    "buyerIP": "192.168.1.166",
+    "website": "shop.vn",
+    "deliveryStatus": "Chưa gửi hàng"
+  },
+
+  {
+    "id": "tuixach001-5515",
+    "time": "2025-09-18 10:35:00",
+    "customerName": "Vũ Thị F",
+    "phone": "0918150720",
+    "address": "Số 11 Duy Tân, phường Dịch Vọng Hậu, quận Cầu Giấy, thành phố Hà Nội",
+    "orderInfo": [
+      {
+        "product": "Túi xách",
+        "color": "Đen",
+        "size": "20*25",
+        "quantity": 1
+      }
+    ],
+    "total": 395960,
+    "note": "Xem hàng trước khi nhận",
+    "status": "Không liên lạc được lần 1",
+    "confirmed": true,
+    "staff": "Hoàng Dũng",
+    "buyerIP": "192.168.1.115",
+    "website": "landingpage.vn",
+    "deliveryStatus": "Chưa gửi hàng"
+  },
+  {
+    "id": "vay001-8865",
+    "time": "2025-09-18 10:21:00",
+    "customerName": "Phạm Thị D",
+    "phone": "0926375699",
+    "address": "Số 11 Duy Tân, phường Dịch Vọng Hậu, quận Cầu Giấy, thành phố Hà Nội",
+    "orderInfo": [
+      {
+        "product": "Váy",
+        "color": "Vàng",
+        "size": "L",
+        "quantity": 1
+      }
+    ],
+    "total": 1641085,
+    "note": "Xem hàng trước khi nhận",
+    "status": "Chưa gọi điện",
+    "confirmed": true,
+    "staff": "Hoàng Dũng",
+    "buyerIP": "192.168.1.28",
+    "website": "salesite.vn",
+    "deliveryStatus": "Chưa gửi hàng"
+  },
+  {
+    "id": "tuixach001-6115",
+    "time": "2025-09-18 10:28:00",
+    "customerName": "Phan Văn I",
+    "phone": "0937296614",
+    "address": "Số 11 Duy Tân, phường Dịch Vọng Hậu, quận Cầu Giấy, thành phố Hà Nội",
+    "orderInfo": [
+      {
+        "product": "Túi xách",
+        "color": "Tím",
+        "size": "15*25",
+        "quantity": 1
+      }
+    ],
+    "total": 1646183,
+    "note": "",
+    "status": "Chưa gọi điện",
+    "confirmed": false,
+    "staff": "Tâm Long",
+    "buyerIP": "192.168.1.176",
+    "website": "landingpage.vn",
+    "deliveryStatus": "Chưa gửi hàng"
+  },
+
+  {
+    "id": "tuixach001-7125",
+    "time": "2025-09-18 10:42:00",
+    "customerName": "Lê Văn C",
+    "phone": "0987990971",
+    "address": "Xóm Chợ - Phường Tân Thuận Đông - Quận 7 - Thành phố Hồ Chí Minh",
+    "orderInfo": [
+      {
+        "product": "Túi xách",
+        "color": "Xanh",
+        "size": "25*25",
+        "quantity": 1
+      }
+    ],
+    "total": 1411317,
+    "note": "Xem hàng trước khi nhận",
+    "status": "Chưa gọi điện",
+    "confirmed": false,
+    "staff": "Tâm Long",
+    "buyerIP": "192.168.1.226",
+    "website": "landingpage.vn",
+    "deliveryStatus": "Chưa gửi hàng"
+  },
+  {
+    "id": "vay001-5565",
+    "time": "2025-09-18 10:07:00",
+    "customerName": "Đỗ Thị J",
+    "phone": "0995551686",
+    "address": "Số 11 Duy Tân, phường Dịch Vọng Hậu, quận Cầu Giấy, thành phố Hà Nội",
+    "orderInfo": [
+      {
+        "product": "Váy",
+        "color": "Nâu",
+        "size": "L",
+        "quantity": 1
+      }
+    ],
+    "total": 2306507,
+    "note": "",
+    "status": "Không liên lạc được lần 2",
+    "confirmed": false,
+    "staff": "Hoàng Dũng",
+    "buyerIP": "192.168.1.166",
+    "website": "shop.vn",
+    "deliveryStatus": "Chưa gửi hàng"
+  },
+  {
+    "id": "tuixach001-7115",
+    "time": "2025-09-18 10:42:00",
+    "customerName": "Lê Văn C",
+    "phone": "0987990971",
+    "address": "Xóm Chợ - Phường Tân Thuận Đông - Quận 7 - Thành phố Hồ Chí Minh",
+    "orderInfo": [
+      {
+        "product": "Túi xách",
+        "color": "Xanh",
+        "size": "25*25",
+        "quantity": 1
+      }
+    ],
+    "total": 1411317,
+    "note": "Xem hàng trước khi nhận",
+    "status": "Không liên lạc được lần 2",
+    "confirmed": false,
+    "staff": "Tâm Long",
+    "buyerIP": "192.168.1.226",
+    "website": "landingpage.vn",
+    "deliveryStatus": "Chưa gửi hàng"
+  },
+  {
+    "id": "vay001-6865",
+    "time": "2025-09-18 10:14:00",
+    "customerName": "Đặng Văn G",
+    "phone": "0937003688",
+    "address": "Số 11 Duy Tân, phường Dịch Vọng Hậu, quận Cầu Giấy, thành phố Hà Nội",
+    "orderInfo": [
+      {
+        "product": "Váy",
+        "color": "Đen",
+        "size": "XXL",
+        "quantity": 1
+      }
+    ],
+    "total": 2136188,
+    "note": "Khách hẹn gọi lại",
+    "status": "Không liên lạc được lần 2",
+    "confirmed": false,
+    "staff": "Hoàng Dũng",
+    "buyerIP": "192.168.1.237",
+    "website": "landingpage.vn",
+    "deliveryStatus": "Chưa gửi hàng"
+  },
+  {
+    "id": "vay001-5965",
+    "time": "2025-09-18 10:14:00",
+    "customerName": "Đặng Văn G",
+    "phone": "0937003688",
+    "address": "Số 11 Duy Tân, phường Dịch Vọng Hậu, quận Cầu Giấy, thành phố Hà Nội",
+    "orderInfo": [
+      {
+        "product": "Váy",
+        "color": "Đen",
+        "size": "XXL",
+        "quantity": 2
+      }
+    ],
+    "total": 2136188,
+    "note": "Khách hẹn gọi lại",
+    "status": "Không liên lạc được lần 3",
+    "confirmed": false,
+    "staff": "Hoàng Dũng",
+    "buyerIP": "192.168.1.237",
+    "website": "landingpage.vn",
+    "deliveryStatus": "Chưa gửi hàng"
+  },
+  {
+    "id": "tuixach001-7515",
+    "time": "2025-09-18 10:35:00",
+    "customerName": "Vũ Thị F",
+    "phone": "0918150720",
+    "address": "Số 11 Duy Tân, phường Dịch Vọng Hậu, quận Cầu Giấy, thành phố Hà Nội",
+    "orderInfo": [
+      {
+        "product": "Túi xách",
+        "color": "Đen",
+        "size": "20*25",
+        "quantity": 1
+      }
+    ],
+    "total": 395960,
+    "note": "Xem hàng trước khi nhận",
+    "status": "Không liên lạc được lần 3",
+    "confirmed": true,
+    "staff": "Hoàng Dũng",
+    "buyerIP": "192.168.1.115",
+    "website": "landingpage.vn",
+    "deliveryStatus": "Chưa gửi hàng"
+  },
+  {
+    "id": "vay001-5868",
+    "time": "2025-09-18 10:21:00",
+    "customerName": "Phạm Thị D",
+    "phone": "0926375699",
+    "address": "Số 11 Duy Tân, phường Dịch Vọng Hậu, quận Cầu Giấy, thành phố Hà Nội",
+    "orderInfo": [
+      {
+        "product": "Váy",
+        "color": "Vàng",
+        "size": "L",
+        "quantity": 1
+      }
+    ],
+    "total": 1641085,
+    "note": "Xem hàng trước khi nhận",
+    "status": "Không liên lạc được lần 3",
+    "confirmed": true,
+    "staff": "Hoàng Dũng",
+    "buyerIP": "192.168.1.28",
+    "website": "salesite.vn",
+    "deliveryStatus": "Chưa gửi hàng"
+  },
+  {
+    "id": "tuixach001-5015",
+    "time": "2025-09-18 10:28:00",
+    "customerName": "Phan Văn I",
+    "phone": "0937296614",
+    "address": "Số 11 Duy Tân, phường Dịch Vọng Hậu, quận Cầu Giấy, thành phố Hà Nội",
+    "orderInfo": [
+      {
+        "product": "Túi xách",
+        "color": "Tím",
+        "size": "15*25",
+        "quantity": 2
+      }
+    ],
+    "total": 1646183,
+    "note": "",
+    "status": "Khách không mua",
+    "confirmed": false,
+    "staff": "Tâm Long",
+    "buyerIP": "192.168.1.176",
+    "website": "landingpage.vn",
+    "deliveryStatus": "Chưa gửi hàng"
+  },
+  {
+    "id": "vay001-5851",
+    "time": "2025-09-18 10:07:00",
+    "customerName": "Đỗ Thị J",
+    "phone": "0995551686",
+    "address": "Số 11 Duy Tân, phường Dịch Vọng Hậu, quận Cầu Giấy, thành phố Hà Nội",
+    "orderInfo": [
+      {
+        "product": "Váy",
+        "color": "Nâu",
+        "size": "L",
+        "quantity": 1
+      }
+    ],
+    "total": 2306507,
+    "note": "",
+    "status": "Khách không mua",
+    "confirmed": false,
+    "staff": "Hoàng Dũng",
+    "buyerIP": "192.168.1.166",
+    "website": "shop.vn",
+    "deliveryStatus": "Chưa gửi hàng"
+  },
+
+  {
+    "id": "tuixach004-5505",
+    "time": "2025-09-18 10:35:00",
+    "customerName": "Vũ Thị F",
+    "phone": "0918150720",
+    "address": "Số 11 Duy Tân, phường Dịch Vọng Hậu, quận Cầu Giấy, thành phố Hà Nội",
+    "orderInfo": [
+      {
+        "product": "Túi xách",
+        "color": "Đen",
+        "size": "20*25",
+        "quantity": 1
+      }
+    ],
+    "total": 395960,
+    "note": "Xem hàng trước khi nhận",
+    "status": "Chốt",
+    "confirmed": true,
+    "staff": "Hoàng Dũng",
+    "buyerIP": "192.168.1.115",
+    "website": "landingpage.vn",
+    "deliveryStatus": "Đang đóng hàng"
+  },
+  {
+    "id": "vay008-8265",
+    "time": "2025-09-18 10:21:00",
+    "customerName": "Phạm Thị D",
+    "phone": "0926375699",
+    "address": "Số 11 Duy Tân, phường Dịch Vọng Hậu, quận Cầu Giấy, thành phố Hà Nội",
+    "orderInfo": [
+      {
+        "product": "Váy",
+        "color": "Vàng",
+        "size": "L",
+        "quantity": 1
+      }
+    ],
+    "total": 1641085,
+    "note": "Xem hàng trước khi nhận",
+    "status": "Chốt",
+    "confirmed": true,
+    "staff": "Hoàng Dũng",
+    "buyerIP": "192.168.1.28",
+    "website": "salesite.vn",
+    "deliveryStatus": "Đang đóng hàng"
+  },
+  {
+    "id": "tuixach004-6195",
+    "time": "2025-09-18 10:28:00",
+    "customerName": "Phan Văn I",
+    "phone": "0937296614",
+    "address": "Số 11 Duy Tân, phường Dịch Vọng Hậu, quận Cầu Giấy, thành phố Hà Nội",
+    "orderInfo": [
+      {
+        "product": "Túi xách",
+        "color": "Tím",
+        "size": "15*25",
+        "quantity": 1
+      }
+    ],
+    "total": 1646183,
+    "note": "",
+    "status": "Chốt",
+    "confirmed": false,
+    "staff": "Tâm Long",
+    "buyerIP": "192.168.1.176",
+    "website": "landingpage.vn",
+    "deliveryStatus": "Chưa gửi hàng"
+  },
+
+  {
+    "id": "tuixach004-7155",
+    "time": "2025-09-18 10:42:00",
+    "customerName": "Lê Văn C",
+    "phone": "0987990971",
+    "address": "Xóm Chợ - Phường Tân Thuận Đông - Quận 7 - Thành phố Hồ Chí Minh",
+    "orderInfo": [
+      {
+        "product": "Túi xách",
+        "color": "Xanh",
+        "size": "25*25",
+        "quantity": 1
+      }
+    ],
+    "total": 1411317,
+    "note": "Xem hàng trước khi nhận",
+    "status": "Chốt",
+    "confirmed": false,
+    "staff": "Tâm Long",
+    "buyerIP": "192.168.1.226",
+    "website": "landingpage.vn",
+    "deliveryStatus": "Chưa gửi hàng"
+  },
+  {
+    "id": "vay008-4565",
+    "time": "2025-09-18 10:07:00",
+    "customerName": "Đỗ Thị J",
+    "phone": "0995551686",
+    "address": "Số 11 Duy Tân, phường Dịch Vọng Hậu, quận Cầu Giấy, thành phố Hà Nội",
+    "orderInfo": [
+      {
+        "product": "Váy",
+        "color": "Nâu",
+        "size": "L",
+        "quantity": 1
+      }
+    ],
+    "total": 2306507,
+    "note": "",
+    "status": "Chốt",
+    "confirmed": false,
+    "staff": "Hoàng Dũng",
+    "buyerIP": "192.168.1.166",
+    "website": "shop.vn",
+    "deliveryStatus": "Chưa gửi hàng"
+  },
+  {
+    "id": "vay008-1865",
+    "time": "2025-09-18 10:14:00",
+    "customerName": "Đặng Văn G",
+    "phone": "0937003688",
+    "address": "Số 11 Duy Tân, phường Dịch Vọng Hậu, quận Cầu Giấy, thành phố Hà Nội",
+    "orderInfo": [
+      {
+        "product": "Váy",
+        "color": "Đen",
+        "size": "XXL",
+        "quantity": 1
+      }
+    ],
+    "total": 2136188,
+    "note": "Khách hẹn gọi lại",
+    "status": "Chốt",
+    "confirmed": false,
+    "staff": "Hoàng Dũng",
+    "buyerIP": "192.168.1.237",
+    "website": "landingpage.vn",
+    "deliveryStatus": "Chưa gửi hàng"
+  },
+  {
+    "id": "tuixach004-3115",
+    "time": "2025-09-18 10:42:00",
+    "customerName": "Lê Văn C",
+    "phone": "0987990971",
+    "address": "Xóm Chợ - Phường Tân Thuận Đông - Quận 7 - Thành phố Hồ Chí Minh",
+    "orderInfo": [
+      {
+        "product": "Túi xách",
+        "color": "Xanh",
+        "size": "25*25",
+        "quantity": 1
+      }
+    ],
+    "total": 1411317,
+    "note": "Xem hàng trước khi nhận",
+    "status": "Chốt",
+    "confirmed": false,
+    "staff": "Tâm Long",
+    "buyerIP": "192.168.1.226",
+    "website": "landingpage.vn",
+    "deliveryStatus": "Chưa gửi hàng"
+  },
+
+  {
+    "id": "vay004-5955",
+    "time": "2025-09-18 10:14:00",
+    "customerName": "Đặng Văn G",
+    "phone": "0937003688",
+    "address": "Số 11 Duy Tân, phường Dịch Vọng Hậu, quận Cầu Giấy, thành phố Hà Nội",
+    "orderInfo": [
+      {
+        "product": "Váy",
+        "color": "Đen",
+        "size": "XXL",
+        "quantity": 1
+      }
+    ],
+    "total": 2136188,
+    "note": "Khách hẹn gọi lại",
+    "status": "Chốt",
+    "confirmed": false,
+    "staff": "Hoàng Dũng",
+    "buyerIP": "192.168.1.237",
+    "website": "landingpage.vn",
+    "deliveryStatus": "Chưa gửi hàng"
+  },
+  {
+    "id": "tuixach004-9515",
+    "time": "2025-09-18 10:35:00",
+    "customerName": "Vũ Thị F",
+    "phone": "0918150720",
+    "address": "Số 11 Duy Tân, phường Dịch Vọng Hậu, quận Cầu Giấy, thành phố Hà Nội",
+    "orderInfo": [
+      {
+        "product": "Túi xách",
+        "color": "Đen",
+        "size": "20*25",
+        "quantity": 1
+      }
+    ],
+    "total": 395960,
+    "note": "Xem hàng trước khi nhận",
+    "status": "Chốt",
+    "confirmed": true,
+    "staff": "Hoàng Dũng",
+    "buyerIP": "192.168.1.115",
+    "website": "landingpage.vn",
+    "deliveryStatus": "Chưa gửi hàng"
+  },
+  {
+    "id": "vay008-2868",
+    "time": "2025-09-18 10:21:00",
+    "customerName": "Phạm Thị D",
+    "phone": "0926375699",
+    "address": "Số 11 Duy Tân, phường Dịch Vọng Hậu, quận Cầu Giấy, thành phố Hà Nội",
+    "orderInfo": [
+      {
+        "product": "Váy",
+        "color": "Vàng",
+        "size": "L",
+        "quantity": 1
+      }
+    ],
+    "total": 1641085,
+    "note": "Xem hàng trước khi nhận",
+    "status": "Chốt",
+    "confirmed": true,
+    "staff": "Hoàng Dũng",
+    "buyerIP": "192.168.1.28",
+    "website": "salesite.vn",
+    "deliveryStatus": "Chưa gửi hàng"
+  },
+  {
+    "id": "tuixach001-3315",
+    "time": "2025-09-18 10:28:00",
+    "customerName": "Phan Văn I",
+    "phone": "0937296614",
+    "address": "Số 11 Duy Tân, phường Dịch Vọng Hậu, quận Cầu Giấy, thành phố Hà Nội",
+    "orderInfo": [
+      {
+        "product": "Túi xách",
+        "color": "Tím",
+        "size": "15*25",
+        "quantity": 1
+      }
+    ],
+    "total": 1646183,
+    "note": "",
+    "status": "Chốt",
+    "confirmed": false,
+    "staff": "Tâm Long",
+    "buyerIP": "192.168.1.176",
+    "website": "landingpage.vn",
+    "deliveryStatus": "Chưa gửi hàng"
+  },
+  {
+    "id": "vay001-5861",
+    "time": "2025-09-18 10:07:00",
+    "customerName": "Đỗ Thị J",
+    "phone": "0995551686",
+    "address": "Số 11 Duy Tân, phường Dịch Vọng Hậu, quận Cầu Giấy, thành phố Hà Nội",
+    "orderInfo": [
+      {
+        "product": "Váy",
+        "color": "Nâu",
+        "size": "L",
+        "quantity": 1
+      },
+      {
+        "product": "Váy",
+        "color": "Đỏ",
+        "size": "M",
+        "quantity": 1
+      }
+    ],
+    "total": 2306507,
+    "note": "",
+    "status": "Chốt",
+    "confirmed": false,
+    "staff": "Hoàng Dũng",
+    "buyerIP": "192.168.1.166",
+    "website": "shop.vn",
+    "deliveryStatus": "Chưa gửi hàng"
+  },
+
+  {
+    "id": "tuixach001-5515",
+    "time": "2025-09-18 10:35:00",
+    "customerName": "Vũ Thị F",
+    "phone": "0918150720",
+    "address": "Số 11 Duy Tân, phường Dịch Vọng Hậu, quận Cầu Giấy, thành phố Hà Nội",
+    "orderInfo": [
+      {
+        "product": "Túi xách",
+        "color": "Đen",
+        "size": "20*25",
+        "quantity": 1
+      }
+    ],
+    "total": 395960,
+    "note": "Xem hàng trước khi nhận",
+    "status": "Chốt",
+    "confirmed": true,
+    "staff": "Hoàng Dũng",
+    "buyerIP": "192.168.1.115",
+    "website": "landingpage.vn",
+    "deliveryStatus": "Chưa gửi hàng"
+  },
+  {
+    "id": "vay001-8865",
+    "time": "2025-09-18 10:21:00",
+    "customerName": "Phạm Thị D",
+    "phone": "0926375699",
+    "address": "Số 11 Duy Tân, phường Dịch Vọng Hậu, quận Cầu Giấy, thành phố Hà Nội",
+    "orderInfo": [
+      {
+        "product": "Váy",
+        "color": "Vàng",
+        "size": "L",
+        "quantity": 1
+      },
+      {
+        "product": "Váy",
+        "color": "Hồng",
+        "size": "M",
+        "quantity": 1
+      }
+    ],
+    "total": 1641085,
+    "note": "Xem hàng trước khi nhận",
+    "status": "Chốt",
+    "confirmed": true,
+    "staff": "Hoàng Dũng",
+    "buyerIP": "192.168.1.28",
+    "website": "salesite.vn",
+    "deliveryStatus": "Chưa gửi hàng"
+  },
+  {
+    "id": "tuixach001-6115",
+    "time": "2025-09-18 10:28:00",
+    "customerName": "Phan Văn I",
+    "phone": "0937296614",
+    "address": "Số 11 Duy Tân, phường Dịch Vọng Hậu, quận Cầu Giấy, thành phố Hà Nội",
+    "orderInfo": [
+      {
+        "product": "Túi xách",
+        "color": "Tím",
+        "size": "15*25",
+        "quantity": 1
+      }
+    ],
+    "total": 1646183,
+    "note": "",
+    "status": "Chốt",
+    "confirmed": false,
+    "staff": "Tâm Long",
+    "buyerIP": "192.168.1.176",
+    "website": "landingpage.vn",
+    "deliveryStatus": "Chưa gửi hàng"
+  },
+
+  {
+    "id": "tuixach001-7125",
+    "time": "2025-09-18 10:42:00",
+    "customerName": "Lê Văn C",
+    "phone": "0987990971",
+    "address": "Xóm Chợ - Phường Tân Thuận Đông - Quận 7 - Thành phố Hồ Chí Minh",
+    "orderInfo": [
+      {
+        "product": "Túi xách",
+        "color": "Xanh",
+        "size": "25*25",
+        "quantity": 1
+      }
+    ],
+    "total": 1411317,
+    "note": "Xem hàng trước khi nhận",
+    "status": "Chốt",
+    "confirmed": false,
+    "staff": "Tâm Long",
+    "buyerIP": "192.168.1.226",
+    "website": "landingpage.vn",
+    "deliveryStatus": "Chưa gửi hàng"
+  },
+  {
+    "id": "vay001-5565",
+    "time": "2025-09-18 10:07:00",
+    "customerName": "Đỗ Thị J",
+    "phone": "0995551686",
+    "address": "Số 11 Duy Tân, phường Dịch Vọng Hậu, quận Cầu Giấy, thành phố Hà Nội",
+    "orderInfo": [
+      {
+        "product": "Váy",
+        "color": "Nâu",
+        "size": "L",
+        "quantity": 1
+      }
+    ],
+    "total": 2306507,
+    "note": "",
+    "status": "Chốt",
+    "confirmed": false,
+    "staff": "Hoàng Dũng",
+    "buyerIP": "192.168.1.166",
+    "website": "shop.vn",
+    "deliveryStatus": "Chưa gửi hàng"
+  },
+  {
+    "id": "tuixach001-7115",
+    "time": "2025-09-18 10:42:00",
+    "customerName": "Lê Văn C",
+    "phone": "0987990971",
+    "address": "Xóm Chợ - Phường Tân Thuận Đông - Quận 7 - Thành phố Hồ Chí Minh",
+    "orderInfo": [
+      {
+        "product": "Túi xách",
+        "color": "Xanh",
+        "size": "25*25",
+        "quantity": 1
+      }
+    ],
+    "total": 1411317,
+    "note": "Xem hàng trước khi nhận",
+    "status": "Chốt",
+    "confirmed": false,
+    "staff": "Tâm Long",
+    "buyerIP": "192.168.1.226",
+    "website": "landingpage.vn",
+    "deliveryStatus": "Chưa gửi hàng"
+  },
+  {
+    "id": "vay001-6865",
+    "time": "2025-09-18 10:14:00",
+    "customerName": "Đặng Văn G",
+    "phone": "0937003688",
+    "address": "Số 11 Duy Tân, phường Dịch Vọng Hậu, quận Cầu Giấy, thành phố Hà Nội",
+    "orderInfo": [
+      {
+        "product": "Váy",
+        "color": "Đen",
+        "size": "XXL",
+        "quantity": 1
+      }
+    ],
+    "total": 2136188,
+    "note": "Khách hẹn gọi lại",
+    "status": "Chốt",
+    "confirmed": false,
+    "staff": "Hoàng Dũng",
+    "buyerIP": "192.168.1.237",
+    "website": "landingpage.vn",
+    "deliveryStatus": "Chưa gửi hàng"
+  },
+  {
+    "id": "vay001-5965",
+    "time": "2025-09-18 10:14:00",
+    "customerName": "Đặng Văn G",
+    "phone": "0937003688",
+    "address": "Số 11 Duy Tân, phường Dịch Vọng Hậu, quận Cầu Giấy, thành phố Hà Nội",
+    "orderInfo": [
+      {
+        "product": "Váy",
+        "color": "Đen",
+        "size": "XXL",
+        "quantity": 2
+      }
+    ],
+    "total": 2136188,
+    "note": "Khách hẹn gọi lại",
+    "status": "Chốt",
+    "confirmed": false,
+    "staff": "Hoàng Dũng",
+    "buyerIP": "192.168.1.237",
+    "website": "landingpage.vn",
+    "deliveryStatus": "Giao thất bại"
+  },
+  {
+    "id": "tuixach001-7515",
+    "time": "2025-09-18 10:35:00",
+    "customerName": "Vũ Thị F",
+    "phone": "0918150720",
+    "address": "Số 11 Duy Tân, phường Dịch Vọng Hậu, quận Cầu Giấy, thành phố Hà Nội",
+    "orderInfo": [
+      {
+        "product": "Túi xách",
+        "color": "Đen",
+        "size": "20*25",
+        "quantity": 1
+      }
+    ],
+    "total": 395960,
+    "note": "Xem hàng trước khi nhận",
+    "status": "Chốt",
+    "confirmed": true,
+    "staff": "Hoàng Dũng",
+    "buyerIP": "192.168.1.115",
+    "website": "landingpage.vn",
+    "deliveryStatus": "Giao thành công"
+  },
+  {
+    "id": "vay004-4168",
+    "time": "2025-09-18 10:21:00",
+    "customerName": "Phạm Thị D",
+    "phone": "0926375699",
+    "address": "Số 11 Duy Tân, phường Dịch Vọng Hậu, quận Cầu Giấy, thành phố Hà Nội",
+    "orderInfo": [
+      {
+        "product": "Váy",
+        "color": "Vàng",
+        "size": "L",
+        "quantity": 1
+      },
+      {
+        "product": "Váy",
+        "color": "Hồng",
+        "size": "M",
+        "quantity": 1
+      }
+    ],
+    "total": 1641085,
+    "note": "Xem hàng trước khi nhận",
+    "status": "Chốt",
+    "confirmed": true,
+    "staff": "Hoàng Dũng",
+    "buyerIP": "192.168.1.28",
+    "website": "salesite.vn",
+    "deliveryStatus": "Đang giao hàng"
+  },
+  {
+    "id": "tuixach001-5015",
+    "time": "2025-09-18 10:28:00",
+    "customerName": "Phan Văn I",
+    "phone": "0937296614",
+    "address": "Số 11 Duy Tân, phường Dịch Vọng Hậu, quận Cầu Giấy, thành phố Hà Nội",
+    "orderInfo": [
+      {
+        "product": "Túi xách",
+        "color": "Tím",
+        "size": "15*25",
+        "quantity": 2
+      },
+      {
+        "product": "Túi xách",
+        "color": "Đen",
+        "size": "15*25",
+        "quantity": 1
+      }
+    ],
+    "total": 1646183,
+    "note": "",
+    "status": "Chốt",
+    "confirmed": false,
+    "staff": "Tâm Long",
+    "buyerIP": "192.168.1.176",
+    "website": "landingpage.vn",
+    "deliveryStatus": "Đang giao hàng"
+  },
+  {
+    "id": "vay001-5851",
+    "time": "2025-09-18 10:07:00",
+    "customerName": "Đỗ Thị J",
+    "phone": "0995551686",
+    "address": "Số 11 Duy Tân, phường Dịch Vọng Hậu, quận Cầu Giấy, thành phố Hà Nội",
+    "orderInfo": [
+      {
+        "product": "Váy",
+        "color": "Nâu",
+        "size": "L",
+        "quantity": 1
+      },
+      {
+        "product": "Váy",
+        "color": "Đỏ",
+        "size": "M",
+        "quantity": 1
+      }
+    ],
+    "total": 2306507,
+    "note": "",
+    "status": "Chốt",
+    "confirmed": false,
+    "staff": "Hoàng Dũng",
+    "buyerIP": "192.168.1.166",
+    "website": "shop.vn",
+    "deliveryStatus": "Đang giao hàng"
+  },
+
+  {
+    "id": "tuixach004-5505",
+    "time": "2025-09-18 10:35:00",
+    "customerName": "Vũ Thị F",
+    "phone": "0918150720",
+    "address": "Số 11 Duy Tân, phường Dịch Vọng Hậu, quận Cầu Giấy, thành phố Hà Nội",
+    "orderInfo": [
+      {
+        "product": "Túi xách",
+        "color": "Đen",
+        "size": "20*25",
+        "quantity": 1
+      },
+      {
+        "product": "Túi xách",
+        "color": "Vàng",
+        "size": "20*25",
+        "quantity": 1
+      }
+    ],
+    "total": 395960,
+    "note": "Xem hàng trước khi nhận",
+    "status": "Chốt",
+    "confirmed": true,
+    "staff": "Hoàng Dũng",
+    "buyerIP": "192.168.1.115",
+    "website": "landingpage.vn",
+    "deliveryStatus": "Giao thành công"
+  },
+    {
+    "id": "vay001-5965",
+    "time": "2025-09-18 10:14:00",
+    "customerName": "Đặng Văn G",
+    "phone": "0937003688",
+    "address": "Số 11 Duy Tân, phường Dịch Vọng Hậu, quận Cầu Giấy, thành phố Hà Nội",
+    "orderInfo": [
+      {
+        "product": "Váy",
+        "color": "Đen",
+        "size": "XXL",
+        "quantity": 2
+      }
+    ],
+    "total": 2136188,
+    "note": "Khách hẹn gọi lại",
+    "status": "Chưa gọi điện",
+    "confirmed": false,
+    "staff": "Hoàng Dũng",
+    "buyerIP": "192.168.1.237",
+    "website": "landingpage.vn",
+    "deliveryStatus": "Khách chưa chốt"
+  },
+  {
+    "id": "tuixach001-7515",
+    "time": "2025-09-18 10:35:00",
+    "customerName": "Vũ Thị F",
+    "phone": "0918150720",
+    "address": "Số 11 Duy Tân, phường Dịch Vọng Hậu, quận Cầu Giấy, thành phố Hà Nội",
+    "orderInfo": [
+      {
+        "product": "Túi xách",
+        "color": "Đen",
+        "size": "20*25",
+        "quantity": 1
+      }
+    ],
+    "total": 395960,
+    "note": "Xem hàng trước khi nhận",
+    "status": "Không liên lạc được lần 3",
+    "confirmed": true,
+    "staff": "Hoàng Dũng",
+    "buyerIP": "192.168.1.115",
+    "website": "landingpage.vn",
+    "deliveryStatus": "Khách chưa chốt"
+  },
+  {
+    "id": "vay004-4168",
+    "time": "2025-09-18 10:21:00",
+    "customerName": "Phạm Thị D",
+    "phone": "0926375699",
+    "address": "Số 11 Duy Tân, phường Dịch Vọng Hậu, quận Cầu Giấy, thành phố Hà Nội",
+    "orderInfo": [
+      {
+        "product": "Váy",
+        "color": "Vàng",
+        "size": "L",
+        "quantity": 1
+      },
+      {
+        "product": "Váy",
+        "color": "Hồng",
+        "size": "M",
+        "quantity": 1
+      }
+    ],
+    "total": 1641085,
+    "note": "Xem hàng trước khi nhận",
+    "status": "Không liên lạc được lần 2",
+    "confirmed": true,
+    "staff": "Hoàng Dũng",
+    "buyerIP": "192.168.1.28",
+    "website": "salesite.vn",
+    "deliveryStatus":"Khách chưa chốt"
+  },
+  {
+    "id": "tuixach001-5015",
+    "time": "2025-09-18 10:28:00",
+    "customerName": "Phan Văn I",
+    "phone": "0937296614",
+    "address": "Số 11 Duy Tân, phường Dịch Vọng Hậu, quận Cầu Giấy, thành phố Hà Nội",
+    "orderInfo": [
+      {
+        "product": "Túi xách",
+        "color": "Tím",
+        "size": "15*25",
+        "quantity": 2
+      },
+      {
+        "product": "Túi xách",
+        "color": "Đen",
+        "size": "15*25",
+        "quantity": 1
+      }
+    ],
+    "total": 1646183,
+    "note": "",
+    "status": "Không liên lạc được lần 1",
+    "confirmed": false,
+    "staff": "Tâm Long",
+    "buyerIP": "192.168.1.176",
+    "website": "landingpage.vn",
+    "deliveryStatus": "Khách chưa chốt"
+  },
+  {
+    "id": "vay001-5851",
+    "time": "2025-09-18 10:07:00",
+    "customerName": "Đỗ Thị J",
+    "phone": "0995551686",
+    "address": "Số 11 Duy Tân, phường Dịch Vọng Hậu, quận Cầu Giấy, thành phố Hà Nội",
+    "orderInfo": [
+      {
+        "product": "Váy",
+        "color": "Nâu",
+        "size": "L",
+        "quantity": 1
+      },
+      {
+        "product": "Váy",
+        "color": "Đỏ",
+        "size": "M",
+        "quantity": 1
+      }
+    ],
+    "total": 2306507,
+    "note": "",
+    "status": "Khách không mua",
+    "confirmed": false,
+    "staff": "Hoàng Dũng",
+    "buyerIP": "192.168.1.166",
+    "website": "shop.vn",
+    "deliveryStatus": "Khách chưa chốt"
+  },
+
+  {
+    "id": "tuixach004-5505",
+    "time": "2025-09-18 10:35:00",
+    "customerName": "Vũ Thị F",
+    "phone": "0918150720",
+    "address": "Số 11 Duy Tân, phường Dịch Vọng Hậu, quận Cầu Giấy, thành phố Hà Nội",
+    "orderInfo": [
+      {
+        "product": "Túi xách",
+        "color": "Đen",
+        "size": "20*25",
+        "quantity": 1
+      },
+      {
+        "product": "Túi xách",
+        "color": "Vàng",
+        "size": "20*25",
+        "quantity": 1
+      }
+    ],
+    "total": 395960,
+    "note": "Xem hàng trước khi nhận",
+    "status": "Chưa gọi điện",
+    "confirmed": true,
+    "staff": "Hoàng Dũng",
+    "buyerIP": "192.168.1.115",
+    "website": "landingpage.vn",
+    "deliveryStatus": "Khách chưa chốt"
+  }
+]

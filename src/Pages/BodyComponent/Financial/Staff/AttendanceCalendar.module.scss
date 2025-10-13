@@ -1,0 +1,127 @@
+.calendar-container {
+  margin: 0 auto;
+  width: 420px;
+  background-color: white;
+  border-radius: 8px;
+  border: 1px solid gainsboro;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 10px;
+}
+
+.calendar-header {
+    width: 400px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+
+  h4 {
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  button {
+    background: #f3f4f6;
+    border: none;
+    padding: 4px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+
+    &:hover {
+      background: #e5e7eb;
+    }
+  }
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 50px);
+  gap: 4px;
+  width: fit-content;
+  margin: 0 auto;
+  width: 400px;
+}
+
+.day-header {
+  text-align: center;
+  font-weight: 600;
+  font-size: 14px;
+  color: #374151;
+}
+
+.day-cell {
+// width: 40px;
+  height: 40px;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  text-align: center;
+  padding: 4px;
+  position: relative;
+  font-size: 14px;
+
+  &.empty {
+    background: transparent;
+    border: none;
+  }
+
+  &.onTime {
+    background: #ecfdf5;
+    border-color: #34d399;
+  }
+
+  &.late {
+    background: #fffbeb;
+    border-color: #f59e0b;
+  }
+
+  &.absent {
+    background: #fef2f2;
+    border-color: #ef4444;
+  }
+
+  .day-number {
+    font-size: 14px;
+    font-weight: 600;
+    position: absolute;
+    top: 4px;
+    left: 4px;
+  }
+
+  .status-symbol {
+    position: absolute;
+    bottom: 0px;
+    right: 6px;
+    font-size: 14px;
+  }
+}
+.day-cell {
+  position: relative;
+  cursor: pointer;
+
+  .note-tooltip {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    bottom: 110%; // show above the cell
+    left: 50%;
+    transform: translateX(-50%);
+    background: #e4f5ff;
+    color: #0481c9;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 14px;
+    white-space: nowrap;
+    z-index: 10;
+    transition: opacity 0.2s ease-in-out;
+    font-weight: 550;
+  }
+
+  &:hover .note-tooltip {
+    visibility: visible;
+    opacity: 1;
+  }
+}

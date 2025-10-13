@@ -1,0 +1,387 @@
+.user-page-main {
+  padding: 20px 20px;
+  // max-width: 800px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 12px;
+  max-width: fit-content;
+  // box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+
+  h4 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: #333;
+  }
+}
+
+.profile-card {
+  background: #fafafa;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+
+  .header{
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+    .title{
+      font-size: 18px;
+      font-weight: 550;
+      color: red;
+    }
+  }
+
+  p {
+    font-size: 16px;
+    margin: 6px 0;
+    color: #444;
+
+    strong {
+      color: #222;
+      display: inline-block;
+      min-width: 160px;
+    }
+  }
+
+  .row {
+    display: grid;
+    grid-template-columns: calc(55% - 5px) calc(45% - 5px);
+    gap: 10px;
+        div{
+      display: grid;
+      grid-template-columns: calc(40% - 5px) calc(60% - 5px);
+      gap: 10px;
+    }
+  }
+}
+
+.card1{
+  width: fit-content;
+}
+
+.btn-edit {
+  padding: 6px 8px;
+  background: #06b0ff;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s ease;
+
+  &:hover {
+    background: #e68900;
+  }
+}
+
+/* You can reuse these styles for AddUserInfo form */
+.wrap-change-pass {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #ffffff94;
+}
+.form-container {
+  background: #fcfcfc;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+
+  label {
+    display: block;
+    margin-bottom: 12px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+  }
+
+  input,
+  select,
+  textarea {
+    width: calc(100% - 20px);
+    margin-top: 6px;
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+
+    &:focus {
+      outline: none;
+      border-color: #ff9800;
+      box-shadow: 0 0 0 2px rgba(255, 152, 0, 0.15);
+    }
+  }
+  .btn-actions {
+    margin-top: 16px;
+    display: flex;
+    gap: 12px;
+
+    button {
+      flex: 1;
+      padding: 10px 14px;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      cursor: pointer;
+      font-weight: 500;
+
+      &.save {
+        background: #4caf50;
+        color: white;
+
+        &:hover {
+          background: #43a047;
+        }
+      }
+
+      &.cancel {
+        background: #e0e0e0;
+        color: #333;
+
+        &:hover {
+          background: #d5d5d5;
+        }
+      }
+    }
+  }
+}
+
+.wrap-add-form {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ffffffa1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.header-logout {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.wrap-info-account{
+  display: flex;
+  gap: 20px;
+  .profile-card{
+    // flex: 1;
+  }
+  .card2{
+    flex: 1;
+    // max-width: 600px;
+  }
+}
+
+.staff-list-info {
+  min-width: 1300px;
+  max-width: 1600px;
+  .table {
+    width: 100%;
+
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+
+    .row {
+      display: grid;
+      // grid-template-columns: repeat(10, 1fr);
+      grid-template-columns: 120px 200px 120px 120px 180px 140px 140px 140px 140px auto ;
+
+      align-items: center;
+      padding: 8px 12px;
+      border-bottom: 1px solid #eee;
+      font-size: 14px;
+
+      &:hover {
+        background: #e2f2ff;
+        cursor: pointer;
+      }
+      .role {
+        font-weight: 550;
+        font-size: 16px;
+      }
+      .director {
+        color: orangered;
+      }
+      .sale-staff {
+        color: rgb(26, 169, 235);
+      }
+      .manager {
+        color: rgb(133, 71, 248);
+      }
+      .security {
+        color: rgb(52, 211, 31);
+      }
+      .packer {
+        color: rgb(172, 169, 6);
+      }
+      .name {
+        font-weight: 550;
+        font-size: 16px;
+      }
+      div:nth-child(n + 3) {
+        text-align: end;
+      }
+
+      .edit-btn {
+        z-index: 10;
+        padding: 3px 6px;
+      }
+    }
+
+    .header {
+      background: #f3f4f6;
+      font-weight: 600;
+    }
+  }
+}
+.expand-box {
+  background: #f9fafb;
+  border-top: 1px solid #ddd;
+  padding: 16px;
+  display: grid;
+  gap: 16px;
+  // grid-template-columns: 0.6fr 0.8fr minmax(0, 2fr);
+  grid-template-columns: 0.6fr minmax(0, 2fr);
+
+  .staff-info-box,
+  .salary-history-box {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 12px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+
+    h5 {
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+
+    p {
+      font-size: 14px;
+      margin: 2px 0;
+    }
+    .edit-btn {
+      display: flex;
+      align-items: center;
+      font-size: 16px;
+      background: #ccc;
+      border: 1px solid gainsboro;
+      padding: 3px 6px;
+      width: fit-content;
+      border-radius: 5px;
+    }
+  }
+  .staff-info-box {
+    width: 300px;
+  }
+
+  .filter-mode {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+
+    button {
+      padding: 4px 8px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      background: #f3f4f6;
+      cursor: pointer;
+
+      &:hover {
+        background: #e5e7eb;
+      }
+    }
+
+    select {
+      padding: 4px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+  }
+
+  .history-list {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    overflow-x: scroll;
+    width: 100%;
+    max-width: 100%;
+    .history-row {
+      display: grid;
+      grid-template-columns: 100px 120px 120px 100px 120px 100px 110px 120px 120px;
+      padding: 6px 10px;
+      border-bottom: 1px solid #eee;
+      font-size: 13px;
+      min-width: 1010px;
+      &:hover {
+        background: #fdfdfd;
+      }
+    }
+
+    .header {
+      background: #f3f4f6;
+      font-weight: 600;
+    }
+  }
+}
+
+
+.performance-card {
+  background: #fafafa;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  min-width: 550px;
+    .header{
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+    .title{
+      font-size: 18px;
+      font-weight: 550;
+      color: red;
+    }
+  }
+
+  p {
+    font-size: 14px;
+    margin: 6px 0;
+    color: #444;
+
+    strong {
+      color: #222;
+      display: inline-block;
+      min-width: 160px;
+    }
+  }
+
+  .row {
+    display: flex;
+    justify-content: space-between;
+    div {
+      flex: 1;
+    }
+  }
+}
+.horizontal-line{
+  border-top: 1px solid gainsboro;
+  margin: 15px 0px;
+}

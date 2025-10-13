@@ -1,0 +1,626 @@
+{
+  "imports": [
+    {
+      "time": "2025-07-12 02:47:54",
+      "idProduct": "P004",
+      "productName": "Laptop Stand",
+      "importQuantity": 50,
+      "brokenQuantity": 4,
+      "pricePerUnit": 31.15,
+      "supplier": "Supplier B",
+      "batchCode": "BATCH209",
+      "shippingFee": {
+        "externalChinaToVietnam": 34.15,
+        "internalVietnamToWarehouse": 30.4
+      },
+      "otherFees": [
+        {
+          "value": 25.53,
+          "usedFor": "Customs",
+          "date": "2025-08-08 09:26:36",
+          "note": "Standard"
+        },
+        {
+          "value": 29.83,
+          "usedFor": "Invoice",
+          "date": "2025-07-15 17:36:21",
+          "note": ""
+        }
+      ],
+      "totalCost": 1677.41
+    },
+    {
+      "time": "2025-06-07 08:28:32",
+      "idProduct": "P004",
+      "productName": "Laptop Stand",
+      "importQuantity": 67,
+      "brokenQuantity": 3,
+      "pricePerUnit": 9.4,
+      "supplier": "Supplier C",
+      "batchCode": "BATCH949",
+      "shippingFee": {
+        "externalChinaToVietnam": 99.68,
+        "internalVietnamToWarehouse": 44.33
+      },
+      "otherFees": [
+        {
+          "value": 10.26,
+          "usedFor": "Translation",
+          "date": "2025-08-08 12:50:14",
+          "note": "Standard"
+        }
+      ],
+      "totalCost": 784.07
+    },
+    {
+      "time": "2025-07-20 08:44:13",
+      "idProduct": "P002",
+      "productName": "Mechanical Keyboard",
+      "importQuantity": 173,
+      "brokenQuantity": 2,
+      "pricePerUnit": 39.93,
+      "supplier": "Supplier C",
+      "batchCode": "BATCH197",
+      "shippingFee": {
+        "externalChinaToVietnam": 20.85,
+        "internalVietnamToWarehouse": 13.29
+      },
+      "otherFees": [
+        {
+          "value": 5.97,
+          "usedFor": "Translation",
+          "date": "2025-07-23 16:35:42",
+          "note": ""
+        }
+      ],
+      "totalCost": 6948.0
+    },
+    {
+      "time": "2025-07-08 12:52:32",
+      "idProduct": "P001",
+      "productName": "Wireless Mouse",
+      "importQuantity": 166,
+      "brokenQuantity": 4,
+      "pricePerUnit": 23.1,
+      "supplier": "Supplier A",
+      "batchCode": "BATCH260",
+      "shippingFee": {
+        "externalChinaToVietnam": 95.3,
+        "internalVietnamToWarehouse": 21.7
+      },
+      "otherFees": [
+        {
+          "value": 12.71,
+          "usedFor": "Invoice",
+          "date": "2025-08-10 15:32:17",
+          "note": "Standard"
+        },
+        {
+          "value": 9.15,
+          "usedFor": "Invoice",
+          "date": "2025-06-16 06:05:42",
+          "note": "Urgent"
+        }
+      ],
+      "totalCost": 3973.46
+    },
+    {
+      "time": "2025-08-18 21:16:57",
+      "idProduct": "P001",
+      "productName": "Wireless Mouse",
+      "importQuantity": 200,
+      "brokenQuantity": 4,
+      "pricePerUnit": 23.45,
+      "supplier": "Supplier A",
+      "batchCode": "BATCH525",
+      "shippingFee": {
+        "externalChinaToVietnam": 35.58,
+        "internalVietnamToWarehouse": 40.99
+      },
+      "otherFees": [],
+      "totalCost": 4766.57
+    },
+    {
+      "time": "2025-06-19 23:35:23",
+      "idProduct": "P005",
+      "productName": "Bluetooth Speaker",
+      "importQuantity": 172,
+      "brokenQuantity": 0,
+      "pricePerUnit": 24.65,
+      "supplier": "Supplier C",
+      "batchCode": "BATCH160",
+      "shippingFee": {
+        "externalChinaToVietnam": 89.87,
+        "internalVietnamToWarehouse": 32.72
+      },
+      "otherFees": [
+        {
+          "value": 5.14,
+          "usedFor": "Customs",
+          "date": "2025-06-15 21:22:58",
+          "note": "Standard"
+        },
+        {
+          "value": 25.91,
+          "usedFor": "Translation",
+          "date": "2025-07-16 01:19:38",
+          "note": ""
+        }
+      ],
+      "totalCost": 4393.44
+    },
+    {
+      "time": "2025-06-22 01:18:14",
+      "idProduct": "P005",
+      "productName": "Bluetooth Speaker",
+      "importQuantity": 197,
+      "brokenQuantity": 1,
+      "pricePerUnit": 39.04,
+      "supplier": "Supplier A",
+      "batchCode": "BATCH991",
+      "shippingFee": {
+        "externalChinaToVietnam": 76.1,
+        "internalVietnamToWarehouse": 23.05
+      },
+      "otherFees": [
+        {
+          "value": 27.05,
+          "usedFor": "Invoice",
+          "date": "2025-07-19 19:32:56",
+          "note": ""
+        }
+      ],
+      "totalCost": 7817.08
+    },
+    {
+      "time": "2025-07-16 19:08:27",
+      "idProduct": "P001",
+      "productName": "Wireless Mouse",
+      "importQuantity": 97,
+      "brokenQuantity": 5,
+      "pricePerUnit": 37.07,
+      "supplier": "Supplier C",
+      "batchCode": "BATCH455",
+      "shippingFee": {
+        "externalChinaToVietnam": 72.24,
+        "internalVietnamToWarehouse": 46.24
+      },
+      "otherFees": [
+        {
+          "value": 8.19,
+          "usedFor": "Invoice",
+          "date": "2025-08-09 13:59:20",
+          "note": "Standard"
+        },
+        {
+          "value": 11.16,
+          "usedFor": "Invoice",
+          "date": "2025-08-25 17:39:17",
+          "note": ""
+        }
+      ],
+      "totalCost": 3733.62
+    },
+    {
+      "time": "2025-06-30 13:48:57",
+      "idProduct": "P003",
+      "productName": "USB-C Cable",
+      "importQuantity": 198,
+      "brokenQuantity": 5,
+      "pricePerUnit": 17.52,
+      "supplier": "Supplier A",
+      "batchCode": "BATCH837",
+      "shippingFee": {
+        "externalChinaToVietnam": 80.97,
+        "internalVietnamToWarehouse": 45.42
+      },
+      "otherFees": [],
+      "totalCost": 3595.35
+    },
+    {
+      "time": "2025-08-23 13:18:50",
+      "idProduct": "P004",
+      "productName": "Laptop Stand",
+      "importQuantity": 113,
+      "brokenQuantity": 3,
+      "pricePerUnit": 28.8,
+      "supplier": "Supplier A",
+      "batchCode": "BATCH177",
+      "shippingFee": {
+        "externalChinaToVietnam": 53.28,
+        "internalVietnamToWarehouse": 40.05
+      },
+      "otherFees": [
+        {
+          "value": 27.53,
+          "usedFor": "Translation",
+          "date": "2025-07-22 12:31:46",
+          "note": "Standard"
+        },
+        {
+          "value": 16.6,
+          "usedFor": "Invoice",
+          "date": "2025-06-10 06:55:01",
+          "note": ""
+        }
+      ],
+      "totalCost": 3391.86
+    },
+    {
+      "time": "2025-06-17 06:11:32",
+      "idProduct": "P001",
+      "productName": "Wireless Mouse",
+      "importQuantity": 91,
+      "brokenQuantity": 2,
+      "pricePerUnit": 8.8,
+      "supplier": "Supplier A",
+      "batchCode": "BATCH896",
+      "shippingFee": {
+        "externalChinaToVietnam": 88.31,
+        "internalVietnamToWarehouse": 44.96
+      },
+      "otherFees": [
+        {
+          "value": 16.18,
+          "usedFor": "Translation",
+          "date": "2025-06-11 02:43:38",
+          "note": ""
+        },
+        {
+          "value": 5.59,
+          "usedFor": "Customs",
+          "date": "2025-07-05 22:35:44",
+          "note": ""
+        }
+      ],
+      "totalCost": 955.84
+    },
+    {
+      "time": "2025-08-17 04:22:16",
+      "idProduct": "P002",
+      "productName": "Mechanical Keyboard",
+      "importQuantity": 152,
+      "brokenQuantity": 5,
+      "pricePerUnit": 5.55,
+      "supplier": "Supplier A",
+      "batchCode": "BATCH789",
+      "shippingFee": {
+        "externalChinaToVietnam": 91.46,
+        "internalVietnamToWarehouse": 27.15
+      },
+      "otherFees": [
+        {
+          "value": 18.34,
+          "usedFor": "Invoice",
+          "date": "2025-07-29 12:27:23",
+          "note": ""
+        }
+      ],
+      "totalCost": 980.55
+    },
+    {
+      "time": "2025-09-01 22:31:20",
+      "idProduct": "P004",
+      "productName": "Laptop Stand",
+      "importQuantity": 161,
+      "brokenQuantity": 0,
+      "pricePerUnit": 39.42,
+      "supplier": "Supplier C",
+      "batchCode": "BATCH808",
+      "shippingFee": {
+        "externalChinaToVietnam": 62.9,
+        "internalVietnamToWarehouse": 12.47
+      },
+      "otherFees": [
+        {
+          "value": 24.18,
+          "usedFor": "Translation",
+          "date": "2025-07-30 18:10:50",
+          "note": "Urgent"
+        },
+        {
+          "value": 15.03,
+          "usedFor": "Customs",
+          "date": "2025-07-04 17:17:02",
+          "note": ""
+        }
+      ],
+      "totalCost": 6461.2
+    },
+    {
+      "time": "2025-08-11 18:21:22",
+      "idProduct": "P004",
+      "productName": "Laptop Stand",
+      "importQuantity": 190,
+      "brokenQuantity": 3,
+      "pricePerUnit": 2.66,
+      "supplier": "Supplier C",
+      "batchCode": "BATCH523",
+      "shippingFee": {
+        "externalChinaToVietnam": 50.77,
+        "internalVietnamToWarehouse": 38.46
+      },
+      "otherFees": [
+        {
+          "value": 23.68,
+          "usedFor": "Translation",
+          "date": "2025-07-29 01:08:10",
+          "note": "Standard"
+        }
+      ],
+      "totalCost": 618.31
+    },
+    {
+      "time": "2025-06-08 21:41:25",
+      "idProduct": "P003",
+      "productName": "USB-C Cable",
+      "importQuantity": 187,
+      "brokenQuantity": 1,
+      "pricePerUnit": 2.49,
+      "supplier": "Supplier C",
+      "batchCode": "BATCH213",
+      "shippingFee": {
+        "externalChinaToVietnam": 58.18,
+        "internalVietnamToWarehouse": 37.02
+      },
+      "otherFees": [],
+      "totalCost": 560.83
+    },
+    {
+      "time": "2025-07-26 09:15:17",
+      "idProduct": "P005",
+      "productName": "Bluetooth Speaker",
+      "importQuantity": 121,
+      "brokenQuantity": 5,
+      "pricePerUnit": 38.77,
+      "supplier": "Supplier C",
+      "batchCode": "BATCH706",
+      "shippingFee": {
+        "externalChinaToVietnam": 87.21,
+        "internalVietnamToWarehouse": 31.19
+      },
+      "otherFees": [],
+      "totalCost": 4809.57
+    },
+    {
+      "time": "2025-08-04 18:43:11",
+      "idProduct": "P002",
+      "productName": "Mechanical Keyboard",
+      "importQuantity": 77,
+      "brokenQuantity": 3,
+      "pricePerUnit": 15.96,
+      "supplier": "Supplier C",
+      "batchCode": "BATCH368",
+      "shippingFee": {
+        "externalChinaToVietnam": 65.85,
+        "internalVietnamToWarehouse": 24.76
+      },
+      "otherFees": [
+        {
+          "value": 19.25,
+          "usedFor": "Customs",
+          "date": "2025-06-21 00:37:08",
+          "note": "Urgent"
+        },
+        {
+          "value": 6.89,
+          "usedFor": "Invoice",
+          "date": "2025-06-15 08:02:19",
+          "note": "Standard"
+        }
+      ],
+      "totalCost": 1345.67
+    },
+    {
+      "time": "2025-06-14 02:10:00",
+      "idProduct": "P004",
+      "productName": "Laptop Stand",
+      "importQuantity": 134,
+      "brokenQuantity": 4,
+      "pricePerUnit": 43.7,
+      "supplier": "Supplier C",
+      "batchCode": "BATCH981",
+      "shippingFee": {
+        "externalChinaToVietnam": 66.98,
+        "internalVietnamToWarehouse": 36.38
+      },
+      "otherFees": [],
+      "totalCost": 5959.16
+    },
+    {
+      "time": "2025-09-02 02:36:24",
+      "idProduct": "P004",
+      "productName": "Laptop Stand",
+      "importQuantity": 122,
+      "brokenQuantity": 3,
+      "pricePerUnit": 34.26,
+      "supplier": "Supplier C",
+      "batchCode": "BATCH853",
+      "shippingFee": {
+        "externalChinaToVietnam": 71.64,
+        "internalVietnamToWarehouse": 42.67
+      },
+      "otherFees": [
+        {
+          "value": 21.34,
+          "usedFor": "Invoice",
+          "date": "2025-07-05 20:40:39",
+          "note": "Standard"
+        }
+      ],
+      "totalCost": 4315.37
+    },
+    {
+      "time": "2025-07-08 09:42:59",
+      "idProduct": "P002",
+      "productName": "Mechanical Keyboard",
+      "importQuantity": 52,
+      "brokenQuantity": 1,
+      "pricePerUnit": 46.09,
+      "supplier": "Supplier A",
+      "batchCode": "BATCH268",
+      "shippingFee": {
+        "externalChinaToVietnam": 84.86,
+        "internalVietnamToWarehouse": 26.11
+      },
+      "otherFees": [
+        {
+          "value": 13.13,
+          "usedFor": "Invoice",
+          "date": "2025-07-28 10:44:27",
+          "note": "Urgent"
+        }
+      ],
+      "totalCost": 2520.78
+    }
+  ],
+  "exports": [
+    {
+      "time": "2025-06-15 01:12:07",
+      "idProduct": "P002",
+      "productName": "Mechanical Keyboard",
+      "exportQuantity": 75,
+      "receiver": "Manager B"
+    },
+    {
+      "time": "2025-06-20 16:38:54",
+      "idProduct": "P005",
+      "productName": "Bluetooth Speaker",
+      "exportQuantity": 35,
+      "receiver": "Manager B"
+    },
+    {
+      "time": "2025-06-13 06:08:36",
+      "idProduct": "P003",
+      "productName": "USB-C Cable",
+      "exportQuantity": 29,
+      "receiver": "Manager C"
+    },
+    {
+      "time": "2025-08-24 14:50:08",
+      "idProduct": "P005",
+      "productName": "Bluetooth Speaker",
+      "exportQuantity": 23,
+      "receiver": "Manager C"
+    },
+    {
+      "time": "2025-08-09 06:00:58",
+      "idProduct": "P005",
+      "productName": "Bluetooth Speaker",
+      "exportQuantity": 68,
+      "receiver": "Manager C"
+    },
+    {
+      "time": "2025-06-10 09:54:51",
+      "idProduct": "P002",
+      "productName": "Mechanical Keyboard",
+      "exportQuantity": 34,
+      "receiver": "Manager B"
+    },
+    {
+      "time": "2025-07-11 15:05:46",
+      "idProduct": "P004",
+      "productName": "Laptop Stand",
+      "exportQuantity": 78,
+      "receiver": "Manager C"
+    },
+    {
+      "time": "2025-08-18 15:27:50",
+      "idProduct": "P001",
+      "productName": "Wireless Mouse",
+      "exportQuantity": 49,
+      "receiver": "Manager B"
+    },
+    {
+      "time": "2025-07-29 05:24:05",
+      "idProduct": "P001",
+      "productName": "Wireless Mouse",
+      "exportQuantity": 63,
+      "receiver": "Manager C"
+    },
+    {
+      "time": "2025-06-27 22:57:56",
+      "idProduct": "P001",
+      "productName": "Wireless Mouse",
+      "exportQuantity": 11,
+      "receiver": "Manager A"
+    },
+    {
+      "time": "2025-08-19 19:38:30",
+      "idProduct": "P005",
+      "productName": "Bluetooth Speaker",
+      "exportQuantity": 60,
+      "receiver": "Manager C"
+    },
+    {
+      "time": "2025-08-04 12:34:59",
+      "idProduct": "P002",
+      "productName": "Mechanical Keyboard",
+      "exportQuantity": 73,
+      "receiver": "Manager B"
+    },
+    {
+      "time": "2025-06-25 22:57:48",
+      "idProduct": "P005",
+      "productName": "Bluetooth Speaker",
+      "exportQuantity": 79,
+      "receiver": "Manager C"
+    },
+    {
+      "time": "2025-07-29 03:02:55",
+      "idProduct": "P005",
+      "productName": "Bluetooth Speaker",
+      "exportQuantity": 48,
+      "receiver": "Manager B"
+    },
+    {
+      "time": "2025-07-29 19:08:28",
+      "idProduct": "P004",
+      "productName": "Laptop Stand",
+      "exportQuantity": 35,
+      "receiver": "Manager C"
+    }
+  ],
+  "inventory": [
+    {
+      "idProduct": "P001",
+      "productName": "Wireless Mouse",
+      "currentStock": 237,
+      "averageCost": 11.81,
+      "totalValue": 2798.97,
+      "warehouseLocation": "WH-HN"
+    },
+    {
+      "idProduct": "P002",
+      "productName": "Mechanical Keyboard",
+      "currentStock": 186,
+      "averageCost": 21.34,
+      "totalValue": 3969.24,
+      "warehouseLocation": "WH-HCM"
+    },
+    {
+      "idProduct": "P003",
+      "productName": "USB-C Cable",
+      "currentStock": 202,
+      "averageCost": 23.23,
+      "totalValue": 4692.46,
+      "warehouseLocation": "WH-HCM"
+    },
+    {
+      "idProduct": "P004",
+      "productName": "Laptop Stand",
+      "currentStock": 164,
+      "averageCost": 7.23,
+      "totalValue": 1185.72,
+      "warehouseLocation": "WH-HN"
+    },
+    {
+      "idProduct": "P005",
+      "productName": "Bluetooth Speaker",
+      "currentStock": 288,
+      "averageCost": 30.56,
+      "totalValue": 8801.28,
+      "warehouseLocation": "WH-DN"
+    }
+  ]
+}

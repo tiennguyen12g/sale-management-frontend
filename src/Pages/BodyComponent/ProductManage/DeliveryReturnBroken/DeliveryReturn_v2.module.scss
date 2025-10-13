@@ -1,0 +1,250 @@
+/* DeliveryReturn.module.scss */
+
+.delivery-return-main {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+/* Cards layout */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  transition: transform 0.2s ease;
+
+  h3 {
+    margin: 0 0 8px;
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  p {
+    margin: 4px 0;
+    font-size: 14px;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+}
+
+/* Filters */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+
+  label {
+    font-weight: bold;
+    margin-right: 4px;
+  }
+
+  button {
+    background: #f0f0f0;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s;
+
+    &:hover {
+      background: #e0e0e0;
+    }
+  }
+
+  select,
+  input {
+    padding: 6px 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+  }
+}
+
+/* Orders table */
+.orders-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+
+  th,
+  td {
+    border: 1px solid #e0e0e0;
+    padding: 8px 10px;
+    text-align: left;
+    font-size: 14px;
+  }
+
+  th {
+    background: #f7f7f7;
+    font-weight: bold;
+  }
+
+  tbody tr:nth-child(even) {
+    background: #fafafa;
+  }
+}
+
+/* Pagination */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+
+  button {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s;
+
+    &:hover {
+      background: #0069d9;
+    }
+
+    &:disabled {
+      background: #cccccc;
+      cursor: not-allowed;
+    }
+  }
+
+  span {
+    font-size: 14px;
+    font-weight: bold;
+  }
+}
+
+/* Buyer hover tooltip */
+.buyer-cell {
+  position: relative;
+
+  .buyer-name {
+    cursor: pointer;
+    font-weight: bold;
+    color: #007bff;
+  }
+
+  .buyer-tooltip {
+    display: none;
+    position: absolute;
+    top: 120%;
+    left: 0;
+    background: #fff;
+    border: 1px solid #ddd;
+    padding: 8px;
+    width: 240px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    font-size: 13px;
+    z-index: 10;
+
+    p {
+      margin: 4px 0;
+    }
+
+    .copyable {
+      color: #007bff;
+      cursor: pointer;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  &:hover .buyer-tooltip {
+    display: block;
+  }
+}
+
+/* Copyable Carrier ID */
+.copyable {
+  color: #007bff;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+/* Row colors by status */
+.status-success {
+  background: #e7f9ee !important; /* light green */
+}
+.status-onDelivery {
+  background: #fff5e6 !important; /* light orange */
+}
+.status-return {
+  background: #ffe1e1 !important; /* light red */
+}
+.status-lost {
+  background: #dbdbdb !important; /* light gray */
+}
+.top-actions {
+  display: flex;
+  // justify-content: flex-end;
+  margin-bottom: 12px;
+  gap: 10px;
+}
+
+.upload-btn {
+  background: #007bff;
+  color: #fff;
+  padding: 6px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.action-icon {
+  font-size: 20px;
+  cursor: pointer;
+  color: #007bff;
+
+  &.delete {
+    color: #e53935;
+  }
+
+  &:hover {
+    opacity: 0.7;
+  }
+}
+.product-filter{
+  display: flex;
+  align-items: center;
+  input{
+    margin-bottom: 0;
+  }
+}
+
+.btn-decor {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background: #b3e1ff;
+  font-size: 16px;
+  outline: none;
+  margin-right: 12px;
+  // margin-bottom: 15px;
+  &:hover {
+    background: #4caf50;
+  }
+  &.active {
+    background: #4caf50;
+    color: white;
+  }
+}
