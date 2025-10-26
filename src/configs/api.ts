@@ -46,6 +46,7 @@ const AddShopOrders_API = `${backendAPI}/shop-orders/add`;
 
 const UpdateDataOrderForStaff_API = `${backendAPI}/update-order/update-order-for-staffs`;
 
+// -- Socket
 const HeartBeat_API = `${backendAPI}/ping`;
 const HeartBeat_Result_API = `${backendAPI}/staff-status`;
 
@@ -64,6 +65,10 @@ const UploadImpExpIn_API = `${backendAPI}/imp-exp-ivt/upload-excel`;
 const frontend_API = "http://localhost:5185";
 const ListOrder_Route = `${frontend_API}/quan-li-don-hang`;
 const ListProduct_Route = `${frontend_API}/danh-sach-san-pham`;
+
+
+// -- Facebook API
+const facebookAPIBase = `${backendAPI}/facebook`;
 export {
     backendAPI,
     socketAPI,
@@ -131,4 +136,7 @@ export {
     // -- Routes
     ListProduct_Route,
     ListOrder_Route,
+
+    // Facebook API
+    facebookAPIBase,
 }

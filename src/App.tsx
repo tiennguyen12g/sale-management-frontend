@@ -1,4 +1,5 @@
 import "./App.css";
+import { useEffect } from "react";
 import MainPage from "./Pages/MainPage";
 import { Routes, Route, useLocation } from "react-router-dom";
 import ShopOrders from "./LandingOrders/ShopOrders";
@@ -15,6 +16,16 @@ import ProductTable_v2 from "./Pages/BodyComponent/ProductManage/ProductDetails/
 import NoRoute from "./ultilitis/NoRoute";
 import StaffMenu from "./Pages/MenuComponent/StaffMenu";
 import StaffMenuLayout from "./Pages/MenuComponent/StaffMenuLayout";
+import PageMessage from "./Pages/BodyComponent/FacebookAPI/PageMessage";
+import { FacebookSDKLoader } from "./Pages/BodyComponent/FacebookAPI/FacebookSDKLoader";
+import TestUI from "./zustand/test";
+import InitialFetchData from "./ultilitis/InitialFetchData";
+import { useAuthStore } from "./zustand/authStore";
+import AdsAccountLayout from "./Pages/BodyComponent/AdsAccount/AdsAaccount";
+import NewLayout from "./NewLayout/NewLayout";
+import AdsAccountManagement from "./Pages/BodyComponent/Financial/AdsCosts/AdsAccountManagement";
+import SettingPage from "./Pages/SettingPage/SettingPage";
+import ShopOrders_v3 from "./LandingOrders/ShopOrders_v3";
 function App() {
   const location = useLocation();
 
@@ -23,17 +34,60 @@ function App() {
 
   // Check if current path starts with any excluded route
   const shouldShowStaffMenu = !hideStaffMenuOn.some((path) => location.pathname.startsWith(path));
+
+  const { yourStaffId, setYourStaffId, settings, setSettings } = useAuthStore();
+
+  // ✅ Only run once on mount to initialize yourStaffId from localStorage
+  useEffect(() => {
+    if (!yourStaffId) {
+      const stored = localStorage.getItem("yourStaffInfo");
+      if (stored) {
+        try {
+          const parsed = JSON.parse(stored);
+          if (parsed?.staffID) {
+            setYourStaffId(parsed.staffID);
+            console.log("✅ Loaded yourStaffId from localStorage:", parsed.staffID);
+          }
+        } catch (err) {
+          console.warn("⚠️ Failed to parse yourStaffInfo:", err);
+        }
+      }
+    }
+  }, [yourStaffId, setYourStaffId]);
+  useEffect(() => {
+    console.log("out", settings);
+    if (!settings) {
+      console.log("hdd", settings);
+      const settingStore = localStorage.getItem("settings");
+      if (settingStore) {
+        try {
+          const parsed = JSON.parse(settingStore);
+          if (parsed) {
+            setSettings(parsed);
+            console.log("✅ Loaded yourStaffId from localStorage:", parsed);
+          }
+        } catch (err) {
+          console.warn("⚠️ Failed to parse settings:", err);
+        }
+      }
+    }
+  }, [settings, setSettings]);
+
   return (
     <div className="app-main">
+      {/* <InitialFetchData /> */}
       <GlobalSocket />
 
+      <FacebookSDKLoader appId="2051002559051142" />
+
       {/* ✅ Only show StaffMenu when allowed */}
-      {shouldShowStaffMenu && <StaffMenu />}
+      {/* {shouldShowStaffMenu && <StaffMenu />} */}
 
       <Routes>
         {/* Public routes */}
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        {/* <Route path="/new-layout" element={<NewLayout />}/> */}
 
         {/* Protected routes */}
         <Route
@@ -48,9 +102,9 @@ function App() {
           path="/quan-li-don-hang/*"
           element={
             <ProtectedRoute>
-              <StaffMenuLayout>
+              <NewLayout>
                 <LandingManagement_v2 />
-              </StaffMenuLayout>
+              </NewLayout>
             </ProtectedRoute>
           }
         />
@@ -59,9 +113,9 @@ function App() {
           path="/ho-so-ca-nhan"
           element={
             <ProtectedRoute>
-              <StaffMenuLayout>
+              <NewLayout>
                 <UserPage />
-              </StaffMenuLayout>
+              </NewLayout>
             </ProtectedRoute>
           }
         />
@@ -70,12 +124,47 @@ function App() {
           path="/danh-sach-san-pham"
           element={
             <ProtectedRoute>
-              <StaffMenuLayout>
+              <NewLayout>
                 <ProductTable_v2 />
-              </StaffMenuLayout>
+              </NewLayout>
             </ProtectedRoute>
           }
         />
+
+        <Route
+          path="/tin-nhan-page"
+          element={
+            <ProtectedRoute>
+              <NewLayout>
+                <PageMessage />
+                {/* <TestUI /> */}
+              </NewLayout>
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/tai-khoan-ads"
+          element={
+            <ProtectedRoute>
+              <NewLayout>
+                <AdsAccountManagement />
+                {/* <TestUI /> */}
+              </NewLayout>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/cai-dat"
+          element={
+            <ProtectedRoute>
+              <NewLayout>
+                <SettingPage />
+              </NewLayout>
+            </ProtectedRoute>
+          }
+        />
+
 
         {/* Catch-all */}
         <Route path="*" element={<NoRoute />} />

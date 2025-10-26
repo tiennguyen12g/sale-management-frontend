@@ -1,0 +1,341 @@
+// Outer wrapper with green background
+.wrapper {
+  display: flex;
+  height: 100vh;
+  background-color: #d4f1e8; // Light green background
+  overflow: hidden;
+}
+
+// Far left icon bar
+.icon-bar {
+  width: 40px;
+  background-color: #00b894;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px 0;
+
+  .icon-item {
+    width: 32px;
+    height: 32px;
+    margin: 4px 0;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.3);
+    }
+  }
+
+  .icon-spacer {
+    flex: 1;
+  }
+}
+
+// Main page container
+.main-page {
+  display: flex;
+  flex: 1;
+  margin: 8px 8px 8px 0;
+  background-color: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+// Left Sidebar
+.sidebar {
+  width: 240px;
+  background-color: #00b894;
+  display: flex;
+  flex-direction: column;
+  color: white;
+
+  .sidebar-header {
+    padding: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+    .logo-section {
+      height: 50px;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+    }
+  }
+
+  .sidebar-menu {
+    flex: 1;
+    padding: 8px;
+    overflow-y: auto;
+
+    .menu-item {
+      padding: 12px 16px;
+      margin-bottom: 4px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+      position: relative;
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+
+      &.active {
+        background-color: rgba(255, 255, 255, 0.15);
+        font-weight: 500;
+      }
+
+      &.new-badge::after {
+        content: 'New';
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: #ff6b6b;
+        padding: 2px 8px;
+        border-radius: 12px;
+        font-size: 11px;
+      }
+
+      &.coming-soon::after {
+        content: 'Coming';
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: #ffeaa7;
+        color: #2d3436;
+        padding: 2px 8px;
+        border-radius: 12px;
+        font-size: 11px;
+      }
+    }
+  }
+
+  .sidebar-footer {
+    padding: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+    .footer-info {
+      height: 60px;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 6px;
+    }
+  }
+}
+
+// Main Content Wrapper
+.content-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background-color: #f8f9fa;
+}
+
+// Top Header
+.header {
+  background-color: white;
+  border-bottom: 1px solid #e0e0e0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  height: 60px;
+
+  .header-left {
+    display: flex;
+    align-items: center;
+
+    .header-tabs {
+      display: flex;
+      gap: 8px;
+
+      .tab {
+        padding: 8px 16px;
+        cursor: pointer;
+        border-radius: 6px;
+        transition: background-color 0.2s;
+
+        &:hover {
+          background-color: #f5f5f5;
+        }
+
+        &.active {
+          background-color: #e8f5e9;
+          color: #00b894;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+
+  .header-right {
+    display: flex;
+    gap: 12px;
+
+    .header-actions {
+      display: flex;
+      gap: 8px;
+    }
+  }
+}
+
+// Action Bar
+.action-bar {
+  background-color: white;
+  border-bottom: 1px solid #e0e0e0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  min-height: 60px;
+
+  .action-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    .status-tabs {
+      display: flex;
+      gap: 8px;
+
+      .status-tab {
+        padding: 6px 16px;
+        cursor: pointer;
+        border-radius: 6px;
+        background-color: white;
+        border: 1px solid #e0e0e0;
+        transition: all 0.2s;
+
+        &:hover {
+          border-color: #00b894;
+        }
+
+        &.active {
+          background-color: #00b894;
+          color: white;
+          border-color: #00b894;
+        }
+      }
+    }
+  }
+
+  .action-right {
+    display: flex;
+    gap: 8px;
+
+    .action-buttons {
+      display: flex;
+      gap: 8px;
+    }
+  }
+}
+
+// Table Wrapper with border and border-radius
+.table-wrapper {
+  flex: 1;
+  overflow: hidden;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+// Table Container with green border
+.table-container {
+  flex: 1;
+  overflow: auto;
+  background-color: white;
+  border: 2px solid #b2e8d9; // Light green border
+  border-radius: 12px;
+
+  .table-header {
+    display: grid;
+    grid-template-columns: repeat(11, minmax(120px, 1fr));
+    background-color: #f8f9fa;
+    border-bottom: 2px solid #e0e0e0;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+
+    .table-cell {
+      padding: 12px 16px;
+      font-weight: 600;
+      font-size: 13px;
+      color: #333;
+      border-right: 1px solid #e0e0e0;
+
+      &:last-child {
+        border-right: none;
+      }
+    }
+  }
+
+  .table-body {
+    .table-row {
+      display: grid;
+      grid-template-columns: repeat(11, minmax(120px, 1fr));
+      border-bottom: 1px solid #e0e0e0;
+      transition: background-color 0.2s;
+
+      &:hover {
+        background-color: #f8f9fa;
+      }
+
+      .table-cell {
+        padding: 12px 16px;
+        font-size: 13px;
+        border-right: 1px solid #f0f0f0;
+        display: flex;
+        align-items: center;
+
+        &:last-child {
+          border-right: none;
+        }
+      }
+    }
+  }
+}
+
+// Summary Bar
+.summary-bar {
+  background-color: #fff9e6;
+  border-top: 1px solid #e0e0e0;
+  padding: 12px 20px;
+  min-height: 50px;
+
+  .summary-content {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+}
+
+// Footer
+.footer {
+  background-color: white;
+  border-top: 1px solid #e0e0e0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  height: 50px;
+
+  .footer-left {
+    display: flex;
+    gap: 8px;
+  }
+
+  .footer-right {
+    display: flex;
+    align-items: center;
+
+    .pagination {
+      padding: 6px 12px;
+      background-color: #f5f5f5;
+      border-radius: 4px;
+      font-size: 13px;
+    }
+  }
+}

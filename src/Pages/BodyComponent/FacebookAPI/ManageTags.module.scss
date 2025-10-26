@@ -1,0 +1,97 @@
+.main {
+    position: relative;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+  width: 600px;
+
+  box-sizing: border-box;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+
+  h3 {
+    margin: 0;
+    font-size: 20px;
+  }
+
+  .info {
+    color: gray;
+  }
+
+  .add-btn {
+    background-color: #0068ff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 12px;
+    cursor: pointer;
+  }
+
+  .add-btn:hover {
+    background-color: #0051cc;
+  }
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #ddd;
+
+  th,
+  td {
+    text-align: left;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+  }
+
+  th {
+    background-color: #f8f9fa;
+  }
+
+  tr:hover {
+    background-color: #fafafa;
+  }
+}
+
+.tag-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tag-color {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.color-preview {
+  width: 60px;
+  height: 20px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.delete-btn {
+  background: transparent;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  color: #f44336;
+    margin-left: 10px;
+}
+
+.delete-btn:hover {
+  color: #c21807;
+
+}

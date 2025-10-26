@@ -3,11 +3,10 @@
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  background: #b3e1ff;
+  background: var(--orange-btn-bg-color);
   font-size: 16px;
   outline: none;
-  margin-right: 12px;
-  // margin-bottom: 15px;
+  color: var(--orange-btn-text-color);
   &:hover {
     background: #4caf50;
   }

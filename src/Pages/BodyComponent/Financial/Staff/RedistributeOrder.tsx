@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import classNames from "classnames/bind";
-import styles from "./ClaimMorningButton.module.scss";
+import styles from "./RedistributeOrder.module.scss";
 const cx = classNames.bind(styles);
 import { RedistributionOrder_API } from "../../../../configs/api";
 import { useShopOrderStore } from "../../../../zustand/shopOrderStore";

@@ -30,7 +30,7 @@ export default function Login() {
         setError(data.message || "Login failed");
         return;
       }
-      login(data.token, data.user); // 🔑 store token + user
+      login(data.token, data.user, data.yourStaffInfo); // 🔑 store token + user
 
       // localStorage.setItem("token", data.token);
       navigate("/ho-so-ca-nhan"); // ✅ Redirect after login

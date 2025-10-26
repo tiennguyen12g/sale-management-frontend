@@ -3,41 +3,42 @@ import classNames from "classnames/bind";
 import styles from "./ShopOrders.module.scss";
 const cx = classNames.bind(styles);
 
-import { Link, Navigate, NavLink, useNavigate } from "react-router-dom";
+// Icons
 import { MdDelete } from "react-icons/md";
 import { IoIosCopy } from "react-icons/io";
 import { MdModeEditOutline } from "react-icons/md";
-
 import deliveryTruck from "./icons/delivery-truck.gif";
 import atm from "./icons/atm.gif";
 import dislike from "./icons/dislike.gif";
 import hourglass from "./icons/hourglass.gif";
 import conveyorBelt from "./icons/conveyor-belt.gif";
 import phone from "./icons/phone.gif";
-import soldout from "./icons/sold-out.gif";
 import outOfStock from "./icons/sold.png";
 import courier from "./icons/courier.gif";
 import dollarIcon from "./icons/dollar.gif";
 import { HiMinusSmall } from "react-icons/hi2";
 import { HiPlusSmall } from "react-icons/hi2";
-import { IoDiamondSharp } from "react-icons/io5";
 import { GiDividedSquare } from "react-icons/gi";
+
+// Hooks and type
 import { useAuthStore } from "../zustand/authStore";
+import { useStaffStore, type StaffRole } from "../zustand/staffStore";
+import { useShopOrderStore , type OrderDataFromServerType, type OriginalOrder, type FinalOrder } from "../zustand/shopOrderStore";
+import { type ProductType, type ProductDetailsType } from "../zustand/productStore";
+
+// Components
 import CreateExcel from "./CreateExcel";
 import VnAddressSelect_Old from "../ultilitis/VnAddress/VnAddressOld";
-import { type ProductType, type ProductDetailsType } from "../zustand/productStore";
-import { useShopOrderStore, type OrderItem, type OrderDataFromServerType, type OriginalOrder, type FinalOrder } from "../zustand/shopOrderStore";
-import { useStaffStore, type StaffRole } from "../zustand/staffStore";
 import UploadExcelBox from "../ultilitis/UploadExcelBox";
-import StaffTracking from "./StaffTracking";
 import StaffNotification from "./StaffNotification";
 import { StaffRedistributeButton } from "../Pages/BodyComponent/Financial/Staff/RedistributeOrder";
 import { ClaimMorningButton } from "./ClaimOrderMorning";
 import NotificationBox_v2 from "../ultilitis/NotificationBox_v2";
-import ProductTable_v2 from "../Pages/BodyComponent/ProductManage/ProductDetails/ProductTable_v2";
-import { ListProduct_Route } from "../configs/api";
 import FreeShipAnimate from "./PromotionTags/FreeShipAnimate";
 import Coupon from "./PromotionTags/Coupon";
+
+
+
 type VirtualCartType = ProductDetailsType & { quantity: number; isSelected: boolean };
 
 const COLORS: Record<string, string> = {
@@ -97,24 +98,16 @@ interface ShopOrdersProps {
   dataOrders: OrderDataFromServerType[];
 }
 export default function ShopOrders_v2({ productDetail, dataOrders, productName }: ShopOrdersProps) {
-  // const {fetchProducts, updateProduct, addProduct, deleteProduct } = useProductStore();
-  // console.log(productDetail.name, productDetail);
-  // console.log("dataOrders", dataOrders);
   const { updateOrder, deleteOrder, addOrder, updateMultipleOrders, uploadOrdersExcel, deleteManyOrder } = useShopOrderStore();
   const { user, logout } = useAuthStore();
   const [showNotification, setShowNotification] = useState(false);
   const [statusMsg, setStatusMsg] = useState<string>("");
-  const { staffList, fetchStaff, updateStaffID } = useStaffStore();
+  const { staffList, updateStaffID } = useStaffStore();
   const [staffName, setStaffName] = useState<string[]>(["Không"]);
   const [staffID, setStaffID] = useState("none");
   const [userId, setUserId] = useState("none");
-  // const [staffRole, setStaffRole] = useState("none")
   const staffRole: StaffRole | "none" = user?.staffRole || "none";
-  const navigate = useNavigate();
 
-  useEffect(() => {
-    fetchStaff();
-  }, [fetchStaff]);
   useEffect(() => {
     if (staffList[0]?.staffInfo?.name) {
       setStaffName([staffList[0].staffInfo.name]);
@@ -138,8 +131,6 @@ export default function ShopOrders_v2({ productDetail, dataOrders, productName }
 
   const productId = productDetail.productId;
   const [viewMode, setViewMode] = useState<"table" | "excel">("table");
-  const [orderDataRoot, setOrderDataRoot] = useState<OrderDataFromServerType>();
-
   const [orders, setOrders] = useState<FinalOrder[]>(serverFinalOrderData);
   const [originOrder, setOriginOrder] = useState<OriginalOrder | null>(null);
 
@@ -249,13 +240,12 @@ export default function ShopOrders_v2({ productDetail, dataOrders, productName }
 
     console.log("editing", combineEditOrder);
     const res = await updateOrder(dataOrder._id, combineEditOrder);
-    setDiscountValue(0)
+    setDiscountValue(0);
     if (res?.status === "success") {
       setEditing({ ...defaultNewOrder });
       setCurrentEditIndex(null);
       alert("Cập nhật thành công");
       setShowEditingBox(false);
-      
     } else {
       console.log("Editing failed");
       alert("Sửa đơn bị lỗi, không thành công.");
@@ -551,10 +541,6 @@ export default function ShopOrders_v2({ productDetail, dataOrders, productName }
     // alert(`✅ Uploaded ${data.count} costs`);
   };
 
-  const handleLogout = () => {
-    logout();
-    window.location.reload();
-  };
 
   const [copied, setCopied] = useState(false);
   const [copyIndex, setCopyIndex] = useState<number | null>(null);
@@ -622,13 +608,6 @@ export default function ShopOrders_v2({ productDetail, dataOrders, productName }
   return (
     <div className={cx("landing-orders-main")}>
       {showNotification && <NotificationBox_v2 message={statusMsg} onClose={() => setShowNotification(false)} />}
-      <div className={cx("user-page")}>
-        <StaffTracking staffID={staffID} />
-        <NavLink key="user-page" to={`/ho-so-ca-nhan`} style={{ textDecoration: "none" }}>
-          Hồ sơ cá nhân
-        </NavLink>
-        <div onClick={() => handleLogout()}>Đăng xuất</div>
-      </div>
       <div className={cx("horizontal-decor")}>
         <GiDividedSquare />
         <div className={cx("horizontal-line")}></div>
@@ -675,7 +654,7 @@ export default function ShopOrders_v2({ productDetail, dataOrders, productName }
               </button>
               <StaffNotification staffID={staffID !== null ? staffID : ""} />
             </div>
-            <div>
+            <div style={{display: "flex", justifyContent: "space-between", gap: 10}}>
               <ClaimMorningButton staffID={staffID} userId={userId} />
               <StaffRedistributeButton staffID={staffID} userId={userId} />
             </div>
@@ -838,7 +817,7 @@ export default function ShopOrders_v2({ productDetail, dataOrders, productName }
 
                                 setCurrentEditIndex(i);
                                 setShowEditingBox(true);
-                                setDiscountValue(o.promotions.discount || 0)
+                                setDiscountValue(o.promotions.discount || 0);
                               }}
                             >
                               {/* ✏️ */}
@@ -869,7 +848,6 @@ export default function ShopOrders_v2({ productDetail, dataOrders, productName }
           {showEditingBox && originOrder && (
             <div className={cx("fullfilment-bg")}>
               <div className={cx("modal-overlay")}>
-
                 {/* Show original Data */}
                 <div className={cx("modal-original")}>
                   <h2>Thông tin gốc</h2>
@@ -1194,7 +1172,7 @@ export default function ShopOrders_v2({ productDetail, dataOrders, productName }
                         setVirtualCart([...defaultVirtualCart]);
                         setShowListProduct(false);
                         setShowEditingBox(false);
-                        setDiscountValue(0)
+                        setDiscountValue(0);
                       }}
                     >
                       Hủy

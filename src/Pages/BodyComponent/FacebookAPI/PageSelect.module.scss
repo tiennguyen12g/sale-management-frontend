@@ -1,0 +1,81 @@
+.main-page-select {
+  width: 100vw;
+  height: 100vh;
+  // background-color: rgb(238, 238, 238);
+  background-color: rgba(255, 255, 255, 0.726);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  //   flex-direction: column;
+  position: fixed;
+  z-index: 10001;
+  top: 50%;
+  left: calc(50% + 0px);
+  transform: translate(-50%, -50%);
+}
+.container {
+  // width: 40%;
+  // height: 80vh;
+  // background-color: white;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  width: 1500px;
+  height: 82vh;
+  padding: 25px 20px;
+  position: relative;
+  overflow-y: scroll;
+  //   margin-left: -100px;
+  background-color: white;
+}
+
+.horizontal-line {
+  width: 100%;
+  border-top: 1px solid gainsboro;
+  margin: 15px 0px;
+}
+.page-list-container {
+  margin-bottom: 20px;
+  border-radius: 10px;
+  border: 1px solid gainsboro;
+  padding: 15px 20px;
+}
+.list-box {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  gap: 10px;
+}
+.box-page-info {
+  border: 1px solid gainsboro;
+  border-radius: 8px;
+  // width: 400px;
+  width: 260px;
+  display: flex;
+  gap: 10px;
+  padding: 8px 16px;
+  .left-part {
+    display: flex;
+    align-items: center;
+    .img-decor {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 1px solid #b16cff;
+    }
+  }
+}
+.btn-decor {
+  color: white;
+  background-color: #0274a8;
+}
+
+.btn-close-wrap {
+  width: calc(100% - 40px);
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: center;
+  // top: 50%;
+  // left: calc(50% + 20px);
+  // transform: translate(-50%,-50%);
+}

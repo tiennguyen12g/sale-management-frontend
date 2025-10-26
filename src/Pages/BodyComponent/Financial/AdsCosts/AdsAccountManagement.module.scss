@@ -1,0 +1,341 @@
+.main-ads-acc {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  display: flex;
+}
+
+.body-left {
+  display: flex;
+  flex-direction: column;
+  color: rgb(0, 0, 0);
+  //   width: 180px;
+  height: 100%;
+  flex-shrink: 0; /* keep fixed width */
+  //   min-width: 180px;
+  position: relative;
+
+  .collapsed-btn {
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    transform: translate(-50%, -100%);
+    z-index: 200;
+    background-color: white;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  .sidebar-header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    justify-content: center;
+    .logo-section {
+      height: 60px;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    span {
+      font-weight: 650;
+      color: #fd5f16;
+      font-size: 18px;
+    }
+  }
+
+  .sidebar-menu {
+    position: relative;
+    flex: 1;
+    // padding: 8px;
+    display: flex;
+    flex-direction: column;
+    // align-items: center;
+    justify-content: center;
+
+    .menu-item {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 12px 10px 12px 10px;
+      //   margin-bottom: 4px;
+      //   border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+      position: relative;
+      font-weight: 550;
+      border-bottom: 1px solid #fd8c577c;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      &:hover {
+        background-color: rgb(224, 223, 223);
+      }
+
+      &.active {
+        background-color: rgb(255, 221, 211);
+        font-weight: 500;
+      }
+
+      &.new-badge::after {
+        content: "New";
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: #ff6b6b;
+        padding: 2px 8px;
+        border-radius: 12px;
+        font-size: 11px;
+      }
+
+      &.coming-soon::after {
+        content: "Coming";
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: #ffeaa7;
+        color: #2d3436;
+        padding: 2px 8px;
+        border-radius: 12px;
+        font-size: 11px;
+      }
+    }
+  }
+
+  .sidebar-menu .menu-item:nth-child(1) {
+    border-top: 1px solid #fd8c577c;
+  }
+
+  .sidebar-footer {
+    // padding: 16px;
+    // border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+    .footer-info {
+      height: 45px;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 6px;
+    }
+  }
+}
+
+.body-right {
+  position: relative;
+  //   width: calc(100% - 180px);
+  flex: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .footer {
+    height: 45px;
+    width: 100%;
+  }
+  .header {
+    background-color: white;
+    // border-bottom: 1px solid #e0e0e0;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 20px;
+    height: 60px;
+    width: 100%;
+    box-sizing: border-box;
+
+    .header-left {
+      display: flex;
+      align-items: center;
+
+      .header-tabs {
+        display: flex;
+        gap: 8px;
+        background: #ebeaea;
+        padding: 4px 6px;
+        border-radius: 8px;
+
+        .tab {
+          padding: 4px 8px;
+          cursor: pointer;
+          border-radius: 6px;
+          //   background-color: #ffffff;
+          transition: background-color 0.2s;
+          color: rgb(0, 0, 0);
+          font-weight: 500;
+
+          //   &:hover {
+          //     background-color: #f19143;
+          //   }
+
+          &.active {
+            background-color: #ffffff;
+          }
+        }
+      }
+    }
+
+    .header-right {
+      display: flex;
+      gap: 12px;
+
+      .header-actions {
+        display: flex;
+        gap: 8px;
+      }
+    }
+  }
+
+  .content {
+    position: relative;
+    width: 100%;
+    flex: 1;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border: 2px solid rgb(247, 103, 37);
+    border-right: 0;
+    background: #fff;
+    overflow: hidden;
+
+    .table-scroll {
+      width: 100%;
+      height: 100%;
+      overflow-x: auto; /* handle horizontal scroll */
+      overflow-y: auto; /* handle vertical scroll */
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .table-container {
+      min-width: fit-content;
+      display: flex;
+      flex-direction: column;
+      background-color: white;
+    }
+
+    /* HEADER */
+    .table-header {
+      display: grid;
+      /* Make first two columns fixed, rest flexible */
+      grid-template-columns: 160px 100px repeat(18, minmax(140px, 1fr));
+      background-color: #f8f9fa;
+      border-bottom: 2px solid #e0e0e0;
+      position: sticky;
+      top: 0;
+      z-index: 30; /* header above body */
+      .table-cell {
+        padding: 8px 10px;
+        font-weight: 700;
+        font-size: 14px;
+        color: #333;
+        border-right: 1px solid #e6e5e5;
+        box-sizing: border-box;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+    }
+    .table-header .table-cell:nth-child(n + 3) {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    /* BODY */
+    /* body now scrolls inside same container as header */
+    .table-body {
+      .table-row {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 160px 100px repeat(18, minmax(140px, 1fr));
+        border-bottom: 1px solid #e2e2e2e1;
+        transition: background-color 0.2s;
+        align-items: center;
+        position: relative;
+
+        &:hover {
+          background-color: #f8f9fa;
+        }
+
+        .table-cell {
+          padding: 6px 10px;
+          font-size: 14px;
+          border-right: 1px solid #f0f0f0;
+          display: flex;
+          align-items: center;
+          background: #fff;
+          box-sizing: border-box;
+          height: 100%;
+          line-height: 1.2;
+        }
+
+        /* ✅ Sticky for first two columns */
+        .table-cell:nth-child(1) {
+          position: sticky;
+          left: 0;
+          z-index: 20;
+          background: #fff;
+          box-shadow: 2px 0 2px -2px rgba(0, 0, 0, 0.1); /* soft shadow divider */
+        }
+
+        .table-cell:nth-child(2) {
+          position: sticky;
+          left: 160px;
+          z-index: 19;
+          background: #fff;
+          box-shadow: 2px 0 2px -2px rgba(0, 0, 0, 0.1);
+        }
+        .account-name {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 4px;
+        }
+      }
+      .table-row .table-cell:nth-child(n + 3) {
+        display: flex;
+        justify-content: flex-end;
+      }
+    }
+
+    /* header sticky columns (still works) */
+    .table-header .table-cell:nth-child(1) {
+      position: sticky;
+      left: 0;
+      z-index: 30;
+      background: #f8f9fa;
+    }
+
+    .table-header .table-cell:nth-child(2) {
+      position: sticky;
+      left: 160px;
+      z-index: 29;
+      background: #f8f9fa;
+    }
+
+    /* Ensure header sticky cells are above body sticky cells */
+    .table-header .table-cell {
+      background: #f8f9fa;
+      z-index: 50;
+    }
+    .table-header .table-cell:nth-child(1) {
+      position: sticky;
+      left: 0;
+      z-index: 60;
+    }
+    .table-header .table-cell:nth-child(2) {
+      position: sticky;
+      left: 160px;
+      z-index: 59;
+    }
+  }
+}

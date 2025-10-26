@@ -83,15 +83,11 @@ export default function ShopOrders({ productDetail, dataOrders }: ShopOrdersProp
   console.log("dataOrders", dataOrders);
   const { updateOrder, deleteOrder, addOrder, updateMultipleOrders, uploadOrdersExcel } = useShopOrderStore();
   const { user, logout } = useAuthStore();
-  const { staffList, fetchStaff, updateStaffID } = useStaffStore();
+  const { staffList, updateStaffID } = useStaffStore();
   const [staffName, setStaffName] = useState<string[]>(["Không"]);
   const [staffID, setStaffID] = useState("none");
 
   const staffRole: StaffRole | "none" = user?.staffRole || "none";
-
-  useEffect(() => {
-    fetchStaff();
-  }, [fetchStaff]);
   useEffect(() => {
     // console.log('staff', staffList);
     if (staffList[0]?.staffInfo?.name) {

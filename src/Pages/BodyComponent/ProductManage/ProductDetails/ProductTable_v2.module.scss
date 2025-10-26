@@ -1,11 +1,16 @@
 .product-table {
-    margin: 10px 0px;
-    padding: 40px 100px;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  margin: 10px 0px;
+  padding: 20px 20px;
   table {
     width: 100%;
     border-collapse: collapse;
 
-    th, td {
+    th,
+    td {
       border: 1px solid #ddd;
       padding: 8px;
       text-align: left;
@@ -55,7 +60,8 @@
         width: 100%;
         border-collapse: collapse;
 
-        th, td {
+        th,
+        td {
           border: 1px solid #eee;
           padding: 6px;
         }
@@ -67,7 +73,7 @@
     }
   }
 }
-.user-page{
+.user-page {
   position: fixed;
   top: 20px;
   right: 100px;

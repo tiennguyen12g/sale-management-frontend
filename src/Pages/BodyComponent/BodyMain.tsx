@@ -15,7 +15,7 @@ export default function BodyMain() {
     case "money":
     case "costs":
     case "salary":
-    case "ads":  
+    case "ads":
       contentShow = <Finance />;
       break;
     case "dashboard":
@@ -24,14 +24,11 @@ export default function BodyMain() {
     case "import":
     case "delivery":
     case "product-detail":
+    case "page-select":
       contentShow = <ProductManage />;
       break;
     default:
       break;
   }
-  return (
-    <div className={cx("body-main")}>
-      {contentShow}
-    </div>
-  );
+  return <div className={cx("body-main")}>{contentShow}</div>;
 }

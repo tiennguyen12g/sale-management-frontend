@@ -1,0 +1,55 @@
+.main {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  background: #ffffff;
+  padding: 20px 0 0 0;
+  box-sizing: border-box;
+  .header-menu {
+    height: 55px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 420px minmax(760px, 1fr) 660px;
+    padding: 0px 15px 10px 15px;
+    border-bottom: 1px solid #ddd;
+    font-size: 16px;
+    font-weight: 600;
+    box-sizing: border-box;
+    .shop-name {
+      text-align: center;
+      font-size: 20px;
+      font-weight: 700;
+      color: #fc4c1f;
+    }
+  }
+}
+.message-container {
+  // margin-top: 15px;
+  display: flex;
+  height: calc(100% - 55px);
+}
+.sidebar {
+  width: 420px;
+  background: #fff;
+  border-right: 1px solid #ddd;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat {
+  flex: 1;
+  min-width: 760px;
+  display: flex;
+  flex-direction: column;
+}
+
+.info-panel {
+  width: 660px;
+  background: #fff;
+  border-left: 1px solid #ddd;
+  padding: 10px;
+}
+.btn-decor {
+  color: white;
+  background-color: #0274a8;
+}

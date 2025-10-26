@@ -1,7 +1,9 @@
 .landing-management-main {
   position: relative;
-  padding-top: 10px;
-  // margin-top: 10px;
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box;
+  overflow-x: auto; /* ✅ scroll here */
   .group-navigate-btn {
     display: flex;
     gap: 15px;

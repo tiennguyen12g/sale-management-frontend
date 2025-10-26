@@ -1,12 +1,14 @@
 .landing-orders-main {
-  padding: 0px 0px;
   position: relative;
+  height: 100%;
   width: 100%;
-  .table-feature-area{
-    position: relative;
-    width: calc(100% - 20px);
-  }
+  min-width: 1960px;
 
+  .table-feature-area {
+    position: relative;
+    width: 100%;
+    
+  }
 }
 
 .title {
@@ -31,7 +33,7 @@
 /* Table wrapper for scroll */
 .table-wrapper {
   max-height: 72vh; /* you can adjust */
-  width: 100%;
+  width: calc(100% - 2px);
   overflow-y: auto;
   overflow-x: scroll;
   border: 1px solid #ddd;
@@ -355,7 +357,7 @@
       width: 80px;
       text-align: center;
     }
-        .input-5 {
+    .input-5 {
       width: 90px;
       text-align: right;
     }

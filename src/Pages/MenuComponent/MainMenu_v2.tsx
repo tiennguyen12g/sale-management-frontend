@@ -13,6 +13,7 @@ import { IoLogOutOutline } from "react-icons/io5";
 import shoppingCart from "./icons/shopping-cart.gif";
 import { IoMdCart } from "react-icons/io";
 import { BiSolidCircle } from "react-icons/bi";
+import { FaFacebookSquare } from "react-icons/fa";
 
 import { useMenuStore } from "../StateManagement/MenuActiveState"; // ✅ import zustand store
 import { useAuthStore } from "../../zustand/authStore";
@@ -58,6 +59,10 @@ export default function MainMenu_v2() {
         <div className={cx("submenu-item", { active: activeSubmenu === "product-detail" })} onClick={() => setActiveSubmenu("product-detail")}>
           <IoMdCart className={cx("icon")} size={22} />
           Product Details
+        </div>
+        <div className={cx("submenu-item", { active: activeSubmenu === "page-select" })} onClick={() => setActiveSubmenu("page-select")}>
+          <FaFacebookSquare className={cx("icon")} size={20} />
+          Add Page
         </div>
       </div>
 

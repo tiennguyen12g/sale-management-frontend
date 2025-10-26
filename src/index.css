@@ -11,6 +11,20 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --epr-bg-color: #fff;
+  --epr-category-label-bg-color: #fff;
+  --epr-text-color: #222;
+  --epr-emoji-size: 22px;
+  --epr-emoji-gap: 8px;
+  --epr-hover-bg-color: #f1f3f5;
+
+  --orange-btn-bg-color: #f05316;
+  --orange-btn-text-color: #ffffff;
+
+  --table-border-color: #d8d8d8;
+
+  --orange-header-text-color: #f05316;
 }
 
 a {
@@ -47,11 +61,11 @@ button {
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #646cff;
+  /* border-color: #646cff; */
 }
 button:focus,
 button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  /* outline: 4px auto -webkit-focus-ring-color; */
 }
 
 @media (prefers-color-scheme: light) {
@@ -65,4 +79,100 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+.emoji-picker-react,
+.epr-main {
+  /* Theme / colors */
+  --epr-bg-color: #ffffff; /* panel background */
+  --epr-category-label-bg-color: #ffffff; /* category header bg */
+  --epr-text-color: #222222; /* text color */
+  --epr-highlight-color: #0d6efd; /* accent (selected) */
+  --epr-hover-bg-color: #f1f3f5; /* hovered emoji bg */
+
+  /* Size & spacing */
+  --epr-emoji-size: 22px; /* emoji size */
+  --epr-emoji-gap: 8px; /* spacing between emojis */
+
+  /* other small touches */
+  --epr-search-input-bg-color: #fafafa;
+  --epr-search-input-border-color: #dcdcdc;
+}
+
+/* Remove the blue 'block' around each emoji (caused by background on internal element) */
+.emoji-picker-react .epr-emoji,
+.emoji-picker-react .epr-emoji-img,
+.epr-main .epr-emoji,
+.epr-main .epr-emoji-img {
+  background: none !important;
+  box-shadow: none !important;
+  border-radius: 6px;
+  padding: 2px;
+}
+
+/* Make hover use the variable (should pick it up, but force if needed) */
+.emoji-picker-react .epr-emoji:hover,
+.epr-main .epr-emoji:hover {
+  background: var(--epr-hover-bg-color) !important;
+}
+
+/* Category label appearance */
+.emoji-picker-react .epr-emoji-category-label,
+.epr-main .epr-emoji-category-label {
+  background-color: var(--epr-category-label-bg-color) !important;
+  color: var(--epr-text-color) !important;
+  font-weight: 600;
+}
+
+/* Search input */
+.emoji-picker-react .epr-search,
+.epr-main .epr-search {
+  background: var(--epr-search-input-bg-color) !important;
+  border-color: var(--epr-search-input-border-color) !important;
+  color: var(--epr-text-color) !important;
+}
+
+/* overall background and text */
+.emoji-picker-react .epr-body,
+.epr-main .epr-body {
+  background: var(--epr-bg-color) !important;
+  color: var(--epr-text-color) !important;
+}
+
+/* optional: smaller scrollbar styling (non-critical) */
+.emoji-picker-react .epr-scroll,
+.epr-main .epr-scroll {
+  scrollbar-width: thin;
+}
+
+.epr-tone-neutral button {
+  width: 20px;
+  height: 20px;
+}
+
+/* Hide the arrow buttons in scrollbars (for WebKit browsers) */
+/* ::-webkit-scrollbar-button {
+  display: none;
+  height: 0;
+  width: 0;
+} */
+/* Optional - minimal scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+/* background: linear-gradient(135deg, #ff0000, #0000ff);  */
+/* background: linear-gradient(135deg, #fd744a, #f85718);  */
+background: #bdbbbb;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a5a4a4;
 }

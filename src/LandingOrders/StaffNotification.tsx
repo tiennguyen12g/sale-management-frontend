@@ -4,7 +4,7 @@ import { FaCartPlus } from "react-icons/fa";
 import { IoNotifications } from "react-icons/io5";
 import bellNotification from "./icons/bell.gif";
 import { useShopOrderStore } from "../zustand/shopOrderStore";
-export default function StaffNotification({ staffID }: { staffID: string }) {
+export default function StaffNotification({ staffID, menuCollapsed }: { staffID: string, menuCollapsed: boolean }) {
   const [status, setStatus] = useState("disconnected");
   const [notifications, setNotifications] = useState<any[]>([]);
   const { addOrder, addOrderDataFromServer } = useShopOrderStore();
@@ -43,19 +43,13 @@ export default function StaffNotification({ staffID }: { staffID: string }) {
     }
   }, [notifications]);
   return (
-    <div style={{ padding: 0, fontFamily: "Arial", display: "flex", alignItems: "center", }}>
-      {/* <h3>Staff {staffID} Notifications</h3> */}
-      {/* <p>Status: {status === "connected" ? "🟢 Connected" : "⚪ Disconnected"}</p> */}
-
-      <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-        <div style={{ fontWeight: 550, fontSize: 16 }}>Đơn mới</div> <img src={bellNotification} width={35} height={35}/>:&nbsp;
+    <div style={{ padding: 0, fontFamily: "Arial", display: "flex", alignItems: "center", flexDirection: "column"}}>
+      <div style={{ display: "flex", alignItems: "center", gap: 10 , height: 60}}>
+        <div style={{display: "flex", justifyContent:"center", alignItems: "center"}}><img src={bellNotification} width={40} height={40}/> </div>
+        {!menuCollapsed && <div style={{ fontWeight: 600, fontSize: 18, color: "var(--orange-header-text-color)" }}>Đơn mới</div>}
+        
       </div>
-      {/* {notifications.length === 0 ? (
-        <div style={{color: "#0485fd", fontWeight: 550, fontSize: 16,}}>&nbsp; Không có đơn...</div>
-      ) : (
-        <div style={{color: "#0485fd", fontWeight: 550, fontSize: 16,}}>{notifications.length} đơn</div>
-      )} */}
-      {notifications && <div style={{ color: "#0485fd", fontWeight: 550, fontSize: 16 }}>{notifications.length} đơn mới</div>}
+      {notifications && <div style={{ color: "#0485fd", fontWeight: 550, fontSize: 16, height: 40, display: "flex", justifyContent:"center", alignItems: "center" }}>{notifications.length}</div>}
     </div>
   );
 }

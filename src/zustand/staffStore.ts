@@ -47,7 +47,7 @@ export interface StaffInfoType {
 }
 
 export interface StaffDataType {
-  _id: string;
+  _id?: string;
   role: StaffRole;
   salary: number; // current base salary
   joinedDate: string; // ISO date string
@@ -123,9 +123,11 @@ interface StaffState {
   staffList: StaffDataType[];
   loading: boolean;
   error: string | null;
+  yourStaffProfile: StaffDataType | null ;
   staffID: string | null;
   userId: string | null;
   fetchStaff: () => Promise<{ status: string; message: string } | undefined>;
+  fetchYourStaffProfile: (staffID: string, userId: string) => Promise<{ status: string; message: string, } | undefined>;
   addStaff: (newStaff: StaffDataType) => void; // 👈 new action
   updateStaff: (updated: StaffDataType) => void; // 👈 new
   appendSalaryHistory: (staffID: string, records: SalaryHistoryType[]) => void;
@@ -141,6 +143,7 @@ export const useStaffStore = create<StaffState>((set) => ({
   staffList: [],
   loading: false,
   error: null,
+  yourStaffProfile: null,
   staffID: null,
   userId: null,
   fetchStaff: async () => {
@@ -160,6 +163,25 @@ export const useStaffStore = create<StaffState>((set) => ({
     } catch (err: any) {
       set({ error: err.message, loading: false });
       return { status: "failed", message: err.message };
+    }
+  },
+  fetchYourStaffProfile: async (staffID, userId) => {
+    set({ loading: true, error: null });
+    try {
+      const { getAuthHeader, logout } = useAuthStore.getState();
+      const res = await fetch(`${GetStaffList_API}/${staffID}/${userId}`, { headers: { ...getAuthHeader() } });
+      if (!res.ok) throw new Error(`Failed to fetch staff: ${res.status}`);
+      const data = await res.json();
+      if (res.status === 401) {
+        logout();
+        window.location.href = "/login";
+        return { status: "No valid token", message: data.message };
+      }
+      set({ yourStaffProfile: data, loading: false });
+      return { status: "success", message: "" };
+    } catch (err: any) {
+      set({ error: err.message, loading: false });
+      return { status: "failed", message: err.message, data: null };
     }
   },
 

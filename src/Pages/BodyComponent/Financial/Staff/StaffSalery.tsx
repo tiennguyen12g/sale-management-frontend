@@ -27,7 +27,7 @@ export interface CalendarDataType {
   dailyRecords: DailyRecordType[];
 }
 export default function StaffSalary() {
-  const { staffList, loading, error, fetchStaff, appendSalaryHistory, appendAttendance, appendDailyRecord } = useStaffStore();
+  const { staffList, loading, error, appendSalaryHistory, appendAttendance, appendDailyRecord } = useStaffStore();
   const { getAuthHeader } = useAuthStore();
   let staffSalaryData = [...staffList];
   const [expandedStaff, setExpandedStaff] = useState<string | null>(null);
@@ -56,9 +56,6 @@ export default function StaffSalary() {
   const [isUploadSalary, setIsUploadSalary] = useState(false);
   const [isUploadDailyRecord, setIsUploadDailyRecord] = useState(false);
   const [isUpdateSalary, setIsUpdateSalary] = useState(false);
-  useEffect(() => {
-    fetchStaff();
-  }, [fetchStaff]);
 
   // Calculate aggregates per staff
   const calculateStaffSummary = (staff: StaffDataType) => {
@@ -562,11 +559,9 @@ export default function StaffSalary() {
 }
 
 export function StaffSalaryCards() {
-  const { staffList, loading, error, fetchStaff } = useStaffStore();
+  const { staffList, } = useStaffStore();
   let staffSalaryData = [...staffList];
-  // useEffect(() => {
-  //   fetchStaff();
-  // }, [fetchStaff]);
+
   const totals = staffSalaryData.reduce(
     (acc, item) => {
       // Sum all baseSalary + bonus - fine for salary, and all bonus for bonus

@@ -6,15 +6,14 @@ const cx = classNames.bind(styles);
 import AddUserInfo from "./AddUserInfo";
 import { useStaffStore } from "../zustand/staffStore";
 import type { StaffDataType, StaffInfoType, StaffRole } from "../zustand/staffStore";
-import { useAuthStore, type UserType } from "../zustand/authStore";
-import { AddStaff_API, ChangePassword_API } from "../configs/api";
+import { useAuthStore } from "../zustand/authStore";
+import { ChangePassword_API } from "../configs/api";
 import { SalaryByPosition } from "../zustand/staffStore";
-import { useNavigate, NavLink } from "react-router-dom";
 import AttendanceCalendar from "../Pages/BodyComponent/Financial/Staff/AttendanceCalendar";
 import type { SalaryHistoryType, EmployeeAttendanceType, DailyRecordType } from "../zustand/staffStore";
 import { deligenceBonus, workingDayPerMonth } from "../configs/DefaultData";
 import StaffHeartbeat from "../LandingOrders/StaffHeartBeat";
-import StaffTracking from "../LandingOrders/StaffTracking";
+
 export interface FormGetUserInfo {
   name: string;
   birthday: string;
@@ -35,12 +34,8 @@ export interface FormGetUserInfo {
 export default function UserPage() {
   // fake initial user data (can be fetched from server later)
 
-  const { fetchStaff, staffList, addStaff } = useStaffStore();
-  const { user, getAuthHeader, logout } = useAuthStore();
-  const navigate = useNavigate();
-  useEffect(() => {
-    fetchStaff();
-  }, [fetchStaff]);
+  const { yourStaffProfile, fetchYourStaffProfile } = useStaffStore();
+  const { user, getAuthHeader, yourStaffId } = useAuthStore();
 
   const initialForm: Omit<StaffDataType, "_id"> = {
     role: (user?.staffRole as StaffRole) || "Sale-Staff",
@@ -68,11 +63,11 @@ export default function UserPage() {
     salaryHistory: [],
     attendance: [],
     dailyRecords: [],
-      isMorningBatch: false,
-      claimedAt: "",
+    isMorningBatch: false,
+    claimedAt: "",
   };
 
-  const [fullUserData, setFullUserData] = useState<StaffDataType>(staffList[0] || initialForm);
+  const [fullUserData, setFullUserData] = useState<StaffDataType>(yourStaffProfile || initialForm);
   const [userData, setUserData] = useState<StaffInfoType>(fullUserData.staffInfo);
 
   const [filterMode, setFilterMode] = useState<"all" | "month">("all");
@@ -81,14 +76,17 @@ export default function UserPage() {
   const [expandedStaff, setExpandedStaff] = useState<string | null>(null);
 
   useEffect(() => {
-    if (staffList.length > 0 && user) {
-      const staff = staffList.find((s) => s.userId === user.id);
-      if (staff) {
-        setFullUserData(staff);
-        setUserData(staff.staffInfo);
-      }
+    if (yourStaffId && user) {
+      fetchYourStaffProfile(yourStaffId, user.id);
     }
-  }, [staffList, user]);
+  }, [fetchYourStaffProfile, yourStaffId, user]);
+  useEffect(() => {
+    if (yourStaffProfile) {
+      console.log("yourStaffProfile", yourStaffProfile);
+      setUserData(yourStaffProfile.staffInfo);
+      setFullUserData(yourStaffProfile);
+    }
+  }, [yourStaffProfile]);
 
   const [isOpenForm, setIsOpenForm] = useState(false);
   const [newPassword, setNewPassword] = useState("");
@@ -100,11 +98,6 @@ export default function UserPage() {
   // --- add state for sorting ---
   const [sortField, setSortField] = useState<"closingRate" | "diligence" | null>(null);
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
-
-  const handleLogout = () => {
-    logout();
-    navigate("/login");
-  };
 
   useEffect(() => {
     if (repeatPass !== newPassword) {
@@ -183,7 +176,8 @@ export default function UserPage() {
 
   // --- helper to calculate stats ---
   function getSaleStaffData() {
-    let saleStaff = staffList.filter((s) => s.role === "Sale-Staff");
+    if (!yourStaffProfile) return [];
+    let saleStaff = [yourStaffProfile].filter((s) => s.role === "Sale-Staff");
 
     // map data with calculated performance
     let mapped = saleStaff.map((s) => {
@@ -234,7 +228,7 @@ export default function UserPage() {
     dailyRecord.push(...historyData.dailyRecords);
   });
 
-  const timeFormat = `${currentYearNumber}-0${(currentMonthNumber + 1)}`;
+  const timeFormat = `${currentYearNumber}-0${currentMonthNumber + 1}`;
   // console.log('timeFormat', timeFormat);
   const currentMonthData = fullUserData.salaryHistory.find((data) => data.time === timeFormat);
 
@@ -246,24 +240,12 @@ export default function UserPage() {
   const totalWorkDay = (saleStaffData[0]?.diligence || 0) + (saleStaffData[0]?.workLate || 0);
   const overtimeValueFix = Math.round(overtimeValue / 1000) * 1000;
   const estPaidSalary = bonus - fine + overtimeValueFix + salaryPerDay * totalWorkDay;
-  // console.log('estPaidSalary ', estPaidSalary );
-  // const estPaidSalaryFix = ;  Math.round(((salaryPerDay * totalWorkDay) / 1000) * 1000);
   return (
     <div className={cx("user-page-main")}>
       <StaffHeartbeat />
       <div className={cx("header-logout")}>
         <div>
           <h4 style={{ color: "#005fec" }}>Hồ sơ cá nhân</h4>
-        </div>
-
-        <div style={{ display: "flex", gap: 40 }}>
-          <h4><StaffTracking staffID={fullUserData.staffID}/></h4>
-          <h4 style={{ cursor: "pointer", color: "#005fec" }} onClick={() => navigate("/quan-li-don-hang")}>
-            Trang Quản lí đơn
-          </h4>
-          <h4 onClick={() => handleLogout()} style={{ cursor: "pointer" }}>
-            Đăng xuất
-          </h4>
         </div>
       </div>
 
@@ -336,15 +318,6 @@ export default function UserPage() {
               <strong>SĐT:</strong> {userData.phone}
             </div>
           </div>
-          {/* <div className={cx('row')}>
-            <div>
-              <strong>Ngày vào làm:</strong> {fullUserData.joinedDate}
-            </div>
-            <div>
-              <strong>Lương cơ bản:</strong> {fullUserData?.salary?.toLocaleString("vi-VN")} đ
-            </div>
-          </div> */}
-
           <p>
             <strong>Ngày vào làm:</strong> {fullUserData.joinedDate}
           </p>
@@ -360,13 +333,10 @@ export default function UserPage() {
           <p>
             <strong>Mô tả:</strong> {userData.description}
           </p>
-          {/* <p>
-            <strong>Email:</strong> {userData.accountLogin}
-          </p> */}
         </div>
         <div className={cx("performance-card")}>
           <div className={cx("header")}>
-            <div className={cx("title")}>Hiệu suất tháng {(currentMonthNumber + 1)}</div>
+            <div className={cx("title")}>Hiệu suất tháng {currentMonthNumber + 1}</div>
           </div>
           <div className={cx("row")}>
             <div>
@@ -408,7 +378,7 @@ export default function UserPage() {
               <strong>Tăng ca:</strong> {currentMonthData?.overtime.totalTime || 0} giờ
             </div>
             <div>
-              <strong>Tạm tính:</strong> { (Math.round((currentMonthData?.overtime.value || 0)/1000)*1000).toLocaleString("vi-VN")} đ
+              <strong>Tạm tính:</strong> {(Math.round((currentMonthData?.overtime.value || 0) / 1000) * 1000).toLocaleString("vi-VN")} đ
             </div>
             <div>
               <strong></strong> --
@@ -439,105 +409,109 @@ export default function UserPage() {
             {/* <div>Edit</div> */}
           </div>
 
-          {staffList.map((staff, k) => {
-            const summary = calculateStaffSummary(staff);
-            return (
-              <React.Fragment key={k}>
-                <div className={cx("row")} onClick={() => setExpandedStaff(expandedStaff === staff.staffID ? null : staff.staffID)}>
-                  <div className={cx("role", `${staff.role.toLocaleLowerCase()}`)}>{staff.role}</div>
-                  <div className={cx("name")}>{staff.staffInfo.name}</div>
-                  {/* <div>{staff.id}</div> */}
-                  <div>{calcSeniority(staff.joinedDate)}</div>
-                  <div>{summary.totalCloseOrder}</div>
-                  <div>{summary.totalDistributionOrder}</div>
-                  <div>{summary.rate}</div>
-                  {/* <div>{summary.totalRevenue.toLocaleString()} ₫</div> */}
-                  <div>{summary.totalBonus.toLocaleString()} ₫</div>
-                  <div>{summary.totalFine.toLocaleString()} ₫</div>
-                  <div>{summary.totalOvertime.toLocaleString()} ₫</div>
-                  <div>{summary.totalSalary.toLocaleString()} ₫</div>
-                  {/* <div className={cx("edit-btn")}>
+          {yourStaffProfile &&
+            [yourStaffProfile].map((staff, k) => {
+              const summary = calculateStaffSummary(staff);
+              return (
+                <React.Fragment key={k}>
+                  <div className={cx("row")} onClick={() => setExpandedStaff(expandedStaff === staff.staffID ? null : staff.staffID)}>
+                    <div className={cx("role", `${staff.role.toLocaleLowerCase()}`)}>{staff.role}</div>
+                    <div className={cx("name")}>{staff.staffInfo.name}</div>
+                    {/* <div>{staff.id}</div> */}
+                    <div>{calcSeniority(staff.joinedDate)}</div>
+                    <div>{summary.totalCloseOrder}</div>
+                    <div>{summary.totalDistributionOrder}</div>
+                    <div>{summary.rate}</div>
+                    {/* <div>{summary.totalRevenue.toLocaleString()} ₫</div> */}
+                    <div>{summary.totalBonus.toLocaleString()} ₫</div>
+                    <div>{summary.totalFine.toLocaleString()} ₫</div>
+                    <div>{summary.totalOvertime.toLocaleString()} ₫</div>
+                    <div>{summary.totalSalary.toLocaleString()} ₫</div>
+                    {/* <div className={cx("edit-btn")}>
                     <MdModeEdit size={22} />
                   </div> */}
-                </div>
-
-                {
-                  <div className={cx("expand-box")}>
-                    {/* //-- Calender box */}
-                    <div className={cx("staff-attendance")}>
-                      <AttendanceCalendar attendance={attendance} dailyRecords={dailyRecord} />
-                    </div>
-
-                    {/* //-- Box 2: Salary History */}
-                    <div className={cx("salary-history-box")}>
-                      <h5>💰 Nhật kí lương</h5>
-                      <div className={cx("filter-mode")}>
-                        <button onClick={() => setFilterMode("all")}>All Time</button>
-                        <div>
-                          <select value={selectedMonth} onChange={(e) => setSelectedMonth(Number(e.target.value))}>
-                            {Array.from({ length: 12 }, (_, i) => i + 1).map((m) => (
-                              <option key={m} value={m}>
-                                {new Date(0, m - 1).toLocaleString("default", { month: "long" })}
-                              </option>
-                            ))}
-                          </select>
-                          <select value={selectedYear} onChange={(e) => setSelectedYear(Number(e.target.value))}>
-                            {Array.from({ length: 6 }, (_, i) => selectedYear - 3 + i).map((y) => (
-                              <option key={y} value={y}>
-                                {y}
-                              </option>
-                            ))}
-                          </select>
-                          <button onClick={() => setFilterMode("month")}>Apply</button>
-                        </div>
-                      </div>
-                      <div className={cx("history-list")}>
-                        <div className={cx("history-row", "header")}>
-                          <div>Thời gian</div>
-
-                          <div>Đơn chốt</div>
-                          <div>Đơn phân phối</div>
-                          <div>Tỷ lệ chốt</div>
-                          {/* <div>Revenue</div> */}
-                          <div>Thưởng</div>
-                          <div>Giảm trừ</div>
-                          <div>Lương CB</div>
-                          <div>Tăng ca</div>
-                          <div>Lương lĩnh</div>
-                          {/* <div>Edit</div> */}
-                        </div>
-                        {getFilteredHistory(staff).slice().reverse().map((h: SalaryHistoryType, idx) => {
-                          const bonus = h.bonus ? h.bonus.value : 0;
-                          const fine = h.fine ? h.fine.value : 0;
-                          const overtimeValue = h.overtime ? h.overtime.value : 0;
-
-                          const overtimeValueFix = Math.round(overtimeValue / 1000) * 1000;
-                          const paidSalary = bonus - fine + h.baseSalary + overtimeValueFix;
-
-                          const closeOrderRate = (h.totalCloseOrder / h.totalDistributionOrder) * 100 || 0;
-                          return (
-                            <div key={idx} className={cx("history-row")}>
-                              <div>{h.time}</div>
-
-                              <div>{h.totalCloseOrder}</div>
-                              <div>{h.totalDistributionOrder}</div>
-                              {/* <div>{h.totalRevenue.toLocaleString()} ₫</div> */}
-                              <div>{closeOrderRate.toFixed(2)}%</div>
-                              <div>{h.bonus ? h.bonus.value.toLocaleString() + " ₫" : "-"}</div>
-                              <div>{h.fine ? h.fine.value.toLocaleString() + " ₫" : "-"}</div>
-                              <div>{h.baseSalary.toLocaleString()} ₫</div>
-                              <div>{overtimeValueFix.toLocaleString("vi-VN")} ₫</div>
-                              <div>{paidSalary.toLocaleString("vi-VN")} ₫</div>
-                            </div>
-                          );
-                        })}
-                      </div>
-                    </div>
                   </div>
-                }
-              </React.Fragment>
-            );
-          })}
+
+                  {
+                    <div className={cx("expand-box")}>
+                      {/* //-- Calender box */}
+                      <div className={cx("staff-attendance")}>
+                        <AttendanceCalendar attendance={attendance} dailyRecords={dailyRecord} />
+                      </div>
+
+                      {/* //-- Box 2: Salary History */}
+                      <div className={cx("salary-history-box")}>
+                        <h5>💰 Nhật kí lương</h5>
+                        <div className={cx("filter-mode")}>
+                          <button onClick={() => setFilterMode("all")}>All Time</button>
+                          <div>
+                            <select value={selectedMonth} onChange={(e) => setSelectedMonth(Number(e.target.value))}>
+                              {Array.from({ length: 12 }, (_, i) => i + 1).map((m) => (
+                                <option key={m} value={m}>
+                                  {new Date(0, m - 1).toLocaleString("default", { month: "long" })}
+                                </option>
+                              ))}
+                            </select>
+                            <select value={selectedYear} onChange={(e) => setSelectedYear(Number(e.target.value))}>
+                              {Array.from({ length: 6 }, (_, i) => selectedYear - 3 + i).map((y) => (
+                                <option key={y} value={y}>
+                                  {y}
+                                </option>
+                              ))}
+                            </select>
+                            <button onClick={() => setFilterMode("month")}>Apply</button>
+                          </div>
+                        </div>
+                        <div className={cx("history-list")}>
+                          <div className={cx("history-row", "header")}>
+                            <div>Thời gian</div>
+
+                            <div>Đơn chốt</div>
+                            <div>Đơn phân phối</div>
+                            <div>Tỷ lệ chốt</div>
+                            {/* <div>Revenue</div> */}
+                            <div>Thưởng</div>
+                            <div>Giảm trừ</div>
+                            <div>Lương CB</div>
+                            <div>Tăng ca</div>
+                            <div>Lương lĩnh</div>
+                            {/* <div>Edit</div> */}
+                          </div>
+                          {getFilteredHistory(staff)
+                            .slice()
+                            .reverse()
+                            .map((h: SalaryHistoryType, idx) => {
+                              const bonus = h.bonus ? h.bonus.value : 0;
+                              const fine = h.fine ? h.fine.value : 0;
+                              const overtimeValue = h.overtime ? h.overtime.value : 0;
+
+                              const overtimeValueFix = Math.round(overtimeValue / 1000) * 1000;
+                              const paidSalary = bonus - fine + h.baseSalary + overtimeValueFix;
+
+                              const closeOrderRate = (h.totalCloseOrder / h.totalDistributionOrder) * 100 || 0;
+                              return (
+                                <div key={idx} className={cx("history-row")}>
+                                  <div>{h.time}</div>
+
+                                  <div>{h.totalCloseOrder}</div>
+                                  <div>{h.totalDistributionOrder}</div>
+                                  {/* <div>{h.totalRevenue.toLocaleString()} ₫</div> */}
+                                  <div>{closeOrderRate.toFixed(2)}%</div>
+                                  <div>{h.bonus ? h.bonus.value.toLocaleString() + " ₫" : "-"}</div>
+                                  <div>{h.fine ? h.fine.value.toLocaleString() + " ₫" : "-"}</div>
+                                  <div>{h.baseSalary.toLocaleString()} ₫</div>
+                                  <div>{overtimeValueFix.toLocaleString("vi-VN")} ₫</div>
+                                  <div>{paidSalary.toLocaleString("vi-VN")} ₫</div>
+                                </div>
+                              );
+                            })}
+                        </div>
+                      </div>
+                    </div>
+                  }
+                </React.Fragment>
+              );
+            })}
         </div>
       </div>
 
@@ -545,7 +519,6 @@ export default function UserPage() {
         <div className={cx("wrap-add-form")}>
           <AddUserInfo
             fullUserData={fullUserData}
-            //   setUserData={setUserData}
             setFullUserData={setFullUserData}
             setIsOpenAddForm={setIsOpenForm}
           />

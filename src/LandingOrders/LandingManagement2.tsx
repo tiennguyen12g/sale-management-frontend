@@ -12,6 +12,7 @@ import { io } from "socket.io-client";
 import StaffHeartbeat from "./StaffHeartBeat";
 import StaffNotification from "./StaffNotification";
 import { useAuthStore } from "../zustand/authStore";
+import ShopOrders_v3 from "./ShopOrders_v3";
 export default function LandingManagemen_v2() {
   // const {user, token} = useAuthStore();
   const { products, fetchProducts } = useProductStore();
@@ -54,7 +55,7 @@ export default function LandingManagemen_v2() {
 
       {/* Navigation buttons - use absolute paths so they don't append to current deep path */}
       <StaffHeartbeat />
-      <div className={cx("group-navigate-btn")}>
+      {/* <div className={cx("group-navigate-btn")}>
         {normalizedProducts.map((product, i) => (
           <button
             className={cx("btn-decor")}
@@ -67,14 +68,14 @@ export default function LandingManagemen_v2() {
             {product.name}
           </button>
         ))}
-      </div>
-      <div>
+      </div> */}
+
         {normalizedProducts.map((product, k) => {
           return (
-            <React.Fragment key={k}>{currentProduct === product.name && <ShopOrders_v2 productDetail={product} dataOrders={product.dataOrders} productName={currentProduct}/>}</React.Fragment>
+            <React.Fragment key={k}>{currentProduct === product.name && <ShopOrders_v3 productDetail={product} dataOrders={product.dataOrders} productName={currentProduct}/>}</React.Fragment>
           );
         })}
-      </div>
+ 
     </div>
   );
 }

@@ -6,6 +6,7 @@ import ProductDetails from './ProductDetails/ProductDetails';
 import ImportExportInventory_v2 from './ImportExportInventory/ImportExportInventory_v2';
 import { useMenuStore } from '../../StateManagement/MenuActiveState';
 import { Routes, Route } from "react-router-dom";
+import PageSelect from '../FacebookAPI/PageSelect';
 export default function ProductManage() {
       const { openMenu, activeSubmenu, setOpenMenu, setActiveSubmenu } = useMenuStore();
         let contentShow: React.ReactNode = "";
@@ -18,6 +19,9 @@ export default function ProductManage() {
             break;
           case "product-detail":
             contentShow = <ProductDetails />;
+            break;
+          case "page-select":
+            contentShow = <PageSelect />;
             break;
           default:
             break;

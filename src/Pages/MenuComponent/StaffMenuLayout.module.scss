@@ -1,6 +1,7 @@
 .staff-layout {
   display: flex;
-  height: 100vh; // full page height
+  // height: calc(100vh - 40px);
+  height: 100vh;
 }
 
 .menu-wrapper {
@@ -19,6 +20,7 @@
 
   // shift based on menu state
   margin-left: 30px;
+
 
   &.collapsed {
     margin-left: 35px;

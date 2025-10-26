@@ -1,0 +1,7 @@
+tunnels:
+  express:
+    addr: 3000
+    proto: http
+  vite:
+    addr: 5185
+    proto: http

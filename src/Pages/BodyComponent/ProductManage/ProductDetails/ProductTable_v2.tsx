@@ -18,10 +18,10 @@ function ProductTable_v2() {
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const { products, fetchProducts } = useProductStore();
   // const startAutoFetch = useProductStore((s) => s.startAutoFetch);
-  const [statusMsg, setStatusMsg] = useState<string | null>(null)
-  const [showNotification, setShowNotification] = useState(false)
-  const {logout} = useAuthStore();
-  const {staffID} = useStaffStore()
+  const [statusMsg, setStatusMsg] = useState<string | null>(null);
+  const [showNotification, setShowNotification] = useState(false);
+  const { logout } = useAuthStore();
+  const { staffID } = useStaffStore();
 
   const toggleExpand = (id: string) => {
     setExpandedId((prev) => (prev === id ? null : id));
@@ -29,25 +29,24 @@ function ProductTable_v2() {
   useEffect(() => {
     const timer = setInterval(() => {
       fetchProducts();
-      console.log('fetch');
+      console.log("fetch");
     }, 60 * 1000);
 
     return () => clearInterval(timer); // ✅ return a cleanup function
   }, []);
 
   useEffect(() => {
-   async function GetData(){
-    const res = await fetchProducts();
-   if(res && res.status === "No valid token"){
-    setStatusMsg(res.message);
-    
-   }
-   if(res && res.status === "failed" ){
-        setStatusMsg(res.message)
-   }
-   setShowNotification(true)
-   }
-   GetData();
+    async function GetData() {
+      const res = await fetchProducts();
+      if (res && res.status === "No valid token") {
+        setStatusMsg(res.message);
+      }
+      if (res && res.status === "failed") {
+        setStatusMsg(res.message);
+      }
+      setShowNotification(true);
+    }
+    GetData();
   }, [fetchProducts]);
 
   // const product = products.filter((p) => p.name === productName);
@@ -57,16 +56,15 @@ function ProductTable_v2() {
   };
   return (
     <div className={cx("product-table")}>
-      {showNotification && statusMsg && <NotificationBox_v2 message={statusMsg} onClose={() => setShowNotification(false)}/>}
-      
-            <div className={cx("user-page")}>
+      {showNotification && statusMsg && <NotificationBox_v2 message={statusMsg} onClose={() => setShowNotification(false)} />}
+
+      {/* <div className={cx("user-page")}>
         {staffID && <StaffTracking staffID={staffID} />}
         <NavLink key="user-page" to={`/ho-so-ca-nhan`} style={{ textDecoration: "none" }}>
-          {/* {user?.email || "None"} */}
           Hồ sơ cá nhân
         </NavLink>
         <div onClick={() => handleLogout()}>Đăng xuất</div>
-      </div>
+      </div> */}
       <h3>Danh sách sản phẩm đang bán</h3>
       <table>
         <thead>
