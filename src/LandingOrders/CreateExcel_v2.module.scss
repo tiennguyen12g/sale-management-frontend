@@ -1,121 +1,341 @@
 .create-excel-main {
-  padding: 0px 20px;
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   display: flex;
-  flex-direction: column;
-  gap: 10px;
   position: relative;
   width: 100%;
   height: 100%;
-  overflow: hidden; // prevent layout overflow
-  &.collapsed {
-    // margin-left: 45px;
-    //   width: calc(100% - 40px - 45px);
+  flex: 1;
+  flex-direction: column;
+}
+.wrap-carrier-select {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  .carrier-title {
+    font-weight: 600;
+    font-size: 15px;
   }
-  .create-excel-header {
+}
+.carrier-select {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0px;
+  padding: 0px 6px;
+  border: 1px solid var(--table-border-color);
+  border-radius: 6px;
+  label {
     display: flex;
-    justify-content: center;
     align-items: center;
-    gap: 30px;
-  }
-  .create-excel-title {
-    font-size: 24px;
-    font-weight: bold;
-    text-align: center;
-    color: #222;
-  }
-  .title {
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 8px;
-    color: #333;
-  }
 
-  .carrier-select {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    padding: 8px 0;
-    label {
-      display: flex;
-      align-items: center;
-
-      gap: 6px;
-      cursor: pointer;
-      font-size: 16px;
-      color: #444;
-      width: fit-content;
-      font-weight: 550;
-      span {
-        // width: 180px;
-      }
-      input {
-        width: 18px;
-        height: 18px;
-        cursor: pointer;
-      }
-      select {
-        margin-left: 8px;
-        padding: 4px 8px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        font-size: 14px;
-        cursor: pointer;
-      }
+    gap: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #444;
+    width: fit-content;
+    font-weight: 550;
+    span {
+      // width: 180px;
     }
-  }
-
-  .actions {
-    display: flex;
-    justify-content: flex-end;
-
-    button {
-      background: #007bff;
-      color: #fff;
-      border: none;
-      padding: 8px 16px;
-      border-radius: 6px;
+    input {
+      width: 18px;
+      height: 18px;
       cursor: pointer;
+    }
+    select {
+      margin-left: 8px;
+      padding: 4px 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
       font-size: 14px;
-      font-weight: 500;
-      transition: 0.2s ease;
-
-      &:hover {
-        background: #0056b3;
-      }
+      cursor: pointer;
     }
   }
 }
-.table-wrapper {
-  max-height: 600px;
-  overflow-y: auto;
-  overflow-x: auto; // enable horizontal scroll
+
+.create-excel-main {
+  .footer {
+    height: 45px;
+    width: 100%;
+  }
+  .header {
+    background-color: white;
+    // border-bottom: 1px solid #e0e0e0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 20px;
+    height: 60px;
+    width: 100%;
+    box-sizing: border-box;
+
+    .header-left {
+      display: flex;
+      .header-tabs {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        padding: 4px 0px;
+        border-radius: 8px;
+      }
+    }
+
+    .header-right {
+      display: flex;
+      gap: 12px;
+
+      .header-actions {
+        display: flex;
+        gap: 8px;
+      }
+    }
+  }
+  .header2 {
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 20px;
+    height: 40px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 5px;
+
+    .header-left {
+      display: flex;
+      .header-tabs {
+        display: flex;
+        gap: 8px;
+        padding: 4px 0px;
+        border-radius: 8px;
+      }
+    }
+
+    .header-right {
+      display: flex;
+      gap: 12px;
+
+      .header-actions {
+        display: flex;
+        gap: 8px;
+      }
+    }
+  }
+
+  .content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    flex: 1;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border: 2px solid rgb(247, 103, 37);
+    border-right: 0;
+    background: #fff;
+    overflow: hidden;
+
+    .table-scroll {
+      width: 100%;
+      height: 100%;
+      overflow-x: auto; /* handle horizontal scroll */
+      overflow-y: auto; /* handle vertical scroll */
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .table-container {
+      min-width: fit-content;
+      display: flex;
+      flex-direction: column;
+      background-color: white;
+    }
+
+    /* HEADER */
+    .table-header {
+      display: grid;
+      /* Make first two columns fixed, rest flexible */
+      grid-template-columns: 160px 100px repeat(18, minmax(140px, 1fr));
+      background-color: #f8f9fa;
+      // border-bottom: 2px solid #e0e0e0;
+      position: sticky;
+      top: 0;
+      z-index: 30; /* header above body */
+      .table-cell {
+        padding: 8px 10px;
+        font-weight: 700;
+        font-size: 14px;
+        color: #333;
+        border-right: 1px solid #e6e5e5;
+        box-sizing: border-box;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+    }
+    .table-header .table-cell:nth-child(n + 3) {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    /* BODY */
+    /* body now scrolls inside same container as header */
+    .table-body {
+      .table-row {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 160px 100px repeat(18, minmax(140px, 1fr));
+        border-bottom: 1px solid #e2e2e2e1;
+        transition: background-color 0.2s;
+        align-items: center;
+        position: relative;
+
+        &:hover {
+          background-color: #f8f9fa;
+        }
+
+        .table-cell {
+          padding: 6px 10px;
+          font-size: 14px;
+          border-right: 1px solid #f0f0f0;
+          display: flex;
+          align-items: center;
+          background: #fff;
+          box-sizing: border-box;
+          height: 100%;
+          line-height: 1.2;
+        }
+
+        /* ✅ Sticky for first two columns */
+        .table-cell:nth-child(1) {
+          position: sticky;
+          left: 0;
+          z-index: 20;
+          background: #fff;
+          box-shadow: 2px 0 2px -2px rgba(0, 0, 0, 0.1); /* soft shadow divider */
+        }
+
+        .table-cell:nth-child(2) {
+          position: sticky;
+          left: 160px;
+          z-index: 19;
+          background: #fff;
+          box-shadow: 2px 0 2px -2px rgba(0, 0, 0, 0.1);
+        }
+        .account-name {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 4px;
+        }
+      }
+      .table-row .table-cell:nth-child(n + 3) {
+        display: flex;
+        justify-content: flex-end;
+      }
+    }
+
+    /* header sticky columns (still works) */
+    .table-header .table-cell:nth-child(1) {
+      position: sticky;
+      left: 0;
+      z-index: 30;
+      background: #f8f9fa;
+    }
+
+    .table-header .table-cell:nth-child(2) {
+      position: sticky;
+      left: 160px;
+      z-index: 29;
+      background: #f8f9fa;
+    }
+
+    /* Ensure header sticky cells are above body sticky cells */
+    .table-header .table-cell {
+      background: #f8f9fa;
+      z-index: 50;
+    }
+    .table-header .table-cell:nth-child(1) {
+      position: sticky;
+      left: 0;
+      z-index: 60;
+    }
+    .table-header .table-cell:nth-child(2) {
+      position: sticky;
+      left: 160px;
+      z-index: 59;
+    }
+  }
+}
+
+.title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+/* Table layout */
+.orders-table {
   position: relative;
   width: 100%;
-  overflow-x: auto; // ✅ horizontal scroll
-  overflow-y: hidden;
-  margin-top: 10px;
+  height: 100%;
+  border-collapse: collapse;
+  margin-top: -4px;
 
-  // Optional: make scroll smooth and always visible
-  scrollbar-width: thin;
-  scrollbar-color: #ccc transparent;
+  th,
+  td {
+    // border: 1px solid var(--table-border-color);
+    border-right: 1px solid var(--table-border-color);
+    border-bottom: 1px solid var(--table-border-color);
+    padding: 8px;
+    text-align: center;
+    white-space: nowrap; /* prevent text from wrapping */
+  }
+
+  thead th {
+    position: sticky;
+    top: -2px;
+    background: #f5f5f5;
+    z-index: 2;
+    border-top: 1px solid transparent;
+  }
+}
+
+.edit-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+
+  &:hover {
+    color: blue;
+  }
+}
+
+.btn-decor {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background: var(--orange-btn-bg-color);
+  font-size: 16px;
+  outline: none;
+  color: var(--orange-btn-text-color);
+  // margin-bottom: 15px;
+  &:hover {
+    background: #4caf50;
+  }
+  &.active {
+    background: #4caf50;
+    color: white;
+  }
 }
 
 .preview-table {
-  min-width: 1200px; // ensures columns don’t squash
+  position: relative;
+  width: 100%;
+  height: 100%;
   border-collapse: collapse;
-  font-size: 13px;
+  margin-top: -4px;
 }
 
-.preview-table th,
-.preview-table td {
-  border: 1px solid #ddd;
-  padding: 6px 8px;
-  white-space: nowrap; // keep text in one line
-}
 .preview-table {
   border-collapse: collapse;
   min-width: 1200px; // ✅ ensures scroll triggers when content is wide
@@ -125,60 +345,26 @@
   font-size: 13px;
   th,
   td {
-    white-space: nowrap; // ✅ prevent text from wrapping
-    padding: 6px 10px;
-    border: 1px solid #ccc;
-    text-align: left;
-    font-size: 13px;
+    border-right: 1px solid var(--table-border-color);
+    border-bottom: 1px solid var(--table-border-color);
+    padding: 6px 8px;
+    text-align: center;
+    white-space: nowrap; /* prevent text from wrapping */
   }
 
-  thead {
-    position: sticky;
-    top: 0;
-    background-color: #f5f5f5;
-    z-index: 2;
-  }
+  // thead th {
+  //   position: sticky;
+  //   top: -2px;
+  //   background: #f5f5f5;
+  //   z-index: 2;
+  //   border-top: 1px solid transparent;
+  // }
 
   tr:nth-child(even) {
     background-color: #fafafa;
   }
 }
-.create-excel-main.collapsed .table-wrapper {
-  max-width: calc(100vw - 130px);
-}
 
-.create-excel-main:not(.collapsed) .table-wrapper {
-  max-width: calc(100vw - 230px);
-}
-
-.table-header {
-  background: #f5f5f5;
-  position: sticky;
-  top: 0;
-  z-index: 2;
-}
-.total-order {
-  display: flex;
-  justify-content: center;
-  .filters {
-    margin: 0px 10px;
-    select {
-      padding: 4px 8px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      font-size: 15px;
-      cursor: pointer;
-      color: red;
-      font-weight: 550;
-    }
-  }
-  .title-total {
-    font-weight: 600;
-    span {
-      color: red;
-    }
-  }
-}
 .btn-decor {
   background: #28a745;
   color: #fff;
@@ -195,10 +381,40 @@
   }
 }
 
-.btn-decor.collapsed {
-  max-width: calc(100vw - 130px);
-}
-
-.btn-decor:not(.collapsed) {
-  max-width: calc(100vw - 230px);
+.header-tabs {
+  .title-total {
+    font-weight: 600;
+    font-size: 16px;
+    span {
+      color: var(--orange-header-text-color);
+      font-size: 18px;
+    }
+  }
+  .filters {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    .filter-title {
+      font-weight: 600;
+      font-size: 16px;
+    }
+    .filter-content {
+      border-radius: 6px;
+      border: 1px solid gainsboro;
+      padding: 2px 6px;
+      display: flex;
+      align-items: center;
+      select {
+        padding: 4px 8px;
+        font-size: 14px;
+        cursor: pointer;
+        font-weight: 500;
+        outline: none;
+        border: 0px solid transparent;
+        option{
+          outline: none;
+        }
+      }
+    }
+  }
 }

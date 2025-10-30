@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import classNames from 'classnames/bind'
 import styles from './SettingPage.module.scss'
-
+import FastMessage from './FastMessage'
 const cx = classNames.bind(styles)
 import ManageTags from '../BodyComponent/FacebookAPI/ManageTags';
 import GeneralSetting from './GeneralSetting';
@@ -30,7 +30,7 @@ export default function SettingPage() {
             <span className={cx('badge')}>Beta</span>
           </div>
           
-          <div className={cx('menu-item')}>
+          <div className={cx('menu-item', activePage === "fast-message" ? "active" : "")} onClick={() => setAcctivePage("fast-message")}>
             <span className={cx('icon')}>💬</span>
             <span className={cx('text')}>Hỗ trợ trả lời</span>
           </div>
@@ -76,6 +76,7 @@ export default function SettingPage() {
       <div className={cx('content')}>
         {activePage === "general-setting" && <GeneralSetting />}
         {activePage === "tag-management" && <ManageTags />}
+        {activePage === "fast-message" && <FastMessage />}
       </div>
     </div>
   )

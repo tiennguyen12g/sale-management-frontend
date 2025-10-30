@@ -27,15 +27,16 @@ export default function Login() {
       const data = await res.json();
 
       if (!res.ok) {
-        setError(data.message || "Login failed");
+        setError(data.message || "Đăng nhập thất bại");
         return;
       }
-      login(data.token, data.user, data.yourStaffInfo); // 🔑 store token + user
+      login(data.token, data.user, data.yourStaffInfo, data.settings); // 🔑 store token + user
 
       // localStorage.setItem("token", data.token);
       navigate("/ho-so-ca-nhan"); // ✅ Redirect after login
     } catch (err) {
-      setError("Something went wrong. Please try again.");
+      console.log('err', err);
+      setError("Có lỗi, vui lòng thử lại");
     }
   };
 

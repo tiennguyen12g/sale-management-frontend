@@ -13,7 +13,9 @@ import AttendanceCalendar from "../Pages/BodyComponent/Financial/Staff/Attendanc
 import type { SalaryHistoryType, EmployeeAttendanceType, DailyRecordType } from "../zustand/staffStore";
 import { deligenceBonus, workingDayPerMonth } from "../configs/DefaultData";
 import StaffHeartbeat from "../LandingOrders/StaffHeartBeat";
-
+import { VietQR } from "vietqr";
+import type { ListBankType, BankInfoType } from "../assets/fullVietNamBanks";
+import { fullVietNamBanks } from "../assets/fullVietNamBanks";
 export interface FormGetUserInfo {
   name: string;
   birthday: string;
@@ -31,11 +33,12 @@ export interface FormGetUserInfo {
   accountLogin: string;
   identityId: string;
 }
+
 export default function UserPage() {
   // fake initial user data (can be fetched from server later)
 
-  const { yourStaffProfile, fetchYourStaffProfile } = useStaffStore();
-  const { user, getAuthHeader, yourStaffId } = useAuthStore();
+  // const { yourStaffProfile, fetchYourStaffProfile } = useStaffStore();
+  const { user, getAuthHeader, yourStaffId, yourStaffInfo } = useAuthStore();
 
   const initialForm: Omit<StaffDataType, "_id"> = {
     role: (user?.staffRole as StaffRole) || "Sale-Staff",
@@ -59,6 +62,9 @@ export default function UserPage() {
     bankInfos: {
       bankAccountNumber: "",
       bankOwnerName: "",
+      bankName: "",
+      bankShortName: "",
+      bankCode: "",
     },
     salaryHistory: [],
     attendance: [],
@@ -67,26 +73,33 @@ export default function UserPage() {
     claimedAt: "",
   };
 
-  const [fullUserData, setFullUserData] = useState<StaffDataType>(yourStaffProfile || initialForm);
+  const [fullUserData, setFullUserData] = useState<StaffDataType>(yourStaffInfo || initialForm);
   const [userData, setUserData] = useState<StaffInfoType>(fullUserData.staffInfo);
 
   const [filterMode, setFilterMode] = useState<"all" | "month">("all");
   const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth() + 1);
   const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
   const [expandedStaff, setExpandedStaff] = useState<string | null>(null);
+  const [listBanks, setListBanks] = useState<ListBankType>(fullVietNamBanks);
 
-  useEffect(() => {
-    if (yourStaffId && user) {
-      fetchYourStaffProfile(yourStaffId, user.id);
+  // useEffect(() => {
+  //   if (yourStaffId && user) {
+  //     fetchYourStaffProfile(yourStaffId, user.id);
+  //   }
+  // }, [fetchYourStaffProfile, yourStaffId, user]);
+  // useEffect(() => {
+  //   if (yourStaffProfile) {
+  //     console.log("yourStaffProfile", yourStaffProfile);
+  //     setUserData(yourStaffProfile.staffInfo);
+  //     setFullUserData(yourStaffProfile);
+  //   }
+  // }, [yourStaffProfile]);
+    useEffect(() => {
+    if (yourStaffInfo) {
+      setUserData(yourStaffInfo.staffInfo);
+      setFullUserData(yourStaffInfo);
     }
-  }, [fetchYourStaffProfile, yourStaffId, user]);
-  useEffect(() => {
-    if (yourStaffProfile) {
-      console.log("yourStaffProfile", yourStaffProfile);
-      setUserData(yourStaffProfile.staffInfo);
-      setFullUserData(yourStaffProfile);
-    }
-  }, [yourStaffProfile]);
+  }, [yourStaffInfo]);
 
   const [isOpenForm, setIsOpenForm] = useState(false);
   const [newPassword, setNewPassword] = useState("");
@@ -176,8 +189,8 @@ export default function UserPage() {
 
   // --- helper to calculate stats ---
   function getSaleStaffData() {
-    if (!yourStaffProfile) return [];
-    let saleStaff = [yourStaffProfile].filter((s) => s.role === "Sale-Staff");
+    if (!yourStaffInfo) return [];
+    let saleStaff = [yourStaffInfo].filter((s) => s.role === "Sale-Staff");
 
     // map data with calculated performance
     let mapped = saleStaff.map((s) => {
@@ -240,6 +253,27 @@ export default function UserPage() {
   const totalWorkDay = (saleStaffData[0]?.diligence || 0) + (saleStaffData[0]?.workLate || 0);
   const overtimeValueFix = Math.round(overtimeValue / 1000) * 1000;
   const estPaidSalary = bonus - fine + overtimeValueFix + salaryPerDay * totalWorkDay;
+
+  // VietQR
+  useEffect(() => {
+    if (isOpenForm && listBanks.data.length === 999) {
+      let vietQR = new VietQR({
+        clientID: "e88851c9-5f75-4291-a2c5-bf63f30eff7e",
+        apiKey: "de4eb053-6469-450f-9940-5c84ff1b8c62",
+      });
+
+      // list banks are supported create QR code by Vietqr
+      vietQR
+        .getBanks()
+        .then((banks: ListBankType) => {
+          console.log(banks);
+          setListBanks(banks);
+        })
+        .catch((err: any) => {
+          console.log("vietqr get bank info error");
+        });
+    }
+  }, [isOpenForm, listBanks]);
   return (
     <div className={cx("user-page-main")}>
       <StaffHeartbeat />
@@ -269,7 +303,7 @@ export default function UserPage() {
         </div>
       )}
       <div className={cx("wrap-info-account")}>
-        {user && (
+        {/* {user && (
           <div className={cx("profile-card", "card1")}>
             <div className={cx("header")}>
               <div className={cx("title")}>Thông tin tài khoản</div>
@@ -293,7 +327,7 @@ export default function UserPage() {
               <strong>Ngày đăng kí:</strong> {user.registeredDate}
             </p>
           </div>
-        )}
+        )} */}
         <div className={cx("profile-card", "card2")}>
           <div className={cx("header")}>
             <div className={cx("title")}>Thông tin cá nhân</div>
@@ -306,7 +340,7 @@ export default function UserPage() {
               <strong>Họ tên:</strong> <span>{userData.name}</span>
             </div>
             <div className={cx("part")}>
-              <strong>Ngày sinh:</strong> <span>{userData.birthday}</span>
+              <strong>SĐT:</strong> {userData.phone}
             </div>
           </div>
 
@@ -315,24 +349,34 @@ export default function UserPage() {
               <strong>CCCD:</strong> {userData.identityId}
             </div>
             <div>
-              <strong>SĐT:</strong> {userData.phone}
+              <strong>Lương cơ bản:</strong> {fullUserData?.salary?.toLocaleString("vi-VN")} đ
             </div>
           </div>
-          <p>
-            <strong>Ngày vào làm:</strong> {fullUserData.joinedDate}
-          </p>
-          <p>
-            <strong>Lương cơ bản:</strong> {fullUserData?.salary?.toLocaleString("vi-VN")} đ
-          </p>
-          <p>
-            <strong>TK ngân hàng:</strong> {fullUserData.bankInfos.bankAccountNumber} - {fullUserData.bankInfos.bankOwnerName}
-          </p>
-          <p>
-            <strong>Địa chỉ:</strong> {userData.address}
-          </p>
-          <p>
-            <strong>Mô tả:</strong> {userData.description}
-          </p>
+
+          <div className={cx("row")}>
+            <div className={cx("part")}>
+              <strong>Ngày sinh:</strong> <span>{userData.birthday}</span>
+            </div>
+            <div>
+              <strong>Ngày vào làm:</strong> {fullUserData.joinedDate}
+            </div>
+          </div>
+          <div className={cx("row")}>
+            <div>
+              <strong>Địa chỉ:</strong> {userData.address}
+            </div>
+            <div className={cx("description")}>
+              <strong>Mô tả:</strong> {userData.description}
+            </div>
+          </div>
+          <div className={cx("row")}>
+            <div>
+              <strong>TK ngân hàng:</strong> {fullUserData.bankInfos.bankAccountNumber} - {fullUserData.bankInfos.bankOwnerName}
+            </div>
+            <div>
+              <strong>Ngân hàng:</strong> {fullUserData.bankInfos.bankCode} - {fullUserData.bankInfos.bankShortName}
+            </div>
+          </div>
         </div>
         <div className={cx("performance-card")}>
           <div className={cx("header")}>
@@ -409,8 +453,8 @@ export default function UserPage() {
             {/* <div>Edit</div> */}
           </div>
 
-          {yourStaffProfile &&
-            [yourStaffProfile].map((staff, k) => {
+          {yourStaffInfo &&
+            [yourStaffInfo].map((staff, k) => {
               const summary = calculateStaffSummary(staff);
               return (
                 <React.Fragment key={k}>
@@ -517,11 +561,7 @@ export default function UserPage() {
 
       {isOpenForm && (
         <div className={cx("wrap-add-form")}>
-          <AddUserInfo
-            fullUserData={fullUserData}
-            setFullUserData={setFullUserData}
-            setIsOpenAddForm={setIsOpenForm}
-          />
+          <AddUserInfo fullUserData={fullUserData} setFullUserData={setFullUserData} setIsOpenAddForm={setIsOpenForm} listBanks={listBanks} />
         </div>
       )}
     </div>

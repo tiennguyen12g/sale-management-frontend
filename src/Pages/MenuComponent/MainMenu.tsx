@@ -65,16 +65,6 @@ export default function MainMenu() {
             Product Details
             
           </div>
-          {/* <div
-            className={cx("submenu-item", { active: activeSubmenu === "product-detail" })}
-            onClick={() => {
-              setActiveSubmenu("product-detail");
-              navigate("/home/product-manage/product-detail");
-            }}
-          >
-            <IoMdCart className={cx("icon")} size={22} />
-            Product Details
-          </div> */}
         </div>
       )}
 

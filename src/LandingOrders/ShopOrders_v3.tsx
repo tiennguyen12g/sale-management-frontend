@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from "react";
+import React, { useEffect, useState, useMemo, type Dispatch, type SetStateAction, useRef } from "react";
 import classNames from "classnames/bind";
 import styles from "./ShopOrders_v3.module.scss";
 const cx = classNames.bind(styles);
@@ -22,12 +22,12 @@ import { GiDividedSquare } from "react-icons/gi";
 import { HiSearch } from "react-icons/hi";
 import { FcFilledFilter } from "react-icons/fc";
 import { LuSquareMenu } from "react-icons/lu";
-
 import { FaCircle } from "react-icons/fa";
 import { IoIosArrowDropleft } from "react-icons/io";
 import { IoIosArrowDropright } from "react-icons/io";
 import { MdInsertChart } from "react-icons/md";
 import { CgDesktop } from "react-icons/cg";
+
 // Hooks and type
 import { useAuthStore } from "../zustand/authStore";
 import { useStaffStore, type StaffRole } from "../zustand/staffStore";
@@ -36,6 +36,7 @@ import { type ProductType, type ProductDetailsType } from "../zustand/productSto
 
 // Components
 import CreateExcel from "./CreateExcel";
+import CreateExcel_v2 from "./CreateExcel_v2";
 import VnAddressSelect_Old from "../ultilitis/VnAddress/VnAddressOld";
 import UploadExcelBox from "../ultilitis/UploadExcelBox";
 import StaffNotification from "./StaffNotification";
@@ -44,9 +45,12 @@ import { ClaimMorningButton } from "./ClaimOrderMorning";
 import NotificationBox_v2 from "../ultilitis/NotificationBox_v2";
 import FreeShipAnimate from "./PromotionTags/FreeShipAnimate";
 import Coupon from "./PromotionTags/Coupon";
+import { HiPhoneMissedCall } from "react-icons/hi";
 
 // Ultilitys
 import CustomSelectGlobal from "../ultilitis/CustomSelectGlobal";
+
+
 type VirtualCartType = ProductDetailsType & { quantity: number; isSelected: boolean };
 
 const COLORS: Record<string, string> = {
@@ -68,6 +72,17 @@ const COLORS: Record<string, string> = {
 const STATUS_OPTIONS = [
   // "Chưa gọi điện",
   "Đơn mới",
+  "Gọi lần 1 ❌", // ✖
+  "Gọi lần 2 ❌",
+  "Gọi lần 3 ❌",
+  "Không mua",
+  "Sale hủy",
+  "Sai số",
+  "Chốt",
+];
+const STATUS_OPTIONS2 = [
+  // "Chưa gọi điện",
+  "Đơn mới",
   "Không gọi được lần 1",
   "Không gọi được lần 2",
   "Không gọi được lần 3",
@@ -76,7 +91,7 @@ const STATUS_OPTIONS = [
   "Sai số",
   "Chốt",
 ];
-// For delivery status, you should add the update time for each status change.
+// For delivery status, you should add the update time for each status change. ❌
 const DeliveryOptions = [
   "Chưa gửi hàng",
   "Đang đóng hàng",
@@ -115,10 +130,11 @@ interface ShopOrdersProps {
   productDetail: ProductType;
   productName: string;
   dataOrders: OrderDataFromServerType[];
+  setGetFinalData: Dispatch<SetStateAction<FinalOrder[]>>;
 }
 
 const iconSize = 20;
-export default function ShopOrders_v3({ productDetail, dataOrders, productName }: ShopOrdersProps) {
+export default function ShopOrders_v3({ productDetail, dataOrders, productName, setGetFinalData }: ShopOrdersProps) {
   const { updateOrder, deleteOrder, addOrder, updateMultipleOrders, uploadOrdersExcel, deleteManyOrder } = useShopOrderStore();
   const { user, logout } = useAuthStore();
   const [showNotification, setShowNotification] = useState(false);
@@ -128,7 +144,7 @@ export default function ShopOrders_v3({ productDetail, dataOrders, productName }
   const [staffID, setStaffID] = useState("none");
   const [userId, setUserId] = useState("none");
   const staffRole: StaffRole | "none" = user?.staffRole || "none";
-  const [menuCollapsed, setMenuCollapsed] = useState(false);
+  // const [menuCollapsed, setMenuCollapsed] = useState(false);
   const [activeTable, setActiveTable] = useState("personal-ads-acc");
 
   useEffect(() => {
@@ -156,6 +172,7 @@ export default function ShopOrders_v3({ productDetail, dataOrders, productName }
   const [viewMode, setViewMode] = useState<"table" | "excel">("table");
   const [orders, setOrders] = useState<FinalOrder[]>(serverFinalOrderData);
   const [originOrder, setOriginOrder] = useState<OriginalOrder | null>(null);
+  const [isFinalDataChange, setIsFinalDataChange] = useState(false);
 
   // filter state
   const [selectedStatuses, setSelectedStatuses] = useState<string[]>(["All"]);
@@ -296,13 +313,46 @@ export default function ShopOrders_v3({ productDetail, dataOrders, productName }
   const filteredConfirmedOrders = deliveryStatuses === "All" ? filteredOrders : filteredOrders.filter((o) => o.deliveryStatus === deliveryStatuses);
 
   // Step 2: filter by search text
-  const finalData = !searchOrderCode
-    ? filteredConfirmedOrders
-    : filteredConfirmedOrders.filter(
-        (o) =>
-          o.orderCode.toLowerCase().includes(searchOrderCode.toLowerCase()) ||
-          (o.deliveryCode && o.deliveryCode.toLowerCase().includes(searchOrderCode.toLowerCase()))
-      );
+  // const finalData = !searchOrderCode
+  //   ? filteredConfirmedOrders
+  //   : filteredConfirmedOrders.filter(
+  //       (o) =>
+  //         o.orderCode.toLowerCase().includes(searchOrderCode.toLowerCase()) ||
+  //         (o.deliveryCode && o.deliveryCode.toLowerCase().includes(searchOrderCode.toLowerCase()))
+  //     );
+  const finalData = useMemo(() => {
+    if (!searchOrderCode) return filteredConfirmedOrders;
+    const q = searchOrderCode.toLowerCase();
+    return filteredConfirmedOrders.filter((o) => o.orderCode.toLowerCase().includes(q) || (o.deliveryCode && o.deliveryCode.toLowerCase().includes(q)));
+  }, [searchOrderCode, filteredConfirmedOrders]);
+
+  // keep previous ref for shallow comparison
+  const prevRef = useRef<typeof finalData | null>(null);
+
+  useEffect(() => {
+    const prev = prevRef.current;
+    let changed = false;
+
+    if (!prev) {
+      changed = finalData.length > 0;
+    } else if (prev.length !== finalData.length) {
+      changed = true;
+    } else {
+      // compare by identifier (use your real unique key, e.g. id or orderCode)
+      for (let i = 0; i < finalData.length; i++) {
+        // quick compare: same object reference or same id/orderCode
+        if (prev[i] !== finalData[i] && (prev[i].orderCode || prev[i].orderCode) !== (finalData[i].orderCode || finalData[i].orderCode)) {
+          changed = true;
+          break;
+        }
+      }
+    }
+
+    if (changed) {
+      setGetFinalData(finalData);
+      prevRef.current = finalData;
+    }
+  }, [finalData, setGetFinalData]);
 
   const handleFilterByOwnerId = (codeText: string) => {
     if (!codeText) return filteredConfirmedOrders;
@@ -643,7 +693,7 @@ export default function ShopOrders_v3({ productDetail, dataOrders, productName }
       </div> */}
 
       {/* Sidebar */}
-      <div className={cx("body-left")} style={{ width: menuCollapsed ? 60 : 180 }}>
+      {/* <div className={cx("body-left")} style={{ width: menuCollapsed ? 60 : 180 }}>
         <div className={cx("collapsed-btn")} onClick={() => setMenuCollapsed(!menuCollapsed)}>
           {!menuCollapsed ? <IoIosArrowDropleft size={24} color="#ff3300" /> : <IoIosArrowDropright size={24} color="#ff3300" />}
         </div>
@@ -651,8 +701,6 @@ export default function ShopOrders_v3({ productDetail, dataOrders, productName }
           <div className={cx("logo-section")}>
             <StaffNotification staffID={staffID !== null ? staffID : ""} menuCollapsed={menuCollapsed} />
           </div>
-
-          {/* {!menuCollapsed && <span>Đơn mới</span>} */}
         </div>
         <div className={cx("sidebar-menu")}>
           <div className={cx("menu-title")}>
@@ -676,963 +724,955 @@ export default function ShopOrders_v3({ productDetail, dataOrders, productName }
           </div>
         </div>
         <div className={cx("sidebar-footer")}>
-          <div className={cx("footer-info")}>{/* Footer content */}</div>
+          <div className={cx("footer-info")}></div>
         </div>
-      </div>
+      </div> */}
 
       {/* Body Content */}
-      <div className={cx("body-right")} style={{ width: menuCollapsed ? "calc(100% - 60px)" : "calc(100% - 180px)" }}>
-        {viewMode === "table" &&  <div className={cx("header")}>
-          <div className={cx("header-left")}>
-            <div className={cx("header-tabs")}>
-              <div className={cx("search-decor")}>
-                <HiSearch size={20} />
-                <input
-                  type="text"
-                  placeholder="Nhập mã đơn shop hoặc nhập mã đơn nhà vận chuyển"
-                  className={cx("input-search")}
-                  onChange={(e) => handleSearchChange(e.target.value)}
-                />
-              </div>
+      {/* <div className={cx("body-right")} style={{ width: menuCollapsed ? "calc(100% - 60px)" : "calc(100% - 180px)" }}>
+      </div> */}
+      <div className={cx("header")}>
+        <div className={cx("header-left")}>
+          <div className={cx("header-tabs")}>
+            <div className={cx("search-decor")}>
+              <HiSearch size={20} />
+              <input
+                type="text"
+                placeholder="Nhập mã đơn shop hoặc nhập mã đơn nhà vận chuyển"
+                className={cx("input-search")}
+                onChange={(e) => handleSearchChange(e.target.value)}
+              />
             </div>
           </div>
-          <div className={cx("header-right")}>
-            <div className={cx("header-actions")}>
-              <button className={cx("btn-decor")} onClick={() => setCreateNewOrderBox(true)}>
-                Tạo đơn hàng mới
+        </div>
+        <div className={cx("header-right")}>
+          <div className={cx("header-actions")}>
+            <button className={cx("btn-decor")} onClick={() => setCreateNewOrderBox(true)}>
+              Tạo đơn hàng mới
+            </button>
+            <button className={cx("btn-decor")} onClick={() => setOpenUpdateDeliveryBox(true)}>
+              Cập nhật vận chuyển hàng loạt
+            </button>
+            {staffRole === "admin" && (
+              <button className={cx("btn-decor")} onClick={() => DeleteAllSelectOrder()}>
+                Delete all select order
               </button>
-              <button className={cx("btn-decor")} onClick={() => setOpenUpdateDeliveryBox(true)}>
-                Cập nhật vận chuyển hàng loạt
-              </button>
-              {staffRole === "admin" && (
-                <button className={cx("btn-decor")} onClick={() => DeleteAllSelectOrder()}>
-                  Delete all select order
-                </button>
-              )}
-              <button className={cx("btn-decor")} onClick={() => setShowUploadExcel(true)}>
-                Tải excel
-              </button>{" "}
-              <div style={{ display: "flex", justifyContent: "space-between", gap: 10 }}>
-                <ClaimMorningButton staffID={staffID} userId={userId} />
-                <StaffRedistributeButton staffID={staffID} userId={userId} />
-              </div>
+            )}
+            <button className={cx("btn-decor")} onClick={() => setShowUploadExcel(true)}>
+              Tải excel
+            </button>{" "}
+            <div style={{ display: "flex", justifyContent: "space-between", gap: 10 }}>
+              <ClaimMorningButton staffID={staffID} userId={userId} />
+              <StaffRedistributeButton staffID={staffID} userId={userId} />
             </div>
           </div>
-        </div>}
-        {viewMode === "table" && <div className={cx("header2")}>
-          <div className={cx("header-left")}>
-            <div className={cx("header-tabs")}>
-              <div className={cx("filter-decor")}>
-                <FcFilledFilter size={24} />
-                <CustomSelectGlobal options={filterOptions} placeholder="-- Chọn lọc --" onChange={(key) => setSortBy(key as SortOrder)} />
-              </div>
-              <div className={cx("filters")}>
-                <div className={cx("filter-checkbox")}>
-                  <label>
-                    <input
-                      type="checkbox"
-                      checked={selectedStatuses.includes("All")}
-                      onChange={() => {
-                        toggleStatus("All");
-                        setDeliveryStatuses("All");
-                      }}
-                    />
-                    Tất cả
+        </div>
+      </div>
+      <div className={cx("header2")}>
+        <div className={cx("header-left")}>
+          <div className={cx("header-tabs")}>
+            <div className={cx("filter-decor")}>
+              <FcFilledFilter size={24} />
+              <CustomSelectGlobal options={filterOptions} placeholder="-- Chọn lọc --" onChange={(key) => {
+                setSortBy(key as SortOrder);
+                console.log('1');
+              }} />
+            </div>
+            <div className={cx("filters")}>
+              <div className={cx("filter-checkbox")}>
+                <label>
+                  <input
+                    type="checkbox"
+                    checked={selectedStatuses.includes("All")}
+                    onChange={() => {
+                      toggleStatus("All");
+                      setDeliveryStatuses("All");
+                    }}
+                  />
+                  Tất cả
+                </label>
+                {STATUS_OPTIONS.map((status) => (
+                  <label key={status}>
+                    <input type="checkbox" checked={selectedStatuses.includes(status)} onChange={() => toggleStatus(status)} />
+                    <span>{status} - </span>
+                    <span style={{ color: "red", fontWeight: 600 }}>{statusCounts[status]}</span>
+                    {status === "Chốt" && selectedStatuses.includes(status) && (
+                      <select value={deliveryStatuses} onChange={(e) => setDeliveryStatuses(e.target.value)}>
+                        <option value="All">Tất cả</option>
+                        {DeliveryOptions.map((status) => (
+                          <option key={status} value={status}>
+                            {status}
+                          </option>
+                        ))}
+                      </select>
+                    )}
                   </label>
-                  {STATUS_OPTIONS.map((status) => (
-                    <label key={status}>
-                      <input type="checkbox" checked={selectedStatuses.includes(status)} onChange={() => toggleStatus(status)} />
-                      <span>{status} - </span>
-                      <span style={{ color: "red", fontWeight: 600 }}>{statusCounts[status]}</span>
-                      {status === "Chốt" && selectedStatuses.includes(status) && (
-                        <select value={deliveryStatuses} onChange={(e) => setDeliveryStatuses(e.target.value)}>
-                          <option value="All">Tất cả</option>
-                          {DeliveryOptions.map((status) => (
-                            <option key={status} value={status}>
-                              {status}
-                            </option>
-                          ))}
-                        </select>
-                      )}
-                    </label>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className={cx("header-right")}></div>
-        </div>}
-
-        <div className={cx("content")}>
-          <div className={cx("table-scroll")}>
-            <div className={cx("table-container")}>
-              <div className={cx("table-header")}></div>
-              <div className={cx("table-body")}>
-                {viewMode === "table" && (
-                  <table className={cx("orders-table")}>
-                    <thead>
-                      <tr>
-                        <th>Box</th>
-                        <th>Thời gian</th>
-                        <th>Mã đơn</th>
-                        <th>Trạng thái</th>
-                        <th>Tên khách hàng</th>
-                        <th>Số điện thoại</th>
-                        <th>Địa chỉ</th>
-                        <th>
-                          {/* <div>Thông tin đơn hàng</div> */}
-                          <div>Sản phẩm - Màu - Size - Số lượng</div>
-                        </th>
-                        <th>Tổng tiền</th>
-                        <th>Ghi chú</th>
-
-                        <th>Vận chuyển</th>
-                        <th>Nhân viên</th>
-                        <th>Sửa</th>
-                        {/* <th>IP</th> */}
-                        <th>Nguồn</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {finalData.map((o, i) => {
-                        let statusClass = "";
-
-                        if (o.status === "Chốt") statusClass = "status-done";
-                        else if (o.status === "Chưa gọi điện") statusClass = "status-pending";
-                        else if (
-                          o.status === "Không liên lạc được lần 1" ||
-                          o.status === "Không liên lạc được lần 2" ||
-                          o.status === "Không liên lạc được lần 3"
-                        )
-                          statusClass = "status-retry";
-                        else if (o.status === "Khách không mua") statusClass = "status-cancel";
-                        else if (o.status === "Đơn mới") statusClass = "status-new-order";
-
-                        let deliveryClass = "";
-                        if (o.deliveryStatus === "Giao thành công") deliveryClass = "text-status-done";
-                        else if (o.deliveryStatus === "Chưa gửi hàng") deliveryClass = "text-status-pending";
-                        else if (o.deliveryStatus === "Giao thất bại") deliveryClass = "text-status-cancel";
-                        else if (o.deliveryStatus === "Đang giao hàng") deliveryClass = "text-status-retry";
-                        else if (o.deliveryStatus === "Đã gửi hàng") deliveryClass = "text-status-info";
-                        else if (o.deliveryStatus === "Đang đóng hàng") deliveryClass = "text-status-packing";
-                        return (
-                          <tr key={`o.orderCode-${i}`} className={cx("row")}>
-                            <td>
-                              <input type="checkbox" value={o.orderCode} onChange={(e) => handleSelectManyOrder(e)} />
-                            </td>
-                            <td>{o.time}</td>
-                            {/* <td>{o.orderCode} <IoIosCopy style={{cursor: "pointer"}} onClick={() => hanleCopyOrderCode(o.orderCode)}/></td> */}
-                            <td style={{ position: "relative" }}>
-                              {o.orderCode} <IoIosCopy style={{ cursor: "pointer" }} onClick={() => handleCopyOrderCode(o.orderCode, i)} />
-                              {copied && copyIndex === i && (
-                                <span className={cx("copied-text")} key={`copy-${i}`}>
-                                  Đã sao chép
-                                </span>
-                              )}
-                            </td>
-                            <td className={cx(statusClass)}>{o.status}</td>
-                            <td className={cx(statusClass)}>{o.customerName}</td>
-                            <td className={cx(statusClass)}>{formatPhone(o.phone)}</td>
-                            <td>{o.address}</td>
-                            <td className={cx("order-info-cell")}>
-                              {o.orderInfo.map((item, idx) => (
-                                <div key={idx} className={cx("order-item")}>
-                                  {item.name} - {item.color} - {item.size} - x<span style={{ fontSize: 18, fontWeight: 550 }}>{item.quantity}</span>
-                                </div>
-                              ))}
-                            </td>
-                            <td>{o.total.toLocaleString()}₫</td>
-                            <td>{o.note}</td>
-
-                            {/* <td>{o.confirmed ? "✅" : "❌"}</td> */}
-                            <td className={cx(deliveryClass)} style={{ verticalAlign: "middle" }}>
-                              {o.deliveryStatus}
-                              {o.deliveryStatus === "Đang giao hàng" && (
-                                <img src={deliveryTruck} alt="Đang giao" style={{ width: "35px", verticalAlign: "middle" }} />
-                              )}
-                              {o.deliveryStatus === "Giao thành công" && <img src={atm} alt="Đã giao" style={{ width: "25px", verticalAlign: "middle" }} />}
-                              {o.deliveryStatus === "Giao thất bại" && (
-                                <img src={dislike} alt="Giao thất bại" style={{ width: "30px", verticalAlign: "middle" }} />
-                              )}
-                              {o.deliveryStatus === "Chưa gửi hàng" && (
-                                <img src={hourglass} alt="Chưa gửi" style={{ width: "28px", verticalAlign: "middle" }} />
-                              )}
-                              {o.deliveryStatus === "Đang đóng hàng" && (
-                                <img src={conveyorBelt} alt="Đang đóng hàng" style={{ width: "28px", verticalAlign: "middle", marginLeft: 3 }} />
-                              )}
-                              {o.deliveryStatus === "Khách chưa chốt" && (
-                                <img src={phone} alt="Khách chưa chốt" style={{ width: "28px", verticalAlign: "middle", marginLeft: 3 }} />
-                              )}
-                              {o.deliveryStatus === "Đang hết hàng" && (
-                                <img src={outOfStock} alt="Đang hết hàng" style={{ width: "28px", verticalAlign: "middle", marginLeft: 3 }} />
-                              )}
-                              {o.deliveryStatus === "Đã gửi hàng" && (
-                                <img src={courier} alt="Đã gửi hàng" style={{ width: "28px", verticalAlign: "middle", marginLeft: 3 }} />
-                              )}
-                            </td>
-                            <td>{o.staff}</td>
-                            <td className={cx("group-action")}>
-                              {o.deliveryStatus !== "Giao thành công" ? (
-                                <React.Fragment>
-                                  <button
-                                    className={cx("edit-btn")}
-                                    onClick={() => {
-                                      console.log("edit ", o);
-                                      setEditing(o);
-                                      setOriginOrder(serverOriginalOrderData[i]);
-                                      const currentOrders = o.orderInfo;
-                                      setVirtualCart(
-                                        defaultVirtualCart.map((item) => {
-                                          const sameProduct = currentOrders.find((order) => order.color === item.color && order.size === item.size);
-                                          return sameProduct
-                                            ? { ...item, isSelected: true, quantity: sameProduct.quantity }
-                                            : { ...item, isSelected: false, quantity: 0 };
-                                        })
-                                      );
-
-                                      setCurrentEditIndex(i);
-                                      setShowEditingBox(true);
-                                      setDiscountValue(o.promotions.discount || 0);
-                                    }}
-                                  >
-                                    {/* ✏️ */}
-                                    <MdModeEditOutline size={22} color="#1175e7" />
-                                  </button>
-                                  {staffRole === "admin" && (
-                                    <button onClick={() => handleDeleteOrder(o.orderCode)}>
-                                      <MdDelete color="red" size={22} style={{ marginLeft: 10 }} />
-                                    </button>
-                                  )}
-                                </React.Fragment>
-                              ) : (
-                                <div>
-                                  <img src={dollarIcon} alt="Đã gửi hàng" style={{ width: "28px", verticalAlign: "middle", marginLeft: 0 }} />
-                                </div>
-                              )}
-                            </td>
-                            {/* <td>{o.buyerIP}</td> */}
-                            <td>{o.website}</td>
-                          </tr>
-                        );
-                      })}
-                    </tbody>
-                  </table>
-                )}
-                {viewMode === "excel" && <CreateExcel orders={filteredOrders} />}
+                ))}
               </div>
             </div>
           </div>
         </div>
+        <div className={cx("header-right")}></div>
+      </div>
 
-        {/* //--Edit Modal */}
-        {showEditingBox && originOrder && (
-          <div className={cx("fullfilment-bg")}>
-            <div className={cx("modal-overlay")}>
-              {/* Show original Data */}
-              <div className={cx("modal-original")}>
-                <h2>Thông tin gốc</h2>
-                <div className={cx("form")}>
-                  <div className={cx("group-item")}>
-                    <label>
-                      Tên khách hàng:
-                      <input disabled value={originOrder.customerName} />
-                    </label>
-                    <label>
-                      Số điện thoại:
-                      <input disabled value={formatPhone(originOrder.phone)} />
-                    </label>
-                  </div>
+      <div className={cx("content")}>
+        <div className={cx("table-scroll")}>
+          <div className={cx("table-container")}>
+            <div className={cx("table-header")}></div>
+            <div className={cx("table-body")}>
+              <table className={cx("orders-table")}>
+                <thead>
+                  <tr>
+                    <th>Box</th>
+                    <th>Thời gian</th>
+                    <th>Mã đơn</th>
+                    <th>Trạng thái</th>
+                    <th>Tên khách hàng</th>
+                    <th>Số điện thoại</th>
+                    <th>Địa chỉ</th>
+                    <th>
+                      <div>Sản phẩm - Màu - Size - Số lượng</div>
+                    </th>
+                    <th>Tổng tiền</th>
 
+                    <th>Vận chuyển</th>
+                    <th>Sửa</th>
+                    <th>Ghi chú</th>
+                    <th>Nguồn</th>
+                    <th>Nhân viên</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {finalData.map((o, i) => {
+                    let statusClass = "";
+
+                    if (o.status === "Chốt") statusClass = "status-done";
+                    else if (o.status === "Chưa gọi điện") statusClass = "status-pending";
+                    else if (o.status === "Gọi lần 1" || o.status === "Gọi lần 2" || o.status === "Gọi lần 3")
+                      statusClass = "status-retry";
+                    else if (o.status === "Khách không mua") statusClass = "status-cancel";
+                    else if (o.status === "Đơn mới") statusClass = "status-new-order";
+
+                    let deliveryClass = "";
+                    if (o.deliveryStatus === "Giao thành công") deliveryClass = "text-status-done";
+                    else if (o.deliveryStatus === "Chưa gửi hàng") deliveryClass = "text-status-pending";
+                    else if (o.deliveryStatus === "Giao thất bại") deliveryClass = "text-status-cancel";
+                    else if (o.deliveryStatus === "Đang giao hàng") deliveryClass = "text-status-retry";
+                    else if (o.deliveryStatus === "Đã gửi hàng") deliveryClass = "text-status-info";
+                    else if (o.deliveryStatus === "Đang đóng hàng") deliveryClass = "text-status-packing";
+                    return (
+                      <tr key={`o.orderCode-${i}`} className={cx("row")}>
+                        <td>
+                          <input type="checkbox" value={o.orderCode} onChange={(e) => handleSelectManyOrder(e)} />
+                        </td>
+                        <td>{o.time.replace(/^\d{4}-/, "")}</td>
+                        {/* <td>{o.orderCode} <IoIosCopy style={{cursor: "pointer"}} onClick={() => hanleCopyOrderCode(o.orderCode)}/></td> */}
+                        <td style={{ position: "relative" }}>
+                          {o.orderCode} <IoIosCopy style={{ cursor: "pointer" }} onClick={() => handleCopyOrderCode(o.orderCode, i)} />
+                          {copied && copyIndex === i && (
+                            <span className={cx("copied-text")} key={`copy-${i}`}>
+                              Đã sao chép
+                            </span>
+                          )}
+                        </td>
+                        <td className={cx(statusClass)}>{o.status}</td>
+                        <td className={cx(statusClass)}>{o.customerName}</td>
+                        <td className={cx(statusClass)}>{formatPhone(o.phone)}</td>
+                        <td>{o.address}</td>
+                        <td className={cx("order-info-cell")}>
+                          {o.orderInfo.map((item, idx) => (
+                            <div key={idx} className={cx("order-item")}>
+                              {item.name} - {item.color} - {item.size} - x<span style={{ fontSize: 18, fontWeight: 550 }}>{item.quantity}</span>
+                            </div>
+                          ))}
+                        </td>
+                        <td>{o.total.toLocaleString()}₫</td>
+
+                        {/* <td>{o.confirmed ? "✅" : "❌"}</td> */}
+                        <td className={cx(deliveryClass)} style={{ verticalAlign: "middle" }}>
+                          {o.deliveryStatus}
+                          {o.deliveryStatus === "Đang giao hàng" && (
+                            <img src={deliveryTruck} alt="Đang giao" style={{ width: "35px", verticalAlign: "middle" }} />
+                          )}
+                          {o.deliveryStatus === "Giao thành công" && <img src={atm} alt="Đã giao" style={{ width: "25px", verticalAlign: "middle" }} />}
+                          {o.deliveryStatus === "Giao thất bại" && <img src={dislike} alt="Giao thất bại" style={{ width: "30px", verticalAlign: "middle" }} />}
+                          {o.deliveryStatus === "Chưa gửi hàng" && <img src={hourglass} alt="Chưa gửi" style={{ width: "28px", verticalAlign: "middle" }} />}
+                          {o.deliveryStatus === "Đang đóng hàng" && (
+                            <img src={conveyorBelt} alt="Đang đóng hàng" style={{ width: "28px", verticalAlign: "middle", marginLeft: 3 }} />
+                          )}
+                          {o.deliveryStatus === "Khách chưa chốt" && (
+                            <img src={phone} alt="Khách chưa chốt" style={{ width: "28px", verticalAlign: "middle", marginLeft: 3 }} />
+                          )}
+                          {o.deliveryStatus === "Đang hết hàng" && (
+                            <img src={outOfStock} alt="Đang hết hàng" style={{ width: "28px", verticalAlign: "middle", marginLeft: 3 }} />
+                          )}
+                          {o.deliveryStatus === "Đã gửi hàng" && (
+                            <img src={courier} alt="Đã gửi hàng" style={{ width: "28px", verticalAlign: "middle", marginLeft: 3 }} />
+                          )}
+                        </td>
+
+                        <td className={cx("group-action")}>
+                          {o.deliveryStatus !== "Giao thành công" ? (
+                            <React.Fragment>
+                              <button
+                                className={cx("edit-btn")}
+                                onClick={() => {
+                                  console.log("edit ", o);
+                                  setEditing(o);
+                                  setOriginOrder(serverOriginalOrderData[i]);
+                                  const currentOrders = o.orderInfo;
+                                  setVirtualCart(
+                                    defaultVirtualCart.map((item) => {
+                                      const sameProduct = currentOrders.find((order) => order.color === item.color && order.size === item.size);
+                                      return sameProduct
+                                        ? { ...item, isSelected: true, quantity: sameProduct.quantity }
+                                        : { ...item, isSelected: false, quantity: 0 };
+                                    })
+                                  );
+
+                                  setCurrentEditIndex(i);
+                                  setShowEditingBox(true);
+                                  setDiscountValue(o.promotions.discount || 0);
+                                }}
+                              >
+                                {/* ✏️ */}
+                                <MdModeEditOutline size={22} color="#1175e7" />
+                              </button>
+                              {staffRole === "admin" && (
+                                <button onClick={() => handleDeleteOrder(o.orderCode)}>
+                                  <MdDelete color="red" size={22} style={{ marginLeft: 10 }} />
+                                </button>
+                              )}
+                            </React.Fragment>
+                          ) : (
+                            <div>
+                              <img src={dollarIcon} alt="Đã gửi hàng" style={{ width: "28px", verticalAlign: "middle", marginLeft: 0 }} />
+                            </div>
+                          )}
+                        </td>
+                        <td>{o.note}</td>
+                        <td>{o.website}</td>
+                        <td>{o.staff}</td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+
+              {/* {viewMode === "excel" && <CreateExcel_v2 orders={filteredOrders} />} */}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* //--Edit Modal */}
+      {showEditingBox && originOrder && (
+        <div className={cx("fullfilment-bg")}>
+          <div className={cx("modal-overlay")}>
+            {/* Show original Data */}
+            <div className={cx("modal-original")}>
+              <h2>Thông tin gốc</h2>
+              <div className={cx("form")}>
+                <div className={cx("group-item")}>
                   <label>
-                    Địa chỉ:
-                    <input disabled value={originOrder.address} />
+                    Tên khách hàng:
+                    <input disabled value={originOrder.customerName} />
                   </label>
-                  {/* Order Info (array of products) */}
-                  <div className={cx("order-info-edit")}>
-                    <h3>Thông tin sản phẩm</h3>
-                    <div className={cx("order-item-row")}>
-                      <div className={cx("input-1", "header-order")}>Tên sản phẩm</div>
-                      <div className={cx("input-2", "header-order")}>Màu</div>
-                      <div className={cx("input-3", "header-order")}>Size</div>
-                      <div className={cx("input-4", "header-order")}>Số lượng</div>
-                      <div className={cx("input-5", "header-order")}>Giá</div>
-                    </div>
-                    {originOrder.orderInfo.map((item, index) => {
-                      return (
-                        <div key={index} className={cx("order-item-row")}>
-                          <div className={cx("input-1")}>{item.name}</div>
-                          <div className={cx("input-2")}>
-                            <span className={cx("color-identification")} style={{ backgroundColor: COLORS[item.color.toLowerCase()] }} />
-                            {item.color}
-                          </div>
-                          <div className={cx("input-3")}>{item.size}</div>
-                          <div className={cx("input-4")}>{item.quantity}</div>
-                          <div className={cx("input-5")}>{item.price.toLocaleString("vi-VN")}₫</div>
+                  <label>
+                    Số điện thoại:
+                    <input disabled value={formatPhone(originOrder.phone)} />
+                  </label>
+                </div>
+
+                <label>
+                  Địa chỉ:
+                  <input disabled value={originOrder.address} />
+                </label>
+                {/* Order Info (array of products) */}
+                <div className={cx("order-info-edit")}>
+                  <h3>Thông tin sản phẩm</h3>
+                  <div className={cx("order-item-row")}>
+                    <div className={cx("input-1", "header-order")}>Tên sản phẩm</div>
+                    <div className={cx("input-2", "header-order")}>Màu</div>
+                    <div className={cx("input-3", "header-order")}>Size</div>
+                    <div className={cx("input-4", "header-order")}>Số lượng</div>
+                    <div className={cx("input-5", "header-order")}>Giá</div>
+                  </div>
+                  {originOrder.orderInfo.map((item, index) => {
+                    return (
+                      <div key={index} className={cx("order-item-row")}>
+                        <div className={cx("input-1")}>{item.name}</div>
+                        <div className={cx("input-2")}>
+                          <span className={cx("color-identification")} style={{ backgroundColor: COLORS[item.color.toLowerCase()] }} />
+                          {item.color}
                         </div>
-                      );
-                    })}
-                  </div>
-                  <div className={cx("btn-total-add")}>
-                    <div></div>
-                    <label style={{ fontWeight: "550", fontSize: "17px", textAlign: "right", color: "#ff0958" }}>
-                      Tổng tiền {`( ${originOrder.totalProduct} sản phẩm)`}:&nbsp; {Number(originOrder.total).toLocaleString()} ₫
-                    </label>
-                  </div>
-                  <div className={cx("group-item")}>
-                    <label>
-                      Ghi chú:
-                      <input disabled value={originOrder.note} />
-                    </label>
-                    <label>
-                      Nguồn:
-                      <input
-                        value={originOrder.website}
-                        onChange={(e) => setEditing({ ...editing, website: e.target.value })}
-                        placeholder="link website hoặc link facebook khách..."
-                        disabled
-                      />
-                    </label>
-                  </div>
-                  <div className={cx("group-item")}>
-                    <label>
-                      Nhân viên:
-                      <select value={originOrder.staff} disabled>
-                        {staffName.map((s) => (
-                          <option key={s} value={s}>
-                            {s}
-                          </option>
-                        ))}
-                      </select>
-                    </label>
-                  </div>
+                        <div className={cx("input-3")}>{item.size}</div>
+                        <div className={cx("input-4")}>{item.quantity}</div>
+                        <div className={cx("input-5")}>{item.price.toLocaleString("vi-VN")}₫</div>
+                      </div>
+                    );
+                  })}
+                </div>
+                <div className={cx("btn-total-add")}>
+                  <div></div>
+                  <label style={{ fontWeight: "550", fontSize: "17px", textAlign: "right", color: "#ff0958" }}>
+                    Tổng tiền {`( ${originOrder.totalProduct} sản phẩm)`}:&nbsp; {Number(originOrder.total).toLocaleString()} ₫
+                  </label>
+                </div>
+                <div className={cx("group-item")}>
+                  <label>
+                    Ghi chú:
+                    <input disabled value={originOrder.note} />
+                  </label>
+                  <label>
+                    Nguồn:
+                    <input
+                      value={originOrder.website}
+                      onChange={(e) => setEditing({ ...editing, website: e.target.value })}
+                      placeholder="link website hoặc link facebook khách..."
+                      disabled
+                    />
+                  </label>
+                </div>
+                <div className={cx("group-item")}>
+                  <label>
+                    Nhân viên:
+                    <select value={originOrder.staff} disabled>
+                      {staffName.map((s) => (
+                        <option key={s} value={s}>
+                          {s}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
                 </div>
               </div>
+            </div>
 
-              {/* Show Final Data */}
-              <div className={cx("modal")}>
-                <h2>Sửa đơn hàng: {editing.orderCode}</h2>
+            {/* Show Final Data */}
+            <div className={cx("modal")}>
+              <h2>Sửa đơn hàng: {editing.orderCode}</h2>
 
-                <div className={cx("form")}>
-                  <div style={{ fontSize: 16, fontWeight: 550 }}>1. Thông tin khách hàng</div>
-                  <div className={cx("group-item")}>
-                    <label>
-                      Tên khách hàng:
-                      <input value={editing.customerName} onChange={(e) => setEditing({ ...editing, customerName: e.target.value })} />
-                    </label>
-                    <label>
-                      Số điện thoại:
-                      <input value={editing.phone} onChange={(e) => setEditing({ ...editing, phone: e.target.value })} disabled />
-                    </label>
-                  </div>
+              <div className={cx("form")}>
+                <div style={{ fontSize: 16, fontWeight: 550 }}>1. Thông tin khách hàng</div>
+                <div className={cx("group-item")}>
+                  <label>
+                    Tên khách hàng:
+                    <input value={editing.customerName} onChange={(e) => setEditing({ ...editing, customerName: e.target.value })} />
+                  </label>
+                  <label>
+                    Số điện thoại:
+                    <input value={editing.phone} onChange={(e) => setEditing({ ...editing, phone: e.target.value })} disabled />
+                  </label>
+                </div>
 
-                  <div className={cx("address-edit-group")}>
-                    <label>
-                      <div style={{ marginBottom: 10 }}>
-                        Địa chỉ: <span style={{ fontSize: 14, fontWeight: 500, color: "#e94343" }}>{editing.address}</span>
-                      </div>
-                      <input
-                        value={correctedAddress === null ? editing.address : correctedAddress}
-                        onChange={(e) => setCorrectedAddress(e.target.value)}
-                        placeholder="Số nhà, tên đường hoặc tên tòa nhà..."
-                      />
-                    </label>
-                    <VnAddressSelect_Old onChange={(addr) => handleAddressChange_Old("edit-form", addr)} />
-                  </div>
-
-                  {/* Order Info (array of products) */}
-                  <div className={cx("order-info-edit")}>
-                    <div style={{ display: "flex", gap: 20, marginBottom: 10, marginTop: 10 }}>
-                      <div style={{ fontSize: 16, fontWeight: 550, display: "flex", alignItems: "center" }}>2. Thông tin sản phẩm</div>
-                      <button type="button" className={cx("btn-decor")} onClick={() => setShowListProduct(true)}>
-                        + Thêm sản phẩm
-                      </button>
+                <div className={cx("address-edit-group")}>
+                  <label>
+                    <div style={{ marginBottom: 10 }}>
+                      Địa chỉ: <span style={{ fontSize: 14, fontWeight: 500, color: "#e94343" }}>{editing.address}</span>
                     </div>
-                    <div className={cx("order-item-row")}>
-                      <div className={cx("input-1")} style={{ textDecoration: "underline" }}>
-                        Tên sản phẩm
+                    <input
+                      value={correctedAddress === null ? editing.address : correctedAddress}
+                      onChange={(e) => setCorrectedAddress(e.target.value)}
+                      placeholder="Số nhà, tên đường hoặc tên tòa nhà..."
+                    />
+                  </label>
+                  <VnAddressSelect_Old onChange={(addr) => handleAddressChange_Old("edit-form", addr)} />
+                </div>
+
+                {/* Order Info (array of products) */}
+                <div className={cx("order-info-edit")}>
+                  <div style={{ display: "flex", gap: 20, marginBottom: 10, marginTop: 10 }}>
+                    <div style={{ fontSize: 16, fontWeight: 550, display: "flex", alignItems: "center" }}>2. Thông tin sản phẩm</div>
+                    <button type="button" className={cx("btn-decor")} onClick={() => setShowListProduct(true)}>
+                      + Thêm sản phẩm
+                    </button>
+                  </div>
+                  <div className={cx("order-item-row")}>
+                    <div className={cx("input-1")} style={{ textDecoration: "underline" }}>
+                      Tên sản phẩm
+                    </div>
+                    <div className={cx("input-2")} style={{ textDecoration: "underline" }}>
+                      Màu
+                    </div>
+                    <div className={cx("input-3")} style={{ textDecoration: "underline" }}>
+                      Size
+                    </div>
+                    <div className={cx("input-4")} style={{ textDecoration: "underline" }}>
+                      Số lượng
+                    </div>
+                    <div className={cx("input-5")} style={{ textDecoration: "underline" }}>
+                      Giá 1 SP
+                    </div>
+                  </div>
+                  {editing.orderInfo.map((item, index) => {
+                    return (
+                      <div key={index} className={cx("order-item-row")}>
+                        <div className={cx("input-1")}>{item.name}</div>
+                        <div className={cx("input-2")}>
+                          <span className={cx("color-identification")} style={{ backgroundColor: COLORS[item.color.toLowerCase()] }} />
+                          {item.color}
+                        </div>
+                        <div className={cx("input-3")}>{item.size}</div>
+                        <div className={cx("input-4")}>{item.quantity}</div>
+                        <div className={cx("input-5")}>{item.price.toLocaleString("vi-VN")}₫</div>
                       </div>
-                      <div className={cx("input-2")} style={{ textDecoration: "underline" }}>
-                        Màu
+                    );
+                  })}
+                </div>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 10, marginTop: 10 }}>
+                  <div style={{ fontSize: 16, fontWeight: 550, marginTop: 0 }}>3. Phí vận chuyển:</div>
+                  {editing.totalProduct >= 2 && (
+                    <div style={{ display: "flex", gap: 15, justifyContent: "space-between", flex: 1 }}>
+                      <div>
+                        <FreeShipAnimate text="" />
                       </div>
-                      <div className={cx("input-3")} style={{ textDecoration: "underline" }}>
-                        Size
-                      </div>
-                      <div className={cx("input-4")} style={{ textDecoration: "underline" }}>
-                        Số lượng
-                      </div>
-                      <div className={cx("input-5")} style={{ textDecoration: "underline" }}>
-                        Giá 1 SP
+                      <div>
+                        <span style={{ marginTop: 5 }}>0₫</span>
                       </div>
                     </div>
-                    {editing.orderInfo.map((item, index) => {
-                      return (
-                        <div key={index} className={cx("order-item-row")}>
-                          <div className={cx("input-1")}>{item.name}</div>
-                          <div className={cx("input-2")}>
-                            <span className={cx("color-identification")} style={{ backgroundColor: COLORS[item.color.toLowerCase()] }} />
-                            {item.color}
-                          </div>
-                          <div className={cx("input-3")}>{item.size}</div>
-                          <div className={cx("input-4")}>{item.quantity}</div>
-                          <div className={cx("input-5")}>{item.price.toLocaleString("vi-VN")}₫</div>
-                        </div>
-                      );
-                    })}
-                  </div>
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 10, marginTop: 10 }}>
-                    <div style={{ fontSize: 16, fontWeight: 550, marginTop: 0 }}>3. Phí vận chuyển:</div>
-                    {editing.totalProduct >= 2 && (
-                      <div style={{ display: "flex", gap: 15, justifyContent: "space-between", flex: 1 }}>
-                        <div>
-                          <FreeShipAnimate text="" />
-                        </div>
-                        <div>
-                          <span style={{ marginTop: 5 }}>0₫</span>
-                        </div>
+                  )}
+                  {editing.totalProduct === 1 && (
+                    <div style={{ display: "flex", gap: 15, justifyContent: "flex-end", flex: 1 }}>
+                      <div style={{ verticalAlign: "middle" }}>
+                        <span style={{ marginTop: 5 }}>+{Number(30000).toLocaleString("vi-VN")}₫</span>
                       </div>
-                    )}
-                    {editing.totalProduct === 1 && (
-                      <div style={{ display: "flex", gap: 15, justifyContent: "flex-end", flex: 1 }}>
-                        <div style={{ verticalAlign: "middle" }}>
-                          <span style={{ marginTop: 5 }}>+{Number(30000).toLocaleString("vi-VN")}₫</span>
-                        </div>
-                      </div>
-                    )}
-                  </div>
+                    </div>
+                  )}
+                </div>
 
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 10, marginTop: 10 }}>
-                    <div style={{ fontSize: 16, fontWeight: 550, marginTop: 0 }}>4. Ưu đãi:</div>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 10, marginTop: 10 }}>
+                  <div style={{ fontSize: 16, fontWeight: 550, marginTop: 0 }}>4. Ưu đãi:</div>
 
-                    {editing.totalProduct >= 2 && (
-                      <div style={{ display: "flex", gap: 15, justifyContent: "space-between", flex: 1 }}>
-                        <div style={{ display: "flex", alignItems: "center" }}>
-                          <Coupon text="" valueText="" />
-                          <input
-                            type="number"
-                            style={{ marginTop: 0 }}
-                            placeholder="Tối đa 50.000đ"
-                            value={discountValue}
-                            onChange={(e) => handleDiscountChange(+e.target.value)}
-                          />
-                        </div>
-                        <div>-{discountValue.toLocaleString("vi-VN")}₫</div>
+                  {editing.totalProduct >= 2 && (
+                    <div style={{ display: "flex", gap: 15, justifyContent: "space-between", flex: 1 }}>
+                      <div style={{ display: "flex", alignItems: "center" }}>
+                        <Coupon text="" valueText="" />
+                        <input
+                          type="number"
+                          style={{ marginTop: 0 }}
+                          placeholder="Tối đa 50.000đ"
+                          value={discountValue}
+                          onChange={(e) => handleDiscountChange(+e.target.value)}
+                        />
                       </div>
-                    )}
-                  </div>
-                  {discountValue > 50000 && <div style={{ color: "red" }}>Giảm giá không quá 50.000đ</div>}
-                  <div className={cx("btn-total-add")}>
-                    <div>
-                      {/* <button type="button" onClick={() => setShowListProduct(true)}>
+                      <div>-{discountValue.toLocaleString("vi-VN")}₫</div>
+                    </div>
+                  )}
+                </div>
+                {discountValue > 50000 && <div style={{ color: "red" }}>Giảm giá không quá 50.000đ</div>}
+                <div className={cx("btn-total-add")}>
+                  <div>
+                    {/* <button type="button" onClick={() => setShowListProduct(true)}>
                           + Thêm sản phẩm
                         </button> */}
-                    </div>
-                    <label style={{ fontWeight: "550", fontSize: "17px", textAlign: "right", color: "#ff0958" }}>
-                      Tổng tiền {`( ${editing.totalProduct} sản phẩm)`}:&nbsp; {Number(editing.total).toLocaleString()} ₫
-                    </label>
                   </div>
-                  <div className={cx("group-item")}>
-                    <label>
-                      Trạng thái:
-                      <select
-                        value={editing.status}
-                        onChange={(e) => {
-                          setEditing({ ...editing, status: e.target.value });
-                          console.log("value", e.target.value);
-                        }}
-                      >
-                        <option value="">-- Chọn trạng thái --</option>
-                        {STATUS_OPTIONS.map((s) => (
-                          <option key={s} value={s}>
-                            {s}
-                          </option>
-                        ))}
-                      </select>
-                    </label>
-                    <label>
-                      Vận chuyển:
-                      <select value={editing.deliveryStatus} onChange={(e) => setEditing({ ...editing, deliveryStatus: e.target.value })}>
-                        {staffRole !== "admin" &&
-                          DeliveryOptionsForStaffSelectManual.map((s) => (
-                            <option key={s} value={s}>
-                              {s}
-                            </option>
-                          ))}
-                        {staffRole === "admin" &&
-                          DeliveryOptions.map((s) => (
-                            <option key={s} value={s}>
-                              {s}
-                            </option>
-                          ))}
-                      </select>
-                    </label>
-                  </div>
-                  <div className={cx("group-item")}>
-                    <label>
-                      Ghi chú:
-                      <input value={editing.note} onChange={(e) => setEditing({ ...editing, note: e.target.value })} />
-                    </label>
-                    <label>
-                      Nhân viên:
-                      <select value={editing.staff} onChange={(e) => setEditing({ ...editing, staff: e.target.value })}>
-                        {/* <option value="Không">Không tên</option> */}
-                        {staffName.map((s) => (
-                          <option key={s} value={s}>
-                            {s}
-                          </option>
-                        ))}
-                      </select>
-                    </label>
-                  </div>
-                  <div className={cx("group-item")}>
-                    <label>
-                      Nguồn:
-                      <input
-                        value={editing.website}
-                        onChange={(e) => setEditing({ ...editing, website: e.target.value })}
-                        placeholder="link website hoặc tên shop..."
-                      />
-                    </label>
-                    <label>
-                      Facebook khách:
-                      <input
-                        value={editing.facebookLink || ""}
-                        onChange={(e) => setEditing({ ...editing, facebookLink: e.target.value })}
-                        placeholder="link facebook khách..."
-                      />
-                    </label>
-                  </div>
+                  <label style={{ fontWeight: "550", fontSize: "17px", textAlign: "right", color: "#ff0958" }}>
+                    Tổng tiền {`( ${editing.totalProduct} sản phẩm)`}:&nbsp; {Number(editing.total).toLocaleString()} ₫
+                  </label>
                 </div>
-
-                <div className={cx("modal-actions")}>
-                  <button
-                    onClick={() => {
-                      setEditing({ ...defaultNewOrder });
-                      setCorrectedAddress(null);
-                      setVirtualCart([...defaultVirtualCart]);
-                      setShowListProduct(false);
-                      setShowEditingBox(false);
-                      setDiscountValue(0);
-                    }}
-                  >
-                    Hủy
-                  </button>
-                  <button onClick={handleSave}>Lưu</button>
+                <div className={cx("group-item")}>
+                  <label>
+                    Trạng thái:
+                    <select
+                      value={editing.status}
+                      onChange={(e) => {
+                        setEditing({ ...editing, status: e.target.value });
+                        console.log("value", e.target.value);
+                      }}
+                    >
+                      <option value="">-- Chọn trạng thái --</option>
+                      {STATUS_OPTIONS.map((s) => (
+                        <option key={s} value={s}>
+                          {s}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                  <label>
+                    Vận chuyển:
+                    <select value={editing.deliveryStatus} onChange={(e) => setEditing({ ...editing, deliveryStatus: e.target.value })}>
+                      {staffRole !== "admin" &&
+                        DeliveryOptionsForStaffSelectManual.map((s) => (
+                          <option key={s} value={s}>
+                            {s}
+                          </option>
+                        ))}
+                      {staffRole === "admin" &&
+                        DeliveryOptions.map((s) => (
+                          <option key={s} value={s}>
+                            {s}
+                          </option>
+                        ))}
+                    </select>
+                  </label>
+                </div>
+                <div className={cx("group-item")}>
+                  <label>
+                    Ghi chú:
+                    <input value={editing.note} onChange={(e) => setEditing({ ...editing, note: e.target.value })} />
+                  </label>
+                  <label>
+                    Nhân viên:
+                    <select value={editing.staff} onChange={(e) => setEditing({ ...editing, staff: e.target.value })}>
+                      {/* <option value="Không">Không tên</option> */}
+                      {staffName.map((s) => (
+                        <option key={s} value={s}>
+                          {s}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                </div>
+                <div className={cx("group-item")}>
+                  <label>
+                    Nguồn:
+                    <input
+                      value={editing.website}
+                      onChange={(e) => setEditing({ ...editing, website: e.target.value })}
+                      placeholder="link website hoặc tên shop..."
+                    />
+                  </label>
+                  <label>
+                    Facebook khách:
+                    <input
+                      value={editing.facebookLink || ""}
+                      onChange={(e) => setEditing({ ...editing, facebookLink: e.target.value })}
+                      placeholder="link facebook khách..."
+                    />
+                  </label>
                 </div>
               </div>
-              {showListProduct && (
-                <div className={cx("show-list-product")}>
-                  <h4>Chọn sản phẩm theo màu, size</h4>
-                  <div className={cx("filter-color-container")}>
-                    <div style={{ fontWeight: 550 }}>Lọc theo màu:</div>
-                    <div className={cx("wrap-checkbox")}>
-                      {productDetail.colorAvailable.map((color, k) => {
-                        const isChecked = filterColorInAddProduct === color;
-                        return (
-                          <div key={k}>
-                            <input
-                              type="checkbox"
-                              checked={isChecked}
-                              onChange={(e) => {
-                                if (isChecked) {
-                                  // ✅ if clicking again on the same box → reset to "None"
-                                  setFilterColorInAddProduct("None");
-                                } else {
-                                  // ✅ else → select this color (unchecking others automatically)
-                                  setFilterColorInAddProduct(color);
-                                }
-                              }}
-                            />
-                            <span>{color}</span>
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </div>
-                  <div className={cx("row")}>
-                    <div>Chọn</div>
-                    <div>Tên</div>
-                    <div>Màu</div>
-                    <div>Size</div>
-                    <div>Giá</div>
-                    <div>Kho</div>
-                    <div>Số lượng</div>
-                  </div>
-                  {virtualCart.map((p, i) => (
-                    <React.Fragment key={i}>
-                      {isExceedStock === i && <div className={cx("warning")}>⚠️ Số lượng vượt quá tồn kho ({p.stock})</div>}
-                      {filterColorInAddProduct === "None" || p.color === filterColorInAddProduct ? (
-                        <div className={cx("row")}>
-                          <div>
-                            <input
-                              checked={p.isSelected}
-                              type="checkbox"
-                              style={{ cursor: "pointer", width: 18, height: 18, borderRadius: 9 }}
-                              onChange={(e) => handleCartChange(e.target.checked, i)}
-                            />
-                          </div>
-                          <div style={{ fontWeight: 550 }}>{p.name}</div>
-                          <div className={cx("column-3")}>
-                            <span className={cx("color-identification")} style={{ backgroundColor: COLORS[p.color.toLowerCase()] }} />
-                            {p.color}
-                          </div>
-                          <div>{p.size}</div>
-                          <div>{p.price.toLocaleString("vi-VN")} đ</div>
-                          <div>{p.stock}</div>
-                          <div className={cx("choose-quantity")}>
-                            <div onClick={() => handleNumberProduct("decrease", i)} className={cx("decrease")}>
-                              <HiMinusSmall color="black" />
-                            </div>
-                            <div className={cx("vertical-line")}>|</div>
-                            <div style={{ color: "black", fontSize: "18px" }} className={cx("quantity-number")}>
-                              {p.quantity}
-                            </div>
-                            <div className={cx("vertical-line")}>|</div>
-                            <div onClick={() => handleNumberProduct("increase", i)} className={cx("increase")}>
-                              <HiPlusSmall color="black" />
-                            </div>
-                          </div>
-                        </div>
-                      ) : null}
-                    </React.Fragment>
-                  ))}
 
-                  <div style={{ textAlign: "center", marginTop: 20 }}>
-                    <button className={cx("btn-decor", "btn-close")} onClick={() => handleCloseAddProduct("edit-form")}>
-                      Đóng
-                    </button>
-                  </div>
-                </div>
-              )}
+              <div className={cx("modal-actions")}>
+                <button
+                  onClick={() => {
+                    setEditing({ ...defaultNewOrder });
+                    setCorrectedAddress(null);
+                    setVirtualCart([...defaultVirtualCart]);
+                    setShowListProduct(false);
+                    setShowEditingBox(false);
+                    setDiscountValue(0);
+                  }}
+                >
+                  Hủy
+                </button>
+                <button onClick={handleSave}>Lưu</button>
+              </div>
             </div>
-          </div>
-        )}
-
-        {/* //--Update multiple delivery status order */}
-        {openUpdateDeliveryBox && (
-          <div className={cx("update-delivery-box")}>
-            <h4>Cập nhật tất cả đơn đã chốt - Chưa giao hàng</h4>
-            <div>
-              Đã chốt - Chưa gửi hàng: <span style={{ color: "red", fontWeight: 600 }}>{DeliveryStatusCountsResult["Đã chốt"]}</span>
-            </div>
-            <div>
-              <label style={{ marginRight: 10 }}>Trạng thái vận chuyển mới:</label>
-              <select value={selectedDeliveryStatusForUpdate} onChange={(e) => setSelectedDeliveryStatusForUpdate(e.target.value)}>
-                {DeliveryOptionsForStaffSelectManual.map((s) => (
-                  <option key={s} value={s}>
-                    {s}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div style={{ fontSize: 13, color: "#555", marginTop: 10 }}>Lưu ý: Chỉ cập nhật những đơn có trạng thái vận chuyển là "Chưa gửi hàng"</div>
-            <div>
-              <button className={cx("cancel")} onClick={() => setOpenUpdateDeliveryBox(false)}>
-                Đóng
-              </button>
-              <button className={cx("update")} onClick={() => UpdateMultipleDeliveryStatus(selectedDeliveryStatusForUpdate)}>
-                Cập nhật
-              </button>
-            </div>
-          </div>
-        )}
-
-        {/* //-- Create new order */}
-        {createNewOrderBox && newOrder && (
-          <div className={cx("fullfilment-bg")}>
-            <div className={cx("modal-overlay")}>
-              <div className={cx("modal")}>
-                <div style={{ fontSize: 20, fontWeight: 600, margin: "10px 0px", color: "#026feb" }}>Tạo đơn hàng mới</div>
-                <div className={cx("form")}>
-                  <div style={{ fontSize: 16, fontWeight: 550 }}>1. Thông tin khách hàng</div>
-                  <div className={cx("group-item")}>
-                    <label>
-                      Tên khách hàng:
-                      <input value={newOrder.customerName} onChange={(e) => setNewOrder({ ...newOrder, customerName: e.target.value })} />
-                    </label>
-                    <label>
-                      Số điện thoại:
-                      <input value={newOrder.phone} onChange={(e) => setNewOrder({ ...newOrder, phone: e.target.value })} />
-                    </label>
-                  </div>
-
-                  <div className={cx("address-edit-group")}>
-                    <label>
-                      <div style={{ marginBottom: 10 }}>
-                        Địa chỉ: <span style={{ fontSize: 14, fontWeight: 500, color: "#e94343" }}>{newOrder.address}</span>
-                      </div>
-                      <input
-                        value={correctedAddress === null ? newOrder.address : correctedAddress}
-                        onChange={(e) => setCorrectedAddress(e.target.value)}
-                        placeholder="Số nhà, tên đường hoặc tên tòa nhà..."
-                      />
-                    </label>
-                    <VnAddressSelect_Old onChange={(addr) => handleAddressChange_Old("new-form", addr)} />
-                  </div>
-                  {/* Order Info (array of products) */}
-                  <div className={cx("order-info-edit")}>
-                    <div style={{ display: "flex", gap: 20, marginBottom: 10, marginTop: 10 }}>
-                      <div style={{ fontSize: 16, fontWeight: 550, display: "flex", alignItems: "center" }}>2. Thông tin sản phẩm</div>
-                      <button type="button" className={cx("btn-decor")} onClick={() => setShowListProduct(true)}>
-                        + Thêm sản phẩm
-                      </button>
-                    </div>
-                    <div className={cx("order-item-row")}>
-                      <div className={cx("input-1")} style={{ textDecoration: "underline" }}>
-                        Tên sản phẩm
-                      </div>
-                      <div className={cx("input-2")} style={{ textDecoration: "underline" }}>
-                        Màu
-                      </div>
-                      <div className={cx("input-3")} style={{ textDecoration: "underline" }}>
-                        Size
-                      </div>
-                      <div className={cx("input-4")} style={{ textDecoration: "underline" }}>
-                        Số lượng
-                      </div>
-                      <div className={cx("input-5")} style={{ textDecoration: "underline" }}>
-                        Gía 1 SP
-                      </div>
-                    </div>
-                    {newOrder.orderInfo.map((item, index) => {
+            {showListProduct && (
+              <div className={cx("show-list-product")}>
+                <h4>Chọn sản phẩm theo màu, size</h4>
+                <div className={cx("filter-color-container")}>
+                  <div style={{ fontWeight: 550 }}>Lọc theo màu:</div>
+                  <div className={cx("wrap-checkbox")}>
+                    {productDetail.colorAvailable.map((color, k) => {
+                      const isChecked = filterColorInAddProduct === color;
                       return (
-                        <div key={index} className={cx("order-item-row")}>
-                          <div className={cx("input-1")}>{item.name}</div>
-                          <div className={cx("input-2")}>
-                            <span className={cx("color-identification")} style={{ backgroundColor: COLORS[item.color.toLowerCase()] }} />
-                            {item.color}
-                          </div>
-                          <div className={cx("input-3")}>{item.size}</div>
-                          <div className={cx("input-4")}>{item.quantity}</div>
-                          <div className={cx("input-5")}>{item.price.toLocaleString("vi-VN")}₫</div>
+                        <div key={k}>
+                          <input
+                            type="checkbox"
+                            checked={isChecked}
+                            onChange={(e) => {
+                              if (isChecked) {
+                                // ✅ if clicking again on the same box → reset to "None"
+                                setFilterColorInAddProduct("None");
+                              } else {
+                                // ✅ else → select this color (unchecking others automatically)
+                                setFilterColorInAddProduct(color);
+                              }
+                            }}
+                          />
+                          <span>{color}</span>
                         </div>
                       );
                     })}
                   </div>
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 10, marginTop: 10 }}>
-                    <div style={{ fontSize: 16, fontWeight: 550, marginTop: 0 }}>3. Phí vận chuyển:</div>
-                    {newOrder.totalProduct >= 2 && (
-                      <div style={{ display: "flex", gap: 15, justifyContent: "space-between", flex: 1 }}>
+                </div>
+                <div className={cx("row")}>
+                  <div>Chọn</div>
+                  <div>Tên</div>
+                  <div>Màu</div>
+                  <div>Size</div>
+                  <div>Giá</div>
+                  <div>Kho</div>
+                  <div>Số lượng</div>
+                </div>
+                {virtualCart.map((p, i) => (
+                  <React.Fragment key={i}>
+                    {isExceedStock === i && <div className={cx("warning")}>⚠️ Số lượng vượt quá tồn kho ({p.stock})</div>}
+                    {filterColorInAddProduct === "None" || p.color === filterColorInAddProduct ? (
+                      <div className={cx("row")}>
                         <div>
-                          <FreeShipAnimate text="" />
-                        </div>
-                        <div>
-                          <span style={{ marginTop: 5 }}>0₫</span>
-                        </div>
-                      </div>
-                    )}
-                    {newOrder.totalProduct === 1 && (
-                      <div style={{ display: "flex", gap: 15, justifyContent: "flex-end", flex: 1 }}>
-                        <div style={{ verticalAlign: "middle" }}>
-                          <span style={{ marginTop: 5 }}>+{Number(30000).toLocaleString("vi-VN")}₫</span>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 10, marginTop: 10 }}>
-                    <div style={{ fontSize: 16, fontWeight: 550, marginTop: 0 }}>4. Ưu đãi:</div>
-
-                    {newOrder.totalProduct >= 2 && (
-                      <div style={{ display: "flex", gap: 15, justifyContent: "space-between", flex: 1 }}>
-                        <div style={{ display: "flex", alignItems: "center" }}>
-                          <Coupon text="" valueText="" />
                           <input
-                            type="number"
-                            style={{ marginTop: 0 }}
-                            placeholder="Tối đa 50.000đ"
-                            value={discountValue}
-                            onChange={(e) => handleDiscountChange(+e.target.value)}
+                            checked={p.isSelected}
+                            type="checkbox"
+                            style={{ cursor: "pointer", width: 18, height: 18, borderRadius: 9 }}
+                            onChange={(e) => handleCartChange(e.target.checked, i)}
                           />
                         </div>
-                        <div>-{discountValue.toLocaleString("vi-VN")}₫</div>
+                        <div style={{ fontWeight: 550 }}>{p.name}</div>
+                        <div className={cx("column-3")}>
+                          <span className={cx("color-identification")} style={{ backgroundColor: COLORS[p.color.toLowerCase()] }} />
+                          {p.color}
+                        </div>
+                        <div>{p.size}</div>
+                        <div>{p.price.toLocaleString("vi-VN")} đ</div>
+                        <div>{p.stock}</div>
+                        <div className={cx("choose-quantity")}>
+                          <div onClick={() => handleNumberProduct("decrease", i)} className={cx("decrease")}>
+                            <HiMinusSmall color="black" />
+                          </div>
+                          <div className={cx("vertical-line")}>|</div>
+                          <div style={{ color: "black", fontSize: "18px" }} className={cx("quantity-number")}>
+                            {p.quantity}
+                          </div>
+                          <div className={cx("vertical-line")}>|</div>
+                          <div onClick={() => handleNumberProduct("increase", i)} className={cx("increase")}>
+                            <HiPlusSmall color="black" />
+                          </div>
+                        </div>
                       </div>
-                    )}
-                  </div>
-                  {discountValue > 50000 && <div style={{ color: "red" }}>Giảm giá không quá 50.000đ</div>}
-                  <div className={cx("btn-total-add")}>
-                    <label style={{ fontWeight: "550", fontSize: "17px", textAlign: "right", color: "#ff0958" }}>
-                      Tổng tiền {`( ${newOrder.totalProduct} sản phẩm)`}:&nbsp; {Number(newOrder.total).toLocaleString()} ₫
-                    </label>
-                  </div>
-                  <div className={cx("group-item")}>
-                    <label>
-                      Ghi chú:
-                      <input value={newOrder.note} onChange={(e) => setNewOrder({ ...newOrder, note: e.target.value })} />
-                    </label>
-                    <label>
-                      Vận chuyển:
-                      <select value={newOrder.deliveryStatus} onChange={(e) => setNewOrder({ ...newOrder, deliveryStatus: e.target.value })}>
-                        {staffRole !== "admin" &&
-                          DeliveryOptionsForStaffSelectManual.map((s) => (
-                            <option key={s} value={s}>
-                              {s}
-                            </option>
-                          ))}
-                        {staffRole === "admin" &&
-                          DeliveryOptions.map((s) => (
-                            <option key={s} value={s}>
-                              {s}
-                            </option>
-                          ))}
-                      </select>
-                    </label>
-                  </div>
-                  <div className={cx("group-item")}>
-                    <label>
-                      Trạng thái:
-                      <select value={newOrder.status} onChange={(e) => setNewOrder({ ...newOrder, status: e.target.value })}>
-                        {STATUS_OPTIONS.map((s) => (
-                          <option key={s} value={s}>
-                            {s}
-                          </option>
-                        ))}
-                      </select>
-                    </label>
-                    <label>
-                      Nhân viên:
-                      <select value={newOrder.staff} onChange={(e) => setNewOrder({ ...newOrder, staff: e.target.value })}>
-                        {staffName.map((s) => (
-                          <option key={s} value={s}>
-                            {s}
-                          </option>
-                        ))}
-                      </select>
-                    </label>
-                  </div>
-                  <div className={cx("group-item")}>
-                    <label>
-                      Nguồn:
-                      <input
-                        value={newOrder.website}
-                        onChange={(e) => setNewOrder({ ...newOrder, website: e.target.value })}
-                        placeholder="link website hoặc tên shop..."
-                      />
-                    </label>
-                    <label>
-                      Facebook khách:
-                      <input
-                        value={newOrder.facebookLink || ""}
-                        onChange={(e) => setNewOrder({ ...newOrder, facebookLink: e.target.value })}
-                        placeholder="link facebook khách..."
-                      />
-                    </label>
-                  </div>
-                </div>
-                <div className={cx("modal-actions")}>
-                  <button
-                    onClick={() => {
-                      setCreateNewOrderBox(false);
-                      setCorrectedAddress(null);
-                      setVirtualCart([...defaultVirtualCart]);
-                      setNewOrder({ ...defaultNewOrder });
-                      setDiscountValue(0);
-                    }}
-                  >
+                    ) : null}
+                  </React.Fragment>
+                ))}
+
+                <div style={{ textAlign: "center", marginTop: 20 }}>
+                  <button className={cx("btn-decor", "btn-close")} onClick={() => handleCloseAddProduct("edit-form")}>
                     Đóng
-                  </button>
-                  <button
-                    onClick={handleCreateNewOrder}
-                    disabled={discountValue > 50000 ? true : false}
-                    style={{ cursor: discountValue > 50000 ? "not-allowed" : "pointer" }}
-                  >
-                    Tạo đơn
                   </button>
                 </div>
               </div>
-              {showListProduct && (
-                <div className={cx("show-list-product")}>
-                  <h4>Chọn sản phẩm theo màu size</h4>
-                  <div className={cx("filter-color-container")}>
-                    <div style={{ fontWeight: 550 }}>Lọc theo màu:</div>
-                    <div className={cx("wrap-checkbox")}>
-                      {productDetail.colorAvailable.map((color, k) => {
-                        const isChecked = filterColorInAddProduct === color;
-                        return (
-                          <div key={k}>
-                            <input
-                              type="checkbox"
-                              checked={isChecked}
-                              onChange={(e) => {
-                                if (isChecked) {
-                                  // ✅ if clicking again on the same box → reset to "None"
-                                  setFilterColorInAddProduct("None");
-                                } else {
-                                  // ✅ else → select this color (unchecking others automatically)
-                                  setFilterColorInAddProduct(color);
-                                }
-                              }}
-                            />
-                            <span>{color}</span>
-                          </div>
-                        );
-                      })}
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* //--Update multiple delivery status order */}
+      {openUpdateDeliveryBox && (
+        <div className={cx("update-delivery-box")}>
+          <h4>Cập nhật tất cả đơn đã chốt - Chưa giao hàng</h4>
+          <div>
+            Đã chốt - Chưa gửi hàng: <span style={{ color: "red", fontWeight: 600 }}>{DeliveryStatusCountsResult["Đã chốt"]}</span>
+          </div>
+          <div>
+            <label style={{ marginRight: 10 }}>Trạng thái vận chuyển mới:</label>
+            <select value={selectedDeliveryStatusForUpdate} onChange={(e) => setSelectedDeliveryStatusForUpdate(e.target.value)}>
+              {DeliveryOptionsForStaffSelectManual.map((s) => (
+                <option key={s} value={s}>
+                  {s}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div style={{ fontSize: 13, color: "#555", marginTop: 10 }}>Lưu ý: Chỉ cập nhật những đơn có trạng thái vận chuyển là "Chưa gửi hàng"</div>
+          <div>
+            <button className={cx("cancel")} onClick={() => setOpenUpdateDeliveryBox(false)}>
+              Đóng
+            </button>
+            <button className={cx("update")} onClick={() => UpdateMultipleDeliveryStatus(selectedDeliveryStatusForUpdate)}>
+              Cập nhật
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* //-- Create new order */}
+      {createNewOrderBox && newOrder && (
+        <div className={cx("fullfilment-bg")}>
+          <div className={cx("modal-overlay")}>
+            <div className={cx("modal")}>
+              <div style={{ fontSize: 20, fontWeight: 600, margin: "10px 0px", color: "#026feb" }}>Tạo đơn hàng mới</div>
+              <div className={cx("form")}>
+                <div style={{ fontSize: 16, fontWeight: 550 }}>1. Thông tin khách hàng</div>
+                <div className={cx("group-item")}>
+                  <label>
+                    Tên khách hàng:
+                    <input value={newOrder.customerName} onChange={(e) => setNewOrder({ ...newOrder, customerName: e.target.value })} />
+                  </label>
+                  <label>
+                    Số điện thoại:
+                    <input value={newOrder.phone} onChange={(e) => setNewOrder({ ...newOrder, phone: e.target.value })} />
+                  </label>
+                </div>
+
+                <div className={cx("address-edit-group")}>
+                  <label>
+                    <div style={{ marginBottom: 10 }}>
+                      Địa chỉ: <span style={{ fontSize: 14, fontWeight: 500, color: "#e94343" }}>{newOrder.address}</span>
                     </div>
-                  </div>
-                  <div className={cx("row")}>
-                    <div>Chọn</div>
-                    <div>Tên</div>
-                    <div>Màu</div>
-                    <div>Size</div>
-                    <div>Giá</div>
-                    <div>Kho</div>
-                    <div>Số lượng</div>
-                  </div>
-
-                  {virtualCart.map((p, i) => (
-                    <React.Fragment key={i}>
-                      {isExceedStock === i && <div className={cx("warning")}>⚠️ Số lượng vượt quá tồn kho ({p.stock})</div>}
-                      {filterColorInAddProduct === "None" || p.color === filterColorInAddProduct ? (
-                        <div className={cx("row")}>
-                          <div>
-                            <input
-                              checked={p.isSelected}
-                              type="checkbox"
-                              style={{ cursor: "pointer", width: 18, height: 18, borderRadius: 9 }}
-                              onChange={(e) => handleCartChange(e.target.checked, i)}
-                            />
-                          </div>
-                          <div style={{ fontWeight: 550 }}>{p.name}</div>
-                          <div className={cx("column-3")}>
-                            <span className={cx("color-identification")} style={{ backgroundColor: COLORS[p.color.toLowerCase()] }} />
-                            {p.color}
-                          </div>
-                          <div>{p.size}</div>
-                          <div>{p.price.toLocaleString("vi-VN")} đ</div>
-                          <div>{p.stock}</div>
-                          <div className={cx("choose-quantity")}>
-                            <div onClick={() => handleNumberProduct("decrease", i)} className={cx("decrease")}>
-                              <HiMinusSmall color="black" />
-                            </div>
-                            <div className={cx("vertical-line")}>|</div>
-                            <div style={{ color: "black", fontSize: "18px" }} className={cx("quantity-number")}>
-                              {p.quantity}
-                            </div>
-                            <div className={cx("vertical-line")}>|</div>
-                            <div onClick={() => handleNumberProduct("increase", i)} className={cx("increase")}>
-                              <HiPlusSmall color="black" />
-                            </div>
-                          </div>
-                        </div>
-                      ) : null}
-                    </React.Fragment>
-                  ))}
-
-                  <div style={{ textAlign: "center", marginTop: 20 }}>
-                    <button className={cx("btn-decor", "btn-close")} onClick={() => handleCloseAddProduct("new-form")}>
-                      Đóng
+                    <input
+                      value={correctedAddress === null ? newOrder.address : correctedAddress}
+                      onChange={(e) => setCorrectedAddress(e.target.value)}
+                      placeholder="Số nhà, tên đường hoặc tên tòa nhà..."
+                    />
+                  </label>
+                  <VnAddressSelect_Old onChange={(addr) => handleAddressChange_Old("new-form", addr)} />
+                </div>
+                {/* Order Info (array of products) */}
+                <div className={cx("order-info-edit")}>
+                  <div style={{ display: "flex", gap: 20, marginBottom: 10, marginTop: 10 }}>
+                    <div style={{ fontSize: 16, fontWeight: 550, display: "flex", alignItems: "center" }}>2. Thông tin sản phẩm</div>
+                    <button type="button" className={cx("btn-decor")} onClick={() => setShowListProduct(true)}>
+                      + Thêm sản phẩm
                     </button>
                   </div>
+                  <div className={cx("order-item-row")}>
+                    <div className={cx("input-1")} style={{ textDecoration: "underline" }}>
+                      Tên sản phẩm
+                    </div>
+                    <div className={cx("input-2")} style={{ textDecoration: "underline" }}>
+                      Màu
+                    </div>
+                    <div className={cx("input-3")} style={{ textDecoration: "underline" }}>
+                      Size
+                    </div>
+                    <div className={cx("input-4")} style={{ textDecoration: "underline" }}>
+                      Số lượng
+                    </div>
+                    <div className={cx("input-5")} style={{ textDecoration: "underline" }}>
+                      Gía 1 SP
+                    </div>
+                  </div>
+                  {newOrder.orderInfo.map((item, index) => {
+                    return (
+                      <div key={index} className={cx("order-item-row")}>
+                        <div className={cx("input-1")}>{item.name}</div>
+                        <div className={cx("input-2")}>
+                          <span className={cx("color-identification")} style={{ backgroundColor: COLORS[item.color.toLowerCase()] }} />
+                          {item.color}
+                        </div>
+                        <div className={cx("input-3")}>{item.size}</div>
+                        <div className={cx("input-4")}>{item.quantity}</div>
+                        <div className={cx("input-5")}>{item.price.toLocaleString("vi-VN")}₫</div>
+                      </div>
+                    );
+                  })}
                 </div>
-              )}
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 10, marginTop: 10 }}>
+                  <div style={{ fontSize: 16, fontWeight: 550, marginTop: 0 }}>3. Phí vận chuyển:</div>
+                  {newOrder.totalProduct >= 2 && (
+                    <div style={{ display: "flex", gap: 15, justifyContent: "space-between", flex: 1 }}>
+                      <div>
+                        <FreeShipAnimate text="" />
+                      </div>
+                      <div>
+                        <span style={{ marginTop: 5 }}>0₫</span>
+                      </div>
+                    </div>
+                  )}
+                  {newOrder.totalProduct === 1 && (
+                    <div style={{ display: "flex", gap: 15, justifyContent: "flex-end", flex: 1 }}>
+                      <div style={{ verticalAlign: "middle" }}>
+                        <span style={{ marginTop: 5 }}>+{Number(30000).toLocaleString("vi-VN")}₫</span>
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 10, marginTop: 10 }}>
+                  <div style={{ fontSize: 16, fontWeight: 550, marginTop: 0 }}>4. Ưu đãi:</div>
+
+                  {newOrder.totalProduct >= 2 && (
+                    <div style={{ display: "flex", gap: 15, justifyContent: "space-between", flex: 1 }}>
+                      <div style={{ display: "flex", alignItems: "center" }}>
+                        <Coupon text="" valueText="" />
+                        <input
+                          type="number"
+                          style={{ marginTop: 0 }}
+                          placeholder="Tối đa 50.000đ"
+                          value={discountValue}
+                          onChange={(e) => handleDiscountChange(+e.target.value)}
+                        />
+                      </div>
+                      <div>-{discountValue.toLocaleString("vi-VN")}₫</div>
+                    </div>
+                  )}
+                </div>
+                {discountValue > 50000 && <div style={{ color: "red" }}>Giảm giá không quá 50.000đ</div>}
+                <div className={cx("btn-total-add")}>
+                  <label style={{ fontWeight: "550", fontSize: "17px", textAlign: "right", color: "#ff0958" }}>
+                    Tổng tiền {`( ${newOrder.totalProduct} sản phẩm)`}:&nbsp; {Number(newOrder.total).toLocaleString()} ₫
+                  </label>
+                </div>
+                <div className={cx("group-item")}>
+                  <label>
+                    Ghi chú:
+                    <input value={newOrder.note} onChange={(e) => setNewOrder({ ...newOrder, note: e.target.value })} />
+                  </label>
+                  <label>
+                    Vận chuyển:
+                    <select value={newOrder.deliveryStatus} onChange={(e) => setNewOrder({ ...newOrder, deliveryStatus: e.target.value })}>
+                      {staffRole !== "admin" &&
+                        DeliveryOptionsForStaffSelectManual.map((s) => (
+                          <option key={s} value={s}>
+                            {s}
+                          </option>
+                        ))}
+                      {staffRole === "admin" &&
+                        DeliveryOptions.map((s) => (
+                          <option key={s} value={s}>
+                            {s}
+                          </option>
+                        ))}
+                    </select>
+                  </label>
+                </div>
+                <div className={cx("group-item")}>
+                  <label>
+                    Trạng thái:
+                    <select value={newOrder.status} onChange={(e) => setNewOrder({ ...newOrder, status: e.target.value })}>
+                      {STATUS_OPTIONS.map((s) => (
+                        <option key={s} value={s}>
+                          {s}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                  <label>
+                    Nhân viên:
+                    <select value={newOrder.staff} onChange={(e) => setNewOrder({ ...newOrder, staff: e.target.value })}>
+                      {staffName.map((s) => (
+                        <option key={s} value={s}>
+                          {s}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                </div>
+                <div className={cx("group-item")}>
+                  <label>
+                    Nguồn:
+                    <input
+                      value={newOrder.website}
+                      onChange={(e) => setNewOrder({ ...newOrder, website: e.target.value })}
+                      placeholder="link website hoặc tên shop..."
+                    />
+                  </label>
+                  <label>
+                    Facebook khách:
+                    <input
+                      value={newOrder.facebookLink || ""}
+                      onChange={(e) => setNewOrder({ ...newOrder, facebookLink: e.target.value })}
+                      placeholder="link facebook khách..."
+                    />
+                  </label>
+                </div>
+              </div>
+              <div className={cx("modal-actions")}>
+                <button
+                  onClick={() => {
+                    setCreateNewOrderBox(false);
+                    setCorrectedAddress(null);
+                    setVirtualCart([...defaultVirtualCart]);
+                    setNewOrder({ ...defaultNewOrder });
+                    setDiscountValue(0);
+                  }}
+                >
+                  Đóng
+                </button>
+                <button
+                  onClick={handleCreateNewOrder}
+                  disabled={discountValue > 50000 ? true : false}
+                  style={{ cursor: discountValue > 50000 ? "not-allowed" : "pointer" }}
+                >
+                  Tạo đơn
+                </button>
+              </div>
             </div>
+            {showListProduct && (
+              <div className={cx("show-list-product")}>
+                <h4>Chọn sản phẩm theo màu size</h4>
+                <div className={cx("filter-color-container")}>
+                  <div style={{ fontWeight: 550 }}>Lọc theo màu:</div>
+                  <div className={cx("wrap-checkbox")}>
+                    {productDetail.colorAvailable.map((color, k) => {
+                      const isChecked = filterColorInAddProduct === color;
+                      return (
+                        <div key={k}>
+                          <input
+                            type="checkbox"
+                            checked={isChecked}
+                            onChange={(e) => {
+                              if (isChecked) {
+                                // ✅ if clicking again on the same box → reset to "None"
+                                setFilterColorInAddProduct("None");
+                              } else {
+                                // ✅ else → select this color (unchecking others automatically)
+                                setFilterColorInAddProduct(color);
+                              }
+                            }}
+                          />
+                          <span>{color}</span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+                <div className={cx("row")}>
+                  <div>Chọn</div>
+                  <div>Tên</div>
+                  <div>Màu</div>
+                  <div>Size</div>
+                  <div>Giá</div>
+                  <div>Kho</div>
+                  <div>Số lượng</div>
+                </div>
+
+                {virtualCart.map((p, i) => (
+                  <React.Fragment key={i}>
+                    {isExceedStock === i && <div className={cx("warning")}>⚠️ Số lượng vượt quá tồn kho ({p.stock})</div>}
+                    {filterColorInAddProduct === "None" || p.color === filterColorInAddProduct ? (
+                      <div className={cx("row")}>
+                        <div>
+                          <input
+                            checked={p.isSelected}
+                            type="checkbox"
+                            style={{ cursor: "pointer", width: 18, height: 18, borderRadius: 9 }}
+                            onChange={(e) => handleCartChange(e.target.checked, i)}
+                          />
+                        </div>
+                        <div style={{ fontWeight: 550 }}>{p.name}</div>
+                        <div className={cx("column-3")}>
+                          <span className={cx("color-identification")} style={{ backgroundColor: COLORS[p.color.toLowerCase()] }} />
+                          {p.color}
+                        </div>
+                        <div>{p.size}</div>
+                        <div>{p.price.toLocaleString("vi-VN")} đ</div>
+                        <div>{p.stock}</div>
+                        <div className={cx("choose-quantity")}>
+                          <div onClick={() => handleNumberProduct("decrease", i)} className={cx("decrease")}>
+                            <HiMinusSmall color="black" />
+                          </div>
+                          <div className={cx("vertical-line")}>|</div>
+                          <div style={{ color: "black", fontSize: "18px" }} className={cx("quantity-number")}>
+                            {p.quantity}
+                          </div>
+                          <div className={cx("vertical-line")}>|</div>
+                          <div onClick={() => handleNumberProduct("increase", i)} className={cx("increase")}>
+                            <HiPlusSmall color="black" />
+                          </div>
+                        </div>
+                      </div>
+                    ) : null}
+                  </React.Fragment>
+                ))}
+
+                <div style={{ textAlign: "center", marginTop: 20 }}>
+                  <button className={cx("btn-decor", "btn-close")} onClick={() => handleCloseAddProduct("new-form")}>
+                    Đóng
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
-        )}
+        </div>
+      )}
 
-        {/* //-- Upload excel */}
-        {showUploadExcel && <UploadExcelBox onClose={() => setShowUploadExcel(false)} onUpload={handleUploadOrderExcel} />}
+      {/* //-- Upload excel */}
+      {showUploadExcel && <UploadExcelBox onClose={() => setShowUploadExcel(false)} onUpload={handleUploadOrderExcel} />}
 
-        <div className={cx("footer")}></div>
-      </div>
+      <div className={cx("footer")}></div>
     </div>
   );
 }

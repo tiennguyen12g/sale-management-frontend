@@ -63,6 +63,9 @@ export interface StaffDataType {
   bankInfos: {
     bankAccountNumber: string;
     bankOwnerName: string;
+    bankName: string;
+    bankShortName: string;
+    bankCode: string;
   };
   salaryHistory: SalaryHistoryType[];
   attendance: EmployeeAttendanceType[]; // update everyday.
@@ -123,11 +126,11 @@ interface StaffState {
   staffList: StaffDataType[];
   loading: boolean;
   error: string | null;
-  yourStaffProfile: StaffDataType | null ;
+  yourStaffProfile: StaffDataType | null;
   staffID: string | null;
   userId: string | null;
   fetchStaff: () => Promise<{ status: string; message: string } | undefined>;
-  fetchYourStaffProfile: (staffID: string, userId: string) => Promise<{ status: string; message: string, } | undefined>;
+  fetchYourStaffProfile: (staffID: string, userId: string) => Promise<{ status: string; message: string } | undefined>;
   addStaff: (newStaff: StaffDataType) => void; // 👈 new action
   updateStaff: (updated: StaffDataType) => void; // 👈 new
   appendSalaryHistory: (staffID: string, records: SalaryHistoryType[]) => void;

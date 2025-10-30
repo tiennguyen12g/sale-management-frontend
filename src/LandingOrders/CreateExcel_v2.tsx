@@ -4,10 +4,11 @@ import styles from "./CreateExcel_v2.module.scss";
 import * as XLSX from "xlsx";
 // import { type Order, type OrderItem } from "./ShopOrders";
 import type { FinalOrder, OrderItem } from "../zustand/shopOrderStore";
-
+import CustomSelectGlobal from "../ultilitis/CustomSelectGlobal";
 import { useStaffMenuStore } from "../zustand/menuCollapsed";
 const cx = classNames.bind(styles);
-
+import { FaShippingFast } from "react-icons/fa";
+import { FcFilledFilter } from "react-icons/fc";
 interface Props {
   orders: FinalOrder[];
 }
@@ -16,6 +17,16 @@ const CARRIERS = {
   VIETTEL: "Viettel Post",
   JNT: "J&T",
 } as const;
+const CarrierOptions = [
+  {
+    name: "Viettel Post",
+    key: "viettelpost",
+  },
+  {
+    name: "J&T",
+    key: "j&t",
+  },
+];
 
 const VIETTEL_HEADERS = [
   "STT",
@@ -82,20 +93,19 @@ function totalQuantity(items: OrderItem[]) {
   return items.reduce((s, it) => s + Number(it.quantity || 0), 0);
 }
 
-export default function CreateExcel({ orders }: Props) {
-  const [carrier, setCarrier] = useState<(typeof CARRIERS)[keyof typeof CARRIERS]>(CARRIERS.VIETTEL);
+export default function CreateExcel_v2({ orders }: Props) {
+  // const [carrier, setCarrier] = useState<(typeof CARRIERS)[keyof typeof CARRIERS]>(CARRIERS.VIETTEL);
+  const [carrier, setCarrier] = useState<string>("viettelpost");
   const [viettelService, setViettelService] = useState(VIETTEL_SERVICE_OPTIONS[1]);
   const [jntService, setJntService] = useState(JNT_SERVICE_OPTIONS[0]);
   const [jntPayment, setJntPayment] = useState(JNT_PAYMENT_OPTIONS[0]);
   const [selected, setSelected] = useState<string[]>([]);
   const [selectedProductId, setSelectedProductId] = useState<string>("All");
   const [totalOrders, setTotalOrders] = useState<number>(0);
-  const {menuCollapsed} = useStaffMenuStore()
-
+  const { menuCollapsed } = useStaffMenuStore();
 
   // Get the orders that are "Chốt" and "Chưa gửi hàng"
   const filterConfirmOrdersAndNotDelivery = orders.filter((o) => o.status === "Chốt" && o.deliveryStatus === "Chưa gửi hàng");
-
 
   // Extract all product IDs (prefix before "-")
   function getProductId(order: FinalOrder) {
@@ -130,7 +140,8 @@ export default function CreateExcel({ orders }: Props) {
 
   const sorted = useMemo(() => {
     // filter first
-    const visibleOrders = selectedProductId === "All" ? filterConfirmOrdersAndNotDelivery : filterConfirmOrdersAndNotDelivery.filter((o) => getProductId(o) === selectedProductId);
+    const visibleOrders =
+      selectedProductId === "All" ? filterConfirmOrdersAndNotDelivery : filterConfirmOrdersAndNotDelivery.filter((o) => getProductId(o) === selectedProductId);
 
     // then apply the same partition + sort logic on visibleOrders
     const singles = visibleOrders.filter((o) => {
@@ -141,7 +152,6 @@ export default function CreateExcel({ orders }: Props) {
       const totalQty = (o.orderInfo ?? []).reduce((s, it) => s + Number(it.quantity || 0), 0);
       return totalQty > 1;
     });
-
 
     // Group singles by productId -> color
     const productMap = new Map<string, Map<string, FinalOrder[]>>();
@@ -193,7 +203,7 @@ export default function CreateExcel({ orders }: Props) {
 
   // Build rows with full headers
   const { headers, rows } = useMemo(() => {
-    if (carrier === CARRIERS.VIETTEL) {
+    if (carrier === "viettelpost") {
       const data = activeOrders.map((o, i) => {
         // const weight = calcWeight(o.orderInfo, productWeights);
         const base: Record<string, any> = {};
@@ -281,106 +291,120 @@ export default function CreateExcel({ orders }: Props) {
   };
 
   return (
-    <div className={cx("create-excel-main", menuCollapsed ? "collapsed" : "")}>
-      <div className={cx("create-excel-header")}>
-        <div className={cx("create-excel-title")}>Tạo Excel</div>
-        <div className={cx("carrier-select")}>
-          <label>
-            <input type="radio" checked={carrier === CARRIERS.VIETTEL} onChange={() => setCarrier(CARRIERS.VIETTEL)} />
-            <span>Viettel Post</span>
-          </label>
-          <label>
-            <input type="radio" checked={carrier === CARRIERS.JNT} onChange={() => setCarrier(CARRIERS.JNT)} />
-            J&T
-          </label>
-        </div>
-      </div>
-
-      {carrier === CARRIERS.VIETTEL && (
-        <div className={cx("carrier-select")}>
-          <label>
-            Dịch vụ:
-            <select value={viettelService} onChange={(e) => setViettelService(e.target.value)}>
-              {VIETTEL_SERVICE_OPTIONS.map((opt) => (
-                <option key={opt}>{opt}</option>
-              ))}
-            </select>
-          </label>
-        </div>
-      )}
-      {carrier === CARRIERS.JNT && (
-        <div className={cx("carrier-select")}>
-          <label>
-            Loại dịch vụ:
-            <select value={jntService} onChange={(e) => setJntService(e.target.value)}>
-              {JNT_SERVICE_OPTIONS.map((opt) => (
-                <option key={opt}>{opt}</option>
-              ))}
-            </select>
-          </label>
-          <label>
-            Thanh toán:
-            <select value={jntPayment} onChange={(e) => setJntPayment(e.target.value)}>
-              {JNT_PAYMENT_OPTIONS.map((opt) => (
-                <option key={opt}>{opt}</option>
-              ))}
-            </select>
-          </label>
-        </div>
-      )}
-      <div className={cx("total-order")}>
-        <div className={cx("filters")}>
-          <label>
-            Lọc theo sản phẩm:{" "}
-            <select value={selectedProductId} onChange={(e) => setSelectedProductId(e.target.value)}>
-              <option value="All">Tất cả</option>
-              {productIds.map((pid) => (
-                <option key={pid} value={pid}>
-                  {pid}
-                </option>
-              ))}
-            </select>
-          </label>
-        </div>
-
-        <div className={cx('title-total')}>Tổng đơn in: <span>{totalOrders}</span></div>
-      </div>
-
-      <div className={cx("table-wrapper", )}>
-        <table className={cx("preview-table", menuCollapsed ? "collapsed" : "")}>
-          <thead>
-            <tr className={cx("table-header")}>
-              <th>Chọn</th>
-              {headers.map((h) => (
-                <th key={h}>{h}</th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {rows.length === 0 ? (
-              <tr>
-                <td></td>
-                {headers.map((h, i) => (
-                  <td key={i}></td>
-                ))}
-              </tr>
-            ) : (
-              rows.map((row, idx) => (
-                <tr key={idx}>
-                  <td>
-                    <input type="checkbox" checked={selected.includes(activeOrders[idx].orderCode)} onChange={() => toggleSelect(activeOrders[idx].orderCode)} />
-                  </td>
-                  {headers.map((h, i) => (
-                    <td key={i}>{row[h]}</td>
+    <div className={cx("create-excel-main")}>
+      <div className={cx("header")}>
+        <div className={cx("header-left")}>
+          <div className={cx("header-tabs")}>
+            <div className={cx("title-total")}>
+              Tổng đơn in: <span>{totalOrders}</span>
+            </div>
+            <div className={cx("filters")}>
+              <div className={cx("filter-title")}>Lọc theo sản phẩm: </div>
+              <div className={cx("filter-content")}>
+                <FcFilledFilter size={24} />
+                <select value={selectedProductId} onChange={(e) => setSelectedProductId(e.target.value)}>
+                  <option value="All">Tất cả</option>
+                  {productIds.map((pid) => (
+                    <option key={pid} value={pid}>
+                      {pid}
+                    </option>
                   ))}
-                </tr>
-              ))
+                </select>
+              </div>
+            </div>
+            <div className={cx("wrap-carrier-select")}>
+              <div className={cx("carrier-title")}>Đơn vị vận chuyển: </div>
+              <div className={cx("carrier-select")}>
+                <FaShippingFast size={20} color="#006af5" />
+                <CustomSelectGlobal options={CarrierOptions} onChange={(key) => setCarrier(key)} />
+              </div>
+            </div>
+            {/* {carrier === "viettelpost" && (
+              <div className={cx("carrier-select")}>
+                <label>
+                  Dịch vụ:
+                  <select value={viettelService} onChange={(e) => setViettelService(e.target.value)}>
+                    {VIETTEL_SERVICE_OPTIONS.map((opt) => (
+                      <option key={opt}>{opt}</option>
+                    ))}
+                  </select>
+                </label>
+              </div>
             )}
-          </tbody>
-        </table>
+            {carrier === "j&t" && (
+              <div className={cx("carrier-select")}>
+                <label>
+                  Loại dịch vụ:
+                  <select value={jntService} onChange={(e) => setJntService(e.target.value)}>
+                    {JNT_SERVICE_OPTIONS.map((opt) => (
+                      <option key={opt}>{opt}</option>
+                    ))}
+                  </select>
+                </label>
+                <label>
+                  Thanh toán:
+                  <select value={jntPayment} onChange={(e) => setJntPayment(e.target.value)}>
+                    {JNT_PAYMENT_OPTIONS.map((opt) => (
+                      <option key={opt}>{opt}</option>
+                    ))}
+                  </select>
+                </label>
+              </div>
+            )} */}
+          </div>
+        </div>
+        <div className={cx("header-right")}>
+          <div className={cx("header-actions")}></div>
+        </div>
       </div>
-
-      <button onClick={downloadExcel} className={cx('btn-decor', menuCollapsed ? "collapsed" : "")}>Download Excel</button>
+      <div className={cx("content")}>
+        <div className={cx("table-scroll")}>
+          <div className={cx("table-container")}>
+            <div className={cx("table-body")}>
+              <table className={cx("preview-table")}>
+                <thead>
+                  <tr>
+                    <th>Chọn</th>
+                    {headers.map((h) => (
+                      <th key={h}>{h}</th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {rows.length === 0 ? (
+                    <tr>
+                      <td></td>
+                      {headers.map((h, i) => (
+                        <td key={i}></td>
+                      ))}
+                    </tr>
+                  ) : (
+                    rows.map((row, idx) => (
+                      <tr key={idx}>
+                        <td>
+                          <input
+                            type="checkbox"
+                            checked={selected.includes(activeOrders[idx].orderCode)}
+                            onChange={() => toggleSelect(activeOrders[idx].orderCode)}
+                          />
+                        </td>
+                        {headers.map((h, i) => (
+                          <td key={i}>{row[h]}</td>
+                        ))}
+                      </tr>
+                    ))
+                  )}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className={cx("footer")}>
+        <button onClick={downloadExcel} className={cx("btn-decor")}>
+          Download Excel
+        </button>
+      </div>
     </div>
   );
 }

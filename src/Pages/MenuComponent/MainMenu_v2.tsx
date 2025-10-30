@@ -60,10 +60,6 @@ export default function MainMenu_v2() {
           <IoMdCart className={cx("icon")} size={22} />
           Product Details
         </div>
-        <div className={cx("submenu-item", { active: activeSubmenu === "page-select" })} onClick={() => setActiveSubmenu("page-select")}>
-          <FaFacebookSquare className={cx("icon")} size={20} />
-          Add Page
-        </div>
       </div>
 
       {/* Finance */}

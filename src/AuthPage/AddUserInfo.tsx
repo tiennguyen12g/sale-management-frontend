@@ -8,16 +8,22 @@ import { useStaffStore } from "../zustand/staffStore";
 import { useAuthStore } from "../zustand/authStore";
 import type { StaffInfoType, StaffDataType, StaffRole } from "../zustand/staffStore";
 import { SalaryByPosition } from "../zustand/staffStore";
-
+import type { ListBankType, BankInfoType } from "../assets/fullVietNamBanks";
+import CustomSelectGlobal from "../ultilitis/CustomSelectGlobal";
+import Select from "react-select";
+import { fullVietNamBanks } from "../assets/fullVietNamBanks";
 interface AddUserInfoProps {
   fullUserData: StaffDataType; // optional (empty when creating)
   setIsOpenAddForm: Dispatch<React.SetStateAction<boolean>>;
   setFullUserData: Dispatch<React.SetStateAction<StaffDataType>>;
+  listBanks: ListBankType;
 }
 
-export default function AddUserInfo({ setIsOpenAddForm, fullUserData, setFullUserData }: AddUserInfoProps) {
+export default function AddUserInfo({ setIsOpenAddForm, fullUserData, setFullUserData, listBanks }: AddUserInfoProps) {
   const { addStaff, updateStaff } = useStaffStore();
-  const { getAuthHeader } = useAuthStore();
+  const { getAuthHeader, setYourStaffInfo } = useAuthStore();
+  const [selectBank, setSelectBank] = useState<string | null>(null);
+
 
   // ✅ initialize from fullUserData if exists (edit), else defaults (create)
   const [staffForm, setStaffForm] = useState<StaffDataType | Omit<StaffDataType, "_id">>(fullUserData);
@@ -41,7 +47,7 @@ export default function AddUserInfo({ setIsOpenAddForm, fullUserData, setFullUse
     }));
   };
 
-  const handleBankChange = (field: "bankAccountNumber" | "bankOwnerName", value: string) => {
+  const handleBankChange = (field: "bankAccountNumber" | "bankOwnerName" | "bankName" | "bankShortName" | "bankCode", value: string) => {
     setStaffForm((prev) => ({
       ...prev,
       bankInfos: { ...prev.bankInfos, [field]: value },
@@ -92,6 +98,7 @@ export default function AddUserInfo({ setIsOpenAddForm, fullUserData, setFullUse
         if (res.ok) {
           addStaff(data);
           setFullUserData(data);
+          setYourStaffInfo(staffForm)
           alert("Tạo hồ sơ thành công!");
           setIsOpenAddForm(false);
         } else {
@@ -103,6 +110,26 @@ export default function AddUserInfo({ setIsOpenAddForm, fullUserData, setFullUse
       alert("Lỗi khi lưu hồ sơ");
     }
   };
+
+  const handleChangeBankInfo = (bankShortName: string) => {
+    const bankInfo = listBanks.data.find((bank) => bank.shortName === bankShortName);
+    if (bankInfo) {
+      handleBankChange("bankCode", bankInfo.code);
+      handleBankChange("bankName", bankInfo.name);
+      handleBankChange("bankShortName", bankInfo.shortName);
+      setSelectBank(`${bankInfo.code} - ${bankInfo.shortName}`);
+    }
+  };
+
+  const bankOptions = listBanks.data.map((b) => ({
+    value: b.shortName,
+    label: (
+      <div style={{ display: "flex", alignItems: "center" }}>
+        <img src={b.logo} width={45} style={{ marginRight: 8 }} />
+        {b.code} - {b.shortName}
+      </div>
+    ),
+  }));
 
   return (
     <div className={cx("add-staff-form")}>
@@ -148,14 +175,19 @@ export default function AddUserInfo({ setIsOpenAddForm, fullUserData, setFullUse
 
       <div className={cx("form-row")}>
         <div className={cx("field")}>
-          <label>Vai trò:</label>
-          <select value={staffForm.role} onChange={(e) => handleChange("role", e.target.value)}>
-            <option value="Director">Director</option>
-            <option value="Manager">Manager</option>
-            <option value="Sale-Staff">Sale-Staff</option>
-            <option value="Security">Security</option>
-            <option value="Packer">Packer</option>
-          </select>
+          <label>Tên ngân hàng:</label>
+          {/* <select  onChange={(e) => handleChangeBankInfo(e.target.value)}>
+            <option>Chọn ngân hàng</option>
+            {listBanks &&
+              listBanks.data.map((bankInfo, i) => {
+                return (
+                  <option key={i} className={cx("option-bank")} value={bankInfo.shortName}>
+                    {bankInfo.code} - {bankInfo.shortName}
+                  </option>
+                );
+              })}
+          </select> */}
+          <Select placeholder="Chọn ngân hàng" options={bankOptions} onChange={(e) => handleChangeBankInfo(e!.value)} />
         </div>
         <div className={cx("field")}>
           <label>Lương:</label>

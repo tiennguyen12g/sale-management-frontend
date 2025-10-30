@@ -3,14 +3,11 @@ import classNames from "classnames/bind";
 import styles from "./ChatPanel.module.scss";
 const cx = classNames.bind(styles);
 
-import { facebookAPIBase } from "../../../configs/api";
-import { type ConversationType, type ChatMessageType, useFacebookStore } from "../../../zustand/facebookStore";
+
+// Icons
 import { FaRegSmile, FaPaperclip } from "react-icons/fa";
 import { FaImage } from "react-icons/fa6";
 import { LuReply } from "react-icons/lu";
-import { useAuthStore, type ShopTagType } from "../../../zustand/authStore";
-import MessageEmoji from "./ultility/MessageEmoji";
-import FastAnswer from "./ultility/FastAnswer";
 import { RiCloseCircleFill } from "react-icons/ri";
 import { IoIosCloseCircle } from "react-icons/io";
 import { IoVideocam } from "react-icons/io5";
@@ -23,7 +20,22 @@ import { IoIosCheckmarkCircle } from "react-icons/io";
 import { PiSealCheckFill } from "react-icons/pi";
 import { FaTimesCircle } from "react-icons/fa";
 import { FaShippingFast } from "react-icons/fa";
+import { IoSend } from "react-icons/io5";
+
+// Components and Types
+import { facebookAPIBase } from "../../../configs/api";
+import MessageEmoji from "./ultility/MessageEmoji";
+import FastAnswer from "./ultility/FastAnswer";
 import CustomSelect from "../../../ultilitis/CustomSelect";
+
+// Hooks
+import { type ConversationType, type ChatMessageType, useFacebookStore } from "../../../zustand/facebookStore";
+import { useAuthStore } from "../../../zustand/authStore";
+import { useSettingStore, type TagType, type MediaLinkedType } from "../../../zustand/settingStore";
+
+// Libraries
+import { v4 as uuidv4 } from "uuid";
+
 interface Props {
   messagesByConversation: ChatMessageType[];
   onSendMessage: (conversationId: string, msg: ChatMessageType) => void;
@@ -32,10 +44,20 @@ interface Props {
 }
 
 export default function ChatPanel({ messagesByConversation, onSendMessage, conversationInfo, currentPageId }: Props) {
-  const { selectedConversationId, fetchMessagesFromConversation, pageSelected, hasMoreMessages, fetchMoreMessages, updateConversationById } =
-    useFacebookStore();
-  const { settings } = useAuthStore();
+  const {
+    messageList,
+    selectedConversationId,
+    fetchMessagesFromConversation,
+    pageSelected,
+    hasMoreMessages,
+    fetchMoreMessages,
+    updateConversationById,
+    sendMessageWithGroupMediaToFacebook,
+  } = useFacebookStore();
+  const { settings } = useSettingStore();
+  const initFastMessageData = settings ? settings.fastMessages : [];
   const [input, setInput] = useState("");
+  const [fastMegAttachedMedia, setFastMsgAttachedMedia] = useState<MediaLinkedType[]>([]);
   const [showEmoji, setShowEmoji] = useState(false);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
 
@@ -68,8 +90,10 @@ export default function ChatPanel({ messagesByConversation, onSendMessage, conve
   }, [showEmoji]);
 
   const sendMessage = (type: "text" | "image" | "video" | "sticker", content: string) => {
+    console.log("11");
     if (!content.trim()) return;
     if (!selectedConversationId) return;
+    console.log("22");
 
     const newMsg: ChatMessageType = {
       _id: Date.now().toString(),
@@ -89,11 +113,64 @@ export default function ChatPanel({ messagesByConversation, onSendMessage, conve
           }
         : undefined,
     };
-    console.log("2", newMsg);
+    if (fastMegAttachedMedia.length > 1) {
+      handleSendGroupImage(type, content, newMsg);
+    } else {
+      console.log("2", newMsg);
 
-    onSendMessage(selectedConversationId, newMsg);
+      onSendMessage(selectedConversationId, newMsg);
+      setReplyTo(null);
+      setInput("");
+    }
+  };
+
+  //-- Send message with multiple images
+  const handleSendGroupImage = async (type: "text" | "image" | "video" | "sticker", content: string, newMsg: ChatMessageType) => {
+    if (!selectedConversationId) return;
+
+    console.log("2", newMsg);
+    const localIdForMedia = uuidv4();
+
+    const attachments = fastMegAttachedMedia.map((media) => {
+      return {
+        type: media.type,
+        payload: {
+          url: media.url,
+        },
+      };
+    });
+    const objForMediaFastMessage: ChatMessageType = {
+      ...newMsg,
+      _id: localIdForMedia,
+      attachments,
+      content: "",
+    };
+    // update messageList in store
+    const existingMessages = messageList[selectedConversationId] || [];
+    let updatedMessages = [];
+    if (newMsg.content.length > 0) {
+      updatedMessages = [...existingMessages, objForMediaFastMessage, newMsg];
+    } else {
+      updatedMessages = [...existingMessages, objForMediaFastMessage];
+    }
+    useFacebookStore.getState().setMessageList(selectedConversationId, updatedMessages);
+
+    //send to Facebook API
+    if (currentPageId) {
+      sendMessageWithGroupMediaToFacebook(currentPageId.toString(), selectedConversationId, newMsg.recipientId || "", {
+        message: newMsg.content,
+        contentType: newMsg.contentType,
+        metadata: newMsg.metadata,
+        _id: newMsg._id,
+        localIdForMedia: localIdForMedia,
+        replyTo: newMsg.replyTo,
+        fastMegAttachedMedia: fastMegAttachedMedia,
+      });
+    }
+
     setReplyTo(null);
     setInput("");
+    setFastMsgAttachedMedia([]);
   };
 
   // ✅ Handle emoji selection (append to text)
@@ -339,8 +416,16 @@ export default function ChatPanel({ messagesByConversation, onSendMessage, conve
 
   const handleAddTag = (conversationId: string, tagId: string) => {
     if (!settings) return;
-    const tagInfo = settings.shopTagList.find((tag: ShopTagType) => tag.id === tagId);
-    updateConversationById(conversationId, tagInfo);
+    const tagInfo = settings.shopTagList.find((tag: TagType) => tag.id === tagId);
+    if (tagInfo) {
+      updateConversationById(conversationId, tagInfo);
+    }
+  };
+
+  const handleRemoveFastMsgInTextArea = (id: string) => {
+    setFastMsgAttachedMedia((prev) => {
+      return prev.filter((fastMsg) => fastMsg.id !== id);
+    });
   };
   return (
     <React.Fragment>
@@ -389,6 +474,7 @@ export default function ChatPanel({ messagesByConversation, onSendMessage, conve
             {loadingOlder && <div className={cx("loading-older")}>Loading older messages...</div>}
             {messagesByConversation.map((m, i) => {
               const isLastMessageOfCustomer = messagesByConversation[i + 1]?.senderType !== "customer";
+              const attachments = m.attachments || [];
               return (
                 <div key={`${m._id}`} className={cx("message-row", m.senderType === "shop" ? "from-shop" : "from-customer")}>
                   {isLastMessageOfCustomer && m.senderType === "customer" ? (
@@ -426,18 +512,32 @@ export default function ChatPanel({ messagesByConversation, onSendMessage, conve
                         </div>
                       )}
 
-                      {m.contentType === "image" && m.attachments && !m.attachments[0].payload.sticker_id && (
+                      {attachments.length === 1 && m.contentType === "image" && m.attachments && !m.attachments[0].payload.sticker_id && (
                         <div className={cx("wrap-image")} onClick={() => setPreviewUrl(m.metadata?.facebookURL || m.content)}>
                           <img src={m.metadata?.facebookURL || m.content} alt="uploaded" className={cx("img-message")} loading="lazy" />
                         </div>
                       )}
+                      <div className={cx("wrap-group-image-multi")} data-count={attachments.length}>
+                        {attachments.length > 1 &&
+                          attachments.map((attachment, p) => (
+                            <React.Fragment key={p}>
+                              {attachment.payload?.url && (
+                                <div className={cx("wrap-image-multi")} onClick={() => setPreviewUrl(attachment.payload.url ?? null)}>
+                                  <img src={attachment.payload.url} alt="uploaded" className={cx("img-message")} loading="lazy" />
+                                </div>
+                              )}
+                            </React.Fragment>
+                          ))}
+                      </div>
+
                       {m.contentType === "image" && m.attachments && m.attachments[0].payload.sticker_id && (
                         <div className={cx("icon-image")}>
                           <AiFillLike size={25} color="#186ceb" />
                         </div>
                       )}
                       {m.contentType === "text" && <div style={{ whiteSpace: "pre-line" }}>{m.content}</div>}
-                      {/* {m.contentType === "fallback" && <div style={{ whiteSpace: "pre-line" }}><a>{m.content}</a></div>} */}
+
+                      {/* //-- This is for showing website link */}
                       {m.contentType === "fallback" ? (
                         m.attachments && m.attachments[0] ? (
                           <div>
@@ -493,56 +593,27 @@ export default function ChatPanel({ messagesByConversation, onSendMessage, conve
 
           <footer className={cx("chat-input")}>
             <div className={cx("tools")}>
-              <div ref={emojiRef} className={cx("emoji-wrapper")}>
-                <FaRegSmile size={18} onClick={() => setShowEmoji((prev) => !prev)} className={cx("icon")} />
-                {showEmoji && <MessageEmoji onSelect={handleEmojiSelect} />}
-              </div>
-              <label htmlFor="fileUpload" className={cx("icon")}>
-                <FaImage size={18} />
-              </label>
-              <label htmlFor="fileUpload-video" className={cx("icon")}>
-                <FaVideo size={20} />
-              </label>
-              <input id="fileUpload" type="file" accept="image/*" style={{ display: "none" }} onChange={handleMediaUpload} />
-              <input id="fileUpload-video" type="file" accept="video/*" style={{ display: "none" }} onChange={handleMediaUpload} />
-              <div>
-                <AiFillLike size={20} onClick={() => setShowEmoji((prev) => !prev)} className={cx("icon")} />
-              </div>
-              <div>
-                <FcLike size={20} onClick={() => setShowEmoji((prev) => !prev)} className={cx("icon")} />
-              </div>
-              {/* <div className={cx("add-tag-conversation")}>
-                <label>Gắn thẻ: </label>
-                <select className={cx("select-tag")} onChange={(e) => handleAddTag(selectedConversationId, e.target.value)}>
-                  <option value="">-- Chọn thẻ --</option>
-                  {settings?.shopTagList?.map((tag: ShopTagType, i: number) => (
-                    <option key={i} value={tag.id}>
-                      {tag.tagName}
-                    </option>
-                  ))}
-                </select>
-              </div> */}
               <div className={cx("add-tag-conversation")}>
-  <label>Gắn thẻ: </label>
-  <CustomSelect
-    options={settings?.shopTagList || []}
-    onChange={(id) => handleAddTag(selectedConversationId, id)}
-      dropdownPosition="top"
-  />
-</div>
+                <label>Gắn thẻ: </label>
+                <CustomSelect options={settings?.shopTagList || []} onChange={(id) => handleAddTag(selectedConversationId, id)} dropdownPosition="top" />
+              </div>
+              <div className={cx("wrap-icons")}>
+                <div ref={emojiRef} className={cx("emoji-wrapper")}>
+                  <FaRegSmile size={18} onClick={() => setShowEmoji((prev) => !prev)} className={cx("icon")} />
+                  {showEmoji && <MessageEmoji onSelect={handleEmojiSelect} />}
+                </div>
+                <label htmlFor="fileUpload" className={cx("icon")}>
+                  <FaImage size={18} />
+                </label>
+                <label htmlFor="fileUpload-video" className={cx("icon")}>
+                  <FaVideo size={20} />
+                </label>
+                <input id="fileUpload" type="file" accept="image/*" style={{ display: "none" }} onChange={handleMediaUpload} />
+                <input id="fileUpload-video" type="file" accept="video/*" style={{ display: "none" }} onChange={handleMediaUpload} />
+              </div>
             </div>
 
             <div>
-              {/* {replyTo && (
-                <div className={cx("reply-preview")}>
-                  <div className={cx("reply-text")}>
-                    <strong>{replyTo.senderType === "customer" ? conversationInfo?.customerName : conversationInfo?.pageName}:</strong> {replyTo.content}
-                  </div>
-                  <button onClick={() => setReplyTo(null)} className={cx("close-reply")}>
-                    <RiCloseCircleFill size={20} color="red" />
-                  </button>
-                </div>
-              )} */}
               {replyTo && (
                 <div className={cx("reply-preview")}>
                   <div className={cx("reply-preview-left")}>
@@ -558,7 +629,6 @@ export default function ChatPanel({ messagesByConversation, onSendMessage, conve
                       </div>
                     )}
                   </div>
-
                   <button onClick={() => setReplyTo(null)} className={cx("close-reply")} title="Cancel reply">
                     <RiCloseCircleFill size={20} color="red" />
                   </button>
@@ -568,17 +638,32 @@ export default function ChatPanel({ messagesByConversation, onSendMessage, conve
               <div className={cx("input-area")}>
                 <textarea
                   value={input}
-                  placeholder="Nhập nội dung tin nhắn..."
+                  placeholder="Nhập nội dung tin nhắn...(Nhấn Shift + Enter để xuống dòng)"
                   onChange={(e) => {
                     setInput(e.target.value);
                   }}
                   onKeyDown={(e) => {
-                    const handled = FastAnswer.useKeyHandler(e, input, setInput, fastStateRef);
-                    if (handled) return;
+                    const handled = FastAnswer.useKeyHandler(
+                      e,
+                      input,
+                      (msg) => {
+                        // ✅ msg = { text: string, media?: { url, type }[] }
+                        setInput(msg.text);
+
+                        // ✅ if fast message has media (images/videos)
+                        if (msg.media?.length) {
+                          setFastMsgAttachedMedia(msg.media); // <- you should have this state
+                        }
+                      },
+                      fastStateRef,
+                      initFastMessageData // ✅ Pass your real data list
+                    );
+
+                    if (handled) return; // stop if FastAnswer handled the key
 
                     if (e.key === "Enter" && !e.shiftKey) {
                       e.preventDefault();
-                      sendMessage("text", input);
+                      sendMessage("text", input); // ✅ optionally include attached media
                     }
                   }}
                   className={cx("textarea")}
@@ -586,17 +671,37 @@ export default function ChatPanel({ messagesByConversation, onSendMessage, conve
                 />
 
                 {/* FastAnswer: pass inputValue, onSelect and the onConsumeEnter handler */}
-                <FastAnswer inputValue={input} onSelect={(v) => setInput(v)} />
+                <FastAnswer
+                  inputValue={input}
+                  onSelect={(msg) => {
+                    setInput(msg.text);
+                    if (msg.media?.length) setFastMsgAttachedMedia(msg.media);
+                  }}
+                />
                 <div className={cx("group-send-and-like")}>
+                  <div className={cx("media-attachment")}>
+                    {fastMegAttachedMedia.map((attachmentMedia, h) => {
+                      return (
+                        <React.Fragment key={h}>
+                          {attachmentMedia.type === "image" ? (
+                            <div>
+                              <img src={attachmentMedia.url} alt="image" className={cx("small-preview")} />
+                              <FaTimesCircle color="red" style={{ cursor: "pointer" }} onClick={() => handleRemoveFastMsgInTextArea(attachmentMedia.url)} />
+                            </div>
+                          ) : (
+                            <div>
+                              <video src={attachmentMedia.url} controls className={cx("small-preview")} />
+                              <FaTimesCircle color="red" style={{ cursor: "pointer" }} onClick={() => handleRemoveFastMsgInTextArea(attachmentMedia.id)} />
+                            </div>
+                          )}
+                        </React.Fragment>
+                      );
+                    })}
+                  </div>
                   <div className={cx("icon-send")}>
                     <AiFillLike size={25} color="#186ceb" className={cx("icon")} onClick={() => sendMessage("text", "👍")} title="Send Like" />
                     <FcLike size={25} className={cx("icon")} onClick={() => sendMessage("text", "❤️")} title="Send Heart" />
-                  </div>
-
-                  <div className={cx("btn-send")}>
-                    <button className={cx("send-btn")} onClick={() => sendMessage("text", input)}>
-                      Gửi
-                    </button>
+                    <IoSend size={20} color="#186ceb" onClick={() => sendMessage("text", input)} />
                   </div>
                 </div>
               </div>

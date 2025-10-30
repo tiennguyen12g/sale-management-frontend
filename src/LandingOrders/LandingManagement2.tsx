@@ -17,9 +17,8 @@ export default function LandingManagemen_v2() {
   // const {user, token} = useAuthStore();
   const { products, fetchProducts } = useProductStore();
   const { orders } = useShopOrderStore();
-  const {staffID} = useStaffStore();
+  const { staffID } = useStaffStore();
   const [currentProduct, setCurrentProduct] = useState<string | undefined>(undefined);
-
 
   // fetch products
   useEffect(() => {
@@ -30,7 +29,6 @@ export default function LandingManagemen_v2() {
   useEffect(() => {
     useShopOrderStore.getState().fetchOrders();
   }, []);
-
 
   // build normalized products (memoized)
   const normalizedProducts = useMemo(() => {
@@ -52,10 +50,29 @@ export default function LandingManagemen_v2() {
 
   return (
     <div className={cx("landing-management-main")}>
+      {normalizedProducts.map((product, k) => {
+        return (
+          <React.Fragment key={k}>
+            {currentProduct === product.name && <ShopOrders_v3 productDetail={product} dataOrders={product.dataOrders} productName={currentProduct} />}
+          </React.Fragment>
+        );
+      })}
+    </div>
+  );
+}
 
-      {/* Navigation buttons - use absolute paths so they don't append to current deep path */}
-      <StaffHeartbeat />
-      {/* <div className={cx("group-navigate-btn")}>
+
+
+
+
+{
+  /* Navigation buttons - use absolute paths so they don't append to current deep path */
+}
+{
+  /* <StaffHeartbeat /> */
+}
+{
+  /* <div className={cx("group-navigate-btn")}>
         {normalizedProducts.map((product, i) => (
           <button
             className={cx("btn-decor")}
@@ -68,14 +85,5 @@ export default function LandingManagemen_v2() {
             {product.name}
           </button>
         ))}
-      </div> */}
-
-        {normalizedProducts.map((product, k) => {
-          return (
-            <React.Fragment key={k}>{currentProduct === product.name && <ShopOrders_v3 productDetail={product} dataOrders={product.dataOrders} productName={currentProduct}/>}</React.Fragment>
-          );
-        })}
- 
-    </div>
-  );
+      </div> */
 }

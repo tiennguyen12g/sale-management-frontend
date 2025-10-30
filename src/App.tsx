@@ -25,7 +25,8 @@ import AdsAccountLayout from "./Pages/BodyComponent/AdsAccount/AdsAaccount";
 import NewLayout from "./NewLayout/NewLayout";
 import AdsAccountManagement from "./Pages/BodyComponent/Financial/AdsCosts/AdsAccountManagement";
 import SettingPage from "./Pages/SettingPage/SettingPage";
-import ShopOrders_v3 from "./LandingOrders/ShopOrders_v3";
+import NewLayoutTemplate from "./NewLayout/NewLayoutTemplate";
+import { useSettingStore } from "./zustand/settingStore";
 function App() {
   const location = useLocation();
 
@@ -35,17 +36,19 @@ function App() {
   // Check if current path starts with any excluded route
   const shouldShowStaffMenu = !hideStaffMenuOn.some((path) => location.pathname.startsWith(path));
 
-  const { yourStaffId, setYourStaffId, settings, setSettings } = useAuthStore();
+  const { yourStaffId, setYourStaffId, yourStaffInfo, setYourStaffInfo} = useAuthStore();
+  const {settings, initSettings,} = useSettingStore();
 
   // ✅ Only run once on mount to initialize yourStaffId from localStorage
   useEffect(() => {
-    if (!yourStaffId) {
+    if (!yourStaffId || !yourStaffInfo) {
       const stored = localStorage.getItem("yourStaffInfo");
       if (stored) {
         try {
           const parsed = JSON.parse(stored);
           if (parsed?.staffID) {
             setYourStaffId(parsed.staffID);
+            setYourStaffInfo(parsed)
             console.log("✅ Loaded yourStaffId from localStorage:", parsed.staffID);
           }
         } catch (err) {
@@ -63,7 +66,7 @@ function App() {
         try {
           const parsed = JSON.parse(settingStore);
           if (parsed) {
-            setSettings(parsed);
+            initSettings(parsed);
             console.log("✅ Loaded yourStaffId from localStorage:", parsed);
           }
         } catch (err) {
@@ -71,7 +74,7 @@ function App() {
         }
       }
     }
-  }, [settings, setSettings]);
+  }, [settings, initSettings]);
 
   return (
     <div className="app-main">
@@ -103,7 +106,7 @@ function App() {
           element={
             <ProtectedRoute>
               <NewLayout>
-                <LandingManagement_v2 />
+                <NewLayoutTemplate />
               </NewLayout>
             </ProtectedRoute>
           }

@@ -89,3 +89,13 @@
     }
   }
 }
+.option-bank{
+  display: flex;
+  gap: 8px;
+  align-items: center;
+.bank-logo-image{
+  width: 30px;
+  height: 30px;
+  // border-radius: 6px;
+}
+}

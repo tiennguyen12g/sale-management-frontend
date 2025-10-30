@@ -5,15 +5,11 @@ import { CreateTag, EditTag } from "./CreateTag";
 import { MdDelete } from "react-icons/md";
 import { MdModeEditOutline } from "react-icons/md";
 import { useAuthStore } from "../../../zustand/authStore";
+import { useSettingStore, type ISettings, type TagType } from "../../../zustand/settingStore";
 import { v4 as uuidv4 } from "uuid";
 const cx = classNames.bind(styles);
 
-export interface TagType {
-  id: string;
-  tagName: string;
-  color: string;
-  description?: string;
-}
+
 const test1 = [
   { id: "1", tagName: "Kiểm hàng", color: "#636276" },
   { id: "2", tagName: "Câu hỏi", color: "#7b2cbf" },
@@ -30,27 +26,37 @@ export const exapmleTagList = [
 ];
 
 export default function ManageTags() {
-  const {setSettings, settings, updateSettingTag} = useAuthStore();
-  const [tagList, setTagList] = useState<TagType[]>(settings ? settings.shopTagList : []);
+
+  const { settings, initSettings, addTag, deleteTag, updateTag } = useSettingStore();
+
+  if(!settings){
+    return null;
+  }
+  const [tagList, setTagList] = useState<TagType[]>( settings.shopTagList || []);
 
   const [showModal, setShowModal] = useState(false);
   const [editTag, setEditTag] = useState<TagType | null>(null);
   const [showEdit, setShowEdit] = useState(false);
   const handleAddTag = (arrayNew: TagType[]) => {
-    console.log('here');
-    const newList = [...tagList, ...arrayNew]
+
+    // In one time added, I can set multiple tag and click Save. so arrayNew is new array tag .
+  
+    const newList = [...tagList, ...arrayNew];
+
     setTagList(newList);
-        const newSetting = {...settings, shopTagList: newList}
-    updateSettingTag(newSetting)
+    const newSetting: ISettings = { ...settings, shopTagList: newList };
+
+    initSettings(newSetting);
+    addTag(arrayNew);
   };
 
   const handleDeleteTag = (id: string) => {
     if (window.confirm("Bạn có chắc muốn xoá thẻ này?")) {
-        const newTagList = tagList.filter((tag)=> tag.id !== id);
+      const newTagList = tagList.filter((tag) => tag.id !== id);
       setTagList(newTagList);
-        const newSetting = {...settings, shopTagList: newTagList}
-    updateSettingTag(newSetting)
-
+      const newSetting = { ...settings, shopTagList: newTagList };
+      initSettings(newSetting);
+       deleteTag(id);
     }
   };
   const handleEditTag = (tagInfo: TagType) => {
@@ -58,7 +64,7 @@ export default function ManageTags() {
     setShowEdit(true);
   };
   const handleSaveEdit = async (newTagInfo: TagType) => {
-    let newTagList: TagType[] = []
+    let newTagList: TagType[] = [];
     setTagList((prev) => {
       const newList = prev.map((tagInfo) => {
         if (tagInfo.id === newTagInfo.id) {
@@ -67,11 +73,12 @@ export default function ManageTags() {
           return tagInfo;
         }
       });
-      newTagList = [...newList]
+      newTagList = [...newList];
       return newList;
     });
-    const newSetting = {...settings, shopTagList: newTagList}
-    updateSettingTag(newSetting)
+    const newSetting = { ...settings, shopTagList: newTagList };
+   initSettings(newSetting);
+   updateTag(newTagInfo.id, newTagInfo)
   };
 
   return (

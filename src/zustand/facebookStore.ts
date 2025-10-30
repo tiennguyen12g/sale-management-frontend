@@ -1,8 +1,9 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import axiosApiCall from "./axiosApiClient";
-import { useAuthStore, type ShopTagType } from "./authStore";
+import { useAuthStore,  } from "./authStore";
 import { facebookAPIBase } from "../configs/api";
+import { type TagType } from "./settingStore";
 interface FBUser {
   id: string;
   name: string;
@@ -48,7 +49,7 @@ export interface ConversationType {
 
   isMuted?: boolean;
   isPinned?: boolean;
-  tags?: ShopTagType;
+  tags?: TagType;
 }
 
 interface ConversationUpdateType {
@@ -145,6 +146,12 @@ interface FacebookState {
     recipientId: string,
     messageObj: Record<string, any>
   ) => Promise<{ status: string; data?: any }>;
+  sendMessageWithGroupMediaToFacebook: (
+    pageId: string,
+    conversationId: string,
+    recipientId: string,
+    messageObj: Record<string, any>
+  ) => Promise<{ status: string; data?: any }>;
 
   addIncomingMessage: (data: { message: ChatMessageType; conversationUpdate: ConversationType & { typeEmit: "new" | "update" } }) => void;
 
@@ -154,7 +161,7 @@ interface FacebookState {
 
   handleIncomingConversation: (conversation: ConversationType & { typeEmit: "new" | "update" }) => void;
 
-  updateConversationById: (conversationId: string, tag: ShopTagType) => void;
+  updateConversationById: (conversationId: string, tag: TagType) => void;
 }
 
 export const useFacebookStore = create<FacebookState>()(
@@ -237,7 +244,7 @@ export const useFacebookStore = create<FacebookState>()(
           return { status: "failed", message: err.message };
         }
       },
-      fetchMessagesFromConversation: async (conversationId, pageId, limit = 15) => {
+      fetchMessagesFromConversation: async (conversationId, pageId, limit = 25) => {
         try {
           const { getAuthHeader } = useAuthStore.getState();
           const res = await axiosApiCall.get(`${facebookAPIBase}/messages/${pageId}/${conversationId}?limit=${limit}`, { headers: getAuthHeader() });
@@ -391,6 +398,21 @@ export const useFacebookStore = create<FacebookState>()(
           const { getAuthHeader } = useAuthStore.getState();
           const res = await axiosApiCall.post(
             `${facebookAPIBase}/send-message`,
+            { pageId, conversationId, recipientId, messageObj },
+            { headers: { "Content-Type": "application/json", ...getAuthHeader() } }
+          );
+          console.log("res", res);
+          return { status: "success", data: res.data };
+        } catch (err: any) {
+          console.error("❌ Failed to send message to Facebook:", err);
+          return { status: "failed", message: err.message };
+        }
+      },
+        sendMessageWithGroupMediaToFacebook: async (pageId, conversationId, recipientId, messageObj) => {
+        try {
+          const { getAuthHeader } = useAuthStore.getState();
+          const res = await axiosApiCall.post(
+            `${facebookAPIBase}/send-media-group`,
             { pageId, conversationId, recipientId, messageObj },
             { headers: { "Content-Type": "application/json", ...getAuthHeader() } }
           );

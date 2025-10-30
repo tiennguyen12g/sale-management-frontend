@@ -3,41 +3,40 @@ import classNames from "classnames/bind";
 import styles from "./FastAnswer.module.scss";
 const cx = classNames.bind(styles);
 
+import { useSettingStore, type FastMessageType , type MediaLinkedType} from "../../../../zustand/settingStore";
+
 interface FastAnswerProps {
   inputValue: string;
-  onSelect: (value: string) => void;
+  onSelect: (message: { text: string; media?: MediaLinkedType[] }) => void;
 }
 
-const quickReplies = [
-  { key: "hi", text: "Xin chào! Tôi có thể giúp gì cho bạn hôm nay?" },
-  { key: "ship", text: "Phí ship sẽ được tính tùy theo khu vực của bạn nhé." },
-  { key: "thanks", text: "Cảm ơn bạn đã liên hệ với shop!" },
-  { key: "time", text: "Thời gian giao hàng dự kiến là 3-5 ngày làm việc." },
-  { key: "promo", text: "Hiện tại shop đang có chương trình khuyến mãi, bạn muốn biết thêm không?" },
-];
-
 export default function FastAnswer({ inputValue, onSelect }: FastAnswerProps) {
-  const [filtered, setFiltered] = useState<typeof quickReplies>([]);
+  const { settings } = useSettingStore();
+  const fastMessages: FastMessageType[] = settings?.fastMessages || [];
+
+  const [filtered, setFiltered] = useState<FastMessageType[]>([]);
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
     const match = inputValue.match(/\/(\w*)$/);
     if (match) {
       const keyword = match[1].toLowerCase();
-      const result = quickReplies.filter((r) => r.key.startsWith(keyword));
+      const result = fastMessages.filter((r) => r.keySuggest.toLowerCase().startsWith(keyword));
       setFiltered(result);
       setActiveIndex(0);
     } else {
       setFiltered([]);
     }
-  }, [inputValue]);
+  }, [inputValue, fastMessages]);
 
-  const handleSelect = (text: string) => {
-    onSelect(text);
+  const handleSelect = (item: FastMessageType) => {
+    onSelect({
+      text: item.messageContent,
+      media: item.listMediaUrl,
+    });
     setFiltered([]);
   };
 
-  /** 👉 Call this from textarea onKeyDown */
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (!filtered.length) return false;
 
@@ -54,7 +53,7 @@ export default function FastAnswer({ inputValue, onSelect }: FastAnswerProps) {
     if (e.key === "Enter") {
       e.preventDefault();
       const chosen = filtered[activeIndex];
-      if (chosen) handleSelect(chosen.text);
+      if (chosen) handleSelect(chosen);
       return true;
     }
     return false;
@@ -66,37 +65,42 @@ export default function FastAnswer({ inputValue, onSelect }: FastAnswerProps) {
     <div className={cx("dropdown")}>
       {filtered.map((item, i) => (
         <div
-          key={item.key}
+          key={item.id}
           className={cx("item", { active: i === activeIndex })}
-          onClick={() => handleSelect(item.text)}
+          onClick={() => handleSelect(item)}
         >
-          <span className={cx("shortcut")}>/{item.key}</span>
-          <span className={cx("text")}>{item.text}</span>
+          <span className={cx("shortcut")}>/{item.keySuggest}</span>
+       <span className={cx("text")}>{item.messageContent}</span>
+
+          {item.listMediaUrl?.length > 0 && (
+            <div className={cx("thumbs")}>
+              {item.listMediaUrl.slice(0, 3).map((m) => (
+                <img key={m.id} src={m.url} alt="thumb" className={cx("thumb")} />
+              ))}
+              {item.listMediaUrl.length > 3 && (
+                <span className={cx("more")}>+{item.listMediaUrl.length - 3}</span>
+              )}
+            </div>
+          )}
         </div>
       ))}
     </div>
   );
 }
 
-/** Export hook-like helper so parent can intercept keys */
+/** ✅ Hook-like helper so parent can intercept keyboard events */
 FastAnswer.useKeyHandler = (
   e: React.KeyboardEvent<HTMLTextAreaElement>,
   inputValue: string,
-  onSelect: (v: string) => void,
-  stateRef: React.MutableRefObject<any>
+  onSelect: (message: { text: string; media?: MediaLinkedType[] }) => void,
+  stateRef: React.MutableRefObject<any>,
+  fastMessages: FastMessageType[]
 ): boolean => {
   const match = inputValue.match(/\/(\w*)$/);
   if (!match) return false;
 
   const keyword = match[1].toLowerCase();
-  const quickReplies = [
-    { key: "hi", text: "Xin chào! Tôi có thể giúp gì cho bạn hôm nay?" },
-    { key: "ship", text: "Phí ship sẽ được tính tùy theo khu vực của bạn nhé." },
-    { key: "thanks", text: "Cảm ơn bạn đã liên hệ với shop!" },
-    { key: "time", text: "Thời gian giao hàng dự kiến là 3-5 ngày làm việc." },
-    { key: "promo", text: "Hiện tại shop đang có chương trình khuyến mãi, bạn muốn biết thêm không?" },
-  ];
-  const result = quickReplies.filter((r) => r.key.startsWith(keyword));
+  const result = fastMessages.filter((r) => r.keySuggest.toLowerCase().startsWith(keyword));
   if (!result.length) return false;
 
   if (!stateRef.current) stateRef.current = { active: 0, list: result };
@@ -113,8 +117,11 @@ FastAnswer.useKeyHandler = (
   }
   if (e.key === "Enter") {
     e.preventDefault();
-    onSelect(result[stateRef.current.active].text);
+    const chosen = result[stateRef.current.active];
+    if (chosen)
+      onSelect({ text: chosen.messageContent, media: chosen.listMediaUrl });
     return true;
   }
+
   return false;
 };

@@ -14,6 +14,7 @@ import { RiLogoutBoxFill } from "react-icons/ri";
 import { RiLogoutBoxRFill } from "react-icons/ri";
 import { IoSettingsSharp } from "react-icons/io5";
 import { RiAdvertisementFill } from "react-icons/ri";
+import { IoStorefrontSharp } from "react-icons/io5";
 
 import { IoLogOutOutline } from "react-icons/io5";
 import { IoMdCart } from "react-icons/io";
@@ -85,7 +86,7 @@ export default function MainMenu({}: Props) {
           }}
         >
           <div className={cx("part1")}>
-            <MdInventory className={cx("icon")} size={iconSize} color="#ffffff" />
+            <IoStorefrontSharp className={cx("icon")} size={iconSize} color="#ffffff" />
             {!menuCollapsed && <span>Kho hàng</span>}
           </div>
         </div>
@@ -136,12 +137,6 @@ export default function MainMenu({}: Props) {
             <StaffTracking_v2 staffID={staffID ? staffID : ""} menuCollapsed={menuCollapsed} />
           </div>
         </div>
-        {/* <div className={cx("menu-item")} onClick={toggleMenuCollapse}>
-          <div className={cx("part1")}>
-            <IoSettingsSharp className={cx("icon")} size={iconSize} color="#ffffff" fontWeight={600} />
-            {!menuCollapsed && <span>Cài đặt</span>}
-          </div>
-        </div> */}
         <div className={cx("menu-item")} onClick={toggleMenuCollapse}>
           <div className={cx("part1")}>
             {!menuCollapsed ? (
@@ -162,5 +157,3 @@ export default function MainMenu({}: Props) {
     </div>
   );
 }
-const fb_avatar =
-  "https://scontent.fhan5-2.fna.fbcdn.net/v/t39.30808-6/518163607_122112329870925570_3189166168050201309_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=-JD2IryabeYQ7kNvwEFM9sf&_nc_oc=AdmLf0A6Ubz3mGZ1IIi0OOxWRusDD9FHgaY2E8g3BO2bTDjOpPvyLLfkeJIlCwF7vRA&_nc_zt=23&_nc_ht=scontent.fhan5-2.fna&_nc_gid=Zja_K_2-S9V9hhYn-Paf0A&oh=00_Afd_qJ1P8uTv0Z4_DKlrf2QwIs5fACgazvY72qPi4lYxmw&oe=68F59CA5";
