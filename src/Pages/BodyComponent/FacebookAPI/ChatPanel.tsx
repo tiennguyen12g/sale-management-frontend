@@ -53,6 +53,7 @@ export default function ChatPanel({ messagesByConversation, onSendMessage, conve
     fetchMoreMessages,
     updateConversationById,
     sendMessageWithGroupMediaToFacebook,
+    errorSend,
   } = useFacebookStore();
   const { settings } = useSettingStore();
   const initFastMessageData = settings ? settings.fastMessages : [];
@@ -122,6 +123,14 @@ export default function ChatPanel({ messagesByConversation, onSendMessage, conve
       setReplyTo(null);
       setInput("");
     }
+        if (!bodyRef.current) return false;
+        console.log('scroll');
+        bodyRef.current.scrollTo({
+      top: bodyRef.current.scrollHeight,
+      behavior: "smooth",
+      
+    });
+    
   };
 
   //-- Send message with multiple images
@@ -570,6 +579,7 @@ export default function ChatPanel({ messagesByConversation, onSendMessage, conve
                           </video>
                         </div>
                       )}
+
                     </div>
 
                     {/* ✅ Show reply button when hovering */}
@@ -580,6 +590,7 @@ export default function ChatPanel({ messagesByConversation, onSendMessage, conve
                 </div>
               );
             })}
+            {errorSend && <div className={cx('error-send')}>Tin nhắn tạm không gửi được, thử lại sau!</div>}
           </div>
           {/* ✅ Fullscreen image overlay */}
           {previewUrl && (

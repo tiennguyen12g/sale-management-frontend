@@ -108,6 +108,7 @@ interface FacebookState {
   user: FBUser | null;
   pages: PageInfoType[];
   loading: boolean;
+  errorSend: string | null;
   conversations: ConversationType[];
   pageSelected: PageInfoType | null;
   messageList: { [conversationId: string]: ChatMessageType[] };
@@ -162,6 +163,7 @@ interface FacebookState {
   handleIncomingConversation: (conversation: ConversationType & { typeEmit: "new" | "update" }) => void;
 
   updateConversationById: (conversationId: string, tag: TagType) => void;
+  updateErrorSend: (errorMessage: any) => void;
 }
 
 export const useFacebookStore = create<FacebookState>()(
@@ -170,6 +172,7 @@ export const useFacebookStore = create<FacebookState>()(
       user: null,
       pages: [],
       loading: false,
+      errorSend: null,
       conversations: [],
       messageList: {},
       hasMoreMessages: {},
@@ -272,6 +275,7 @@ export const useFacebookStore = create<FacebookState>()(
                 return conv;
               }
             }),
+            errorSend: null,
           }));
 
           return { status: "success", data: messages };
@@ -405,6 +409,7 @@ export const useFacebookStore = create<FacebookState>()(
           return { status: "success", data: res.data };
         } catch (err: any) {
           console.error("❌ Failed to send message to Facebook:", err);
+          set({errorSend: err.message})
           return { status: "failed", message: err.message };
         }
       },
@@ -498,6 +503,9 @@ export const useFacebookStore = create<FacebookState>()(
           console.error("❌ Failed to update conversation:", err);
         }
       },
+      updateErrorSend: (error: any) => {
+        set({errorSend: error})
+      }
     }),
     {
       name: "facebook-storage",
